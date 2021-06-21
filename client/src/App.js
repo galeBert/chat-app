@@ -1,6 +1,8 @@
+import { ApolloProvider } from '@apollo/react-hooks'
 import React, { Component } from 'react';
 import { getLoggedInUser, logout } from './auth';
 import Chat from './Chat';
+import client from './graphql/client';
 import Login from './Login';
 import NavBar from './NavBar';
 
@@ -22,10 +24,10 @@ class App extends Component {
       return <Login onLogin={this.handleLogin.bind(this)} />;
     }
     return (
-      <div>
+      <ApolloProvider client={client}>
         <NavBar onLogout={this.handleLogout.bind(this)} />
         <Chat user={user} />
-      </div>
+      </ApolloProvider>
     );  
   }
 }

@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 
 const accessTokenKey = 'accessToken';
-const loginUrl = 'http://localhost:9000/login';
+const loginUrl = 'http://localhost:8000/login';
 
 function getUserFromToken(token) {
   return jwtDecode(token).sub;
