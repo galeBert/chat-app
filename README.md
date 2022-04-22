@@ -29,10 +29,10 @@ Online course platform for Rumah Berbagi.
     - [References](#references)
   - [Contributing](#contributing)
 
-## Documentation
+<!-- ## Documentation
 
 - [Main Docs](docs/index.md)
-- [Hackathon Announcement](https://rbagi.id/gh/22)
+- [Hackathon Announcement](https://rbagi.id/gh/22) -->
 
 ## Getting started
 
