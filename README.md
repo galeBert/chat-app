@@ -1,49 +1,140 @@
-// TODO: create actions for user (active/nonactive, banned, delete)
-// TODO: create getPosts for search with filter (timeStamp, w-video, w-photo, w-voiceNote, with-gif, location, rating, status active)
-// TODO: create actions for post (active/nonactive, takedown, setRating, setFlag, Delete) - for takedown, delete, and setFlag send notif to owner
-// TODO: search for all
-// TODO: Footer count
-// TODO: change random table using formik
-// TODO: Firebase logout
-// TODO: Looping Skeleton
-// TODO: loading state on search (table search)
-// TODO: flaging
-// TODO: set rating, like (asc desc)
+# Curious Admin
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<!-- [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-) -->
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+<!-- [![Build Status][build-badge]][build] [![MIT License][license-badge]][license] -->
 
+<!-- prettier-ignore-start -->
 
+<!-- [build-badge]: https://img.shields.io/github/workflow/status/zainfathoni/admin-curious/CI?logo=github&style=flat-square
+[build]: https://github.com/insvire/admin-curious/actions?query=workflow%3ACI
+[license-badge]: https://img.shields.io/badge/license-MIT-blue?style=flat-square -->
+[license]: LICENSE
 
-# Getting Started with Create React App
+<!-- prettier-ignore-end -->
 
-Figma Design:
-(https://www.figma.com/file/d9JdZATFNRQFTHNa0QaKDO/Curious-Darkmode?node-id=11%3A491)
+Online course platform for Rumah Berbagi.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [Curious Admin](#curious-admin)
+  - [Documentation](#documentation)
+  - [Getting started](#getting-started)
+    - [System Requirements](#system-requirements)
+    - [Development](#development)
+    - [Testing](#testing)
+  - [Tools & References](#tools--references)
+    - [Tools](#tools)
+      - [Code Editor](#code-editor)
+    - [References](#references)
+  - [Contributing](#contributing)
 
-## Available Scripts
+## Documentation
 
-In the project directory, you can run:
+- [Main Docs](docs/index.md)
+- [Hackathon Announcement](https://rbagi.id/gh/22)
 
-### `npm start`
+## Getting started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### System Requirements
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Node.js](https://nodejs.org/) >= 16.0.0
+- [git](https://git-scm.com/) >= 2.7.0
 
-### `npm test`
+### Development
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To get started running the project locally, please follow the steps below.
 
-### `npm run build`
+First, clone the repository.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```sh
+git clone https://github.com/insvire/admin-curious.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+or if you're cloning using SSH.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+git clone git@github.com:insvire/admin-curious.git
+```
+
+Then go to the directory and copy the example environment variables into an
+ignored `.env` file
+
+```sh
+cd admin-curious
+cp .env.example .env
+```
+
+Run this command to perform the initial setup while making sure that the app can
+run properly in your local.
+
+```sh
+yarn install
+```
+
+Finally, run the development server to start developing.
+
+```sh
+yarn dev
+```
+
+Open <http://localhost:3000> with your browser to see the result. This starts
+your app in development mode, rebuilding assets on file changes.
+
+### Testing
+
+Run this command to start the end-to-end testing locally.
+
+```sh
+yarn test:e2e:run
+```
+
+## Tools & References
+
+### Tools
+
+- [Commitlint.io](https://commitlint.io)
+- [Tailwind UI](https://tailwindui.com/)
+<!-- - [Testing Playground](https://testing-playground.com/) -->
+
+#### Code Editor
+
+If you're using Visual Studio Code, you can install the recommended extensions
+for this project by
+[using `@recommended` filter](https://code.visualstudio.com/docs/editor/extension-marketplace#_extensions-view-filters).
+
+![Recommended VS Code Extensions](https://user-images.githubusercontent.com/6315466/147128206-3b1acdaa-213f-4e2b-a0a3-4b8c63bc881d.png)
+
+### References
+
+- [React Docs](https://reactjs.org/docs/getting-started.html/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Apollo Client](https://www.apollographql.com/docs/react/)
+- [Firebase](https://firebase.google.com/docs/reference/js/)
+
+## Contributing
+
+See our contribution guidelines in these languages:
+
+- [English](CONTRIBUTING.md)
+- [Indonesian](CONTRIBUTING_ID.md)
+
+When contributing to our project, please use English when communicating with
+other people in issues and/or pull requests.
+[Click here](CONTRIBUTING.md#why-are-we-using-english-in-our-issues--prs) to
+read why.
+([Bahasa Indonesia](CONTRIBUTING_ID.md#mengapa-kita-menggunakan-bahasa-inggris-dalam-menulis-issue-dan-pull-request))
+
+<!-- ### Important links -->
+
+<!-- markdownlint-disable line-length -->
+
+<!-- | Description                  | Link                                                       |
+| ---------------------------- | ---------------------------------------------------------- |
+| Project overview             | [rbagi.id/github-project](https://rbagi.id/github-project) |
+| Epics list                   | [rbagi.id/epic](https://rbagi.id/epic)                     |
+| Issues board                 | [rbagi.id/board](https://rbagi.id/board)                   |
+| Issue shortlink              | [rbagi.id/gh/:issue-id](https://rbagi.id/gh)               |
+| First-time contributors link | [rbagi.id/contribute](https://rbagi.id/contribute)         | -->
+
+<!-- markdownlint-restore -->
