@@ -94,8 +94,7 @@ yarn test:e2e:run
 ### Tools
 
 - [Commitlint.io](https://commitlint.io)
-- [Tailwind UI](https://tailwindui.com/)
-<!-- - [Testing Playground](https://testing-playground.com/) -->
+- [Testing Playground](https://testing-playground.com/)
 
 #### Code Editor
 
