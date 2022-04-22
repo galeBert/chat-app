@@ -1,0 +1,14 @@
+.grid-container {
+@apply grid grid-cols-5  gap-4 h-full;
+grid-template-rows: 0.3fr 1fr
+}
+ .bottom-left{
+ @apply col-span-4 h-full;
+}
+.bottom-left {
+    /* @apply h-72 */
+    height: 340px
+}
+.top-right {
+    @apply h-full row-span-2
+}

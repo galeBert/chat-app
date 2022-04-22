@@ -1,0 +1,5 @@
+.visx__tooltip {
+  min-width: 72px;
+  text-align: 'center';
+  transform: translateX(-50%);
+}

@@ -1,0 +1,37 @@
+@import url("./assets/fonts/Avenir.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply subpixel-antialiased transition duration-700 ease-in-out text-gray-100;
+}
+
+a {
+  @apply font-bold;
+}
+
+h1 {
+  @apply text-3xl text-dark-100 font-black block w-full;
+}
+h2 {
+  @apply text-2xl text-dark-100 font-black block w-full;
+}
+h3 {
+  @apply text-xl text-dark-100 font-black block w-full;
+}
+h4 {
+  @apply text-lg text-dark-100 font-black block w-full;
+}
+h5 {
+  @apply text-base text-dark-100 font-black block w-full;
+}
+
+.theme-transition {
+  @apply transition delay-150 duration-500 ease-in-out;
+}
+
+.Toastify__close-button,.Toastify__close-button--dark {
+  display: none;
+}

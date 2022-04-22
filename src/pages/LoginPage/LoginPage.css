@@ -1,0 +1,28 @@
+.login-container {
+  @apply w-96 h-screen p-4 flex flex-col mx-auto justify-center;
+}
+
+.logo-container {
+  @apply flex flex-col w-full justify-center items-center py-2 pl-2 fill-current text-dark-100;
+}
+
+.login-form {
+  @apply flex-col text-center;
+}
+
+.login-form span {
+  @apply pt-2;
+}
+
+.login-input,
+.login-input:placeholder-shown {
+  @apply text-center text-dark-600 h-10 rounded-md;
+}
+
+.login-input-error {
+  @apply border-red-300 border-solid border-2;
+}
+
+.login-logo {
+  @apply mb-8 w-52;
+}

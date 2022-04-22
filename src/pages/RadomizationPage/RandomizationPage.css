@@ -1,0 +1,18 @@
+.randomization-container {
+  @apply w-full bg-dark-100 ;  
+}
+.theme-card {
+    @apply w-full max-w-sm h-44 border-2 border-solid border-gray-600 rounded-md flex justify-between flex-col p-2 hover:bg-dark-600 m-2;
+}
+.header {
+    @apply flex justify-end;
+}
+.footer {
+    @apply flex gap-2 justify-center -mb-3;
+}
+.addnew-input {
+    @apply bg-transparent pl-2 w-full ml-2 border-2 border-solid border-gray-600 h-10 rounded-md
+}
+.addnew-button {
+    @apply absolute right-0 top-2 w-24 bg-dark-600 rounded-sm
+}

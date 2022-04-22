@@ -1,0 +1,79 @@
+/* MAIN */
+.table-container {
+    @apply w-full h-full pl-5 pb-5 pr-5 pt-4 bg-dark-100 rounded-xl
+}
+/* HEADER */
+.header-container {
+    @apply w-full mb-4
+}
+/* TABLE */
+.table-container {
+    @apply w-full 
+}
+.table-input-skin {
+    @apply bg-transparent w-full  border border-solid border-gray-600 m-2 rounded-sm;
+}
+
+/* .table-container-child {
+    @apply w-full h-14 overflow-scroll
+} */
+.th-location {
+    width: 280px;
+    min-width: 25vh;
+}
+.status-container {
+    @apply rounded-2xl w-24 h-8 pt-0.5 pb-0.5;
+}
+  
+.table-photo-container {
+    @apply w-10 h-10 rounded object-cover m-1 mr-3;
+}
+td {
+    @apply border-b border-solid border-gray-600
+}
+th {
+    @apply border-b border-solid border-gray-600
+}
+.email-span {
+    @apply text-gray-600
+}
+.email-span:hover {
+    @apply text-gray-300 cursor-pointer
+}
+
+.row-username {
+    align-items: center;
+    column-gap: 10px;
+  }
+  
+  .row-username .user-avatar {
+    border-radius: 100%;
+  }
+  
+
+/* FOOTER */
+.table-footer_container {
+    @apply flex justify-end p-2
+}
+.table-footer-border {
+    @apply border-2 border-solid border-gray-600
+}
+.table-footer-button_container {
+    @apply  pt-2 pb-1 pl-2 pr-2 rounded-xl 
+}
+
+.filter .d-action .dropdown {
+    width: 10rem;
+}
+
+
+
+.testnyaa {
+ display: none;
+}
+.test:hover + .testnyaa {
+    display: block;
+}
+.testnyaa:hover {
+    display: block;
+}

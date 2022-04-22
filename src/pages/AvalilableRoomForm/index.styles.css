@@ -1,0 +1,3 @@
+.pac-container, .pac-item {
+    @apply bg-dark-100
+}
