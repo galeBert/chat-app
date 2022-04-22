@@ -15,7 +15,7 @@
 
 <!-- prettier-ignore-end -->
 
-Online course platform for Rumah Berbagi.
+The source code of Curious Admin website.
 
 - [Curious Admin](#curious-admin)
   - [Documentation](#documentation)
