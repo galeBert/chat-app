@@ -61,7 +61,7 @@ Then go to the directory and copy the example environment variables into an
 ignored `.env` file
 
 ```sh
-cd admin-curious
+cd curious-admin
 cp .env.example .env
 ```
 
