@@ -8,8 +8,8 @@
 
 <!-- prettier-ignore-start -->
 
-<!-- [build-badge]: https://img.shields.io/github/workflow/status/zainfathoni/admin-curious/CI?logo=github&style=flat-square
-[build]: https://github.com/insvire/admin-curious/actions?query=workflow%3ACI
+<!-- [build-badge]: https://img.shields.io/github/workflow/status/zainfathoni/curious-admin/CI?logo=github&style=flat-square
+[build]: https://github.com/insvire/curious-admin/actions?query=workflow%3ACI
 [license-badge]: https://img.shields.io/badge/license-MIT-blue?style=flat-square -->
 [license]: LICENSE
 
@@ -29,10 +29,9 @@ The source code of Curious Admin website.
     - [References](#references)
   - [Contributing](#contributing)
 
-<!-- ## Documentation
+## Documentation
 
 - [Main Docs](docs/index.md)
-- [Hackathon Announcement](https://rbagi.id/gh/22) -->
 
 ## Getting started
 
@@ -48,13 +47,13 @@ To get started running the project locally, please follow the steps below.
 First, clone the repository.
 
 ```sh
-git clone https://github.com/insvire/admin-curious.git
+git clone https://github.com/insvire/curious-admin.git
 ```
 
 or if you're cloning using SSH.
 
 ```sh
-git clone git@github.com:insvire/admin-curious.git
+git clone git@github.com:insvire/curious-admin.git
 ```
 
 Then go to the directory and copy the example environment variables into an
