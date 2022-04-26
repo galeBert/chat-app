@@ -31,8 +31,16 @@ module.exports = {
     React: true,
     JSX: true,
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   parserOptions: {
     sourceType: 'module',
+    ecmaVersion: 2021,
     ecmaFeatures: {
       impliedStrict: true,
       jsx: true,

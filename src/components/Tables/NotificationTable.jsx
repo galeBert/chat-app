@@ -1,14 +1,14 @@
 import './style.css';
 
+import noPhoto from '../../assets/blank_profile_picture.png';
+import StatusContainer from '../../components/StatusContainer';
+import { APPROVED_REQUEST_ADMIN, SEARCH_USER } from '../../graphql/mutation';
+import { useModal } from '../../hooks/useModal';
+
 import { useMutation } from '@apollo/client';
 import { CheckIcon, XIcon } from '@heroicons/react/outline';
-import noPhoto from 'assets/blank_profile_picture.png';
-import StatusContainer from 'components/StatusContainer';
-import { APPROVED_REQUEST_ADMIN, SEARCH_USER } from 'graphql/mutation';
-import { useModal } from 'hooks/useModal';
 import { parse } from 'querystring';
-import { useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const headers = ['Admin', 'Role', 'Request', 'User', 'Status', 'Action'];
 
@@ -24,10 +24,10 @@ const NotificationTable = ({ data }) => {
         query: SEARCH_USER,
         variables: { search: parseQs?.search || '', perPage: 20, page: 0 },
       });
-      const data = readQuery?.searchUser;
+      const datas = readQuery?.searchUser;
 
       modal.actions.onSetSnackbar(true, dataApproval.message);
-      console.log(data);
+      console.log(datas);
       // if (Object.keys(dataApproval).length) {
       //   const newHits = data.hits.map((res) => {
       //     if (res.id === dataApproval.id) {

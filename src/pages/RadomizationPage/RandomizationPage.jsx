@@ -2,17 +2,18 @@ import './RandomizationPage.css';
 
 import { useState } from 'react';
 
-import { useMutation, useQuery } from '@apollo/client';
-import { CheckCircleIcon } from '@heroicons/react/solid';
-import Button from 'components/Button';
-import NewDropDown from 'components/DropDown/DropdownResponsive';
+import Button from '../../components/Button';
+import NewDropDown from '../../components/DropDown/DropdownResponsive';
 import {
   CREATE_NEW_THEMES,
   DELETE_THEME,
   UPDATE_THEMES,
-} from 'graphql/mutation';
-import { GET_THEMES } from 'graphql/query';
-import { useModal } from 'hooks/useModal';
+} from '../../graphql/mutation';
+import { GET_THEMES } from '../../graphql/query';
+import { useModal } from '../../hooks/useModal';
+
+import { useMutation, useQuery } from '@apollo/client';
+import { CheckCircleIcon } from '@heroicons/react/solid';
 import { get } from 'lodash';
 import { Link } from 'react-router-dom';
 
@@ -116,7 +117,7 @@ const RandomizationPage = () => {
     if (action === 'delete') deleteThemeById({ variables: { id } });
   };
   const activeThemeCount =
-    hasData && searchThemes.filter((data) => data.isActive === true).length;
+    hasData && searchThemes.filter((docs) => docs.isActive === true).length;
   return (
     <div className='randomization-container p-4'>
       <div className='mb-8'>
@@ -144,9 +145,9 @@ const RandomizationPage = () => {
         {loading && <div className='theme-card skeleton' />}
         {!loading &&
           hasData &&
-          searchThemes.map((theme) => {
+          searchThemes.map((theme, key) => {
             return (
-              <div className='theme-card '>
+              <div key={key} className='theme-card '>
                 {theme.isActive && (
                   <div className='absolute w-4 h-4 text-green-300'>
                     <CheckCircleIcon />

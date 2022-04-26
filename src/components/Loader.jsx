@@ -2,7 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-export default function Loader({ size, className }) {
+export default function Loader({ size }) {
   return (
     <svg
       className={classNames(

@@ -1,5 +1,6 @@
-import LoginPage from 'pages/LoginPage/LoginPage';
-import { Redirect, Route } from 'react-router';
+import LoginPage from '../pages/LoginPage/LoginPage';
+
+import { Redirect, Route } from 'react-router-dom';
 
 export default function AuthRoute({ component: Component, ...rest }) {
   const token = localStorage.getItem('token');

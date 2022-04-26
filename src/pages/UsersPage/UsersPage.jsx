@@ -2,18 +2,19 @@ import './UsersPage.css';
 
 import { useEffect, useRef, useState } from 'react';
 
+import DoughnutChart from '../../components/Charts/DoughnutChart';
+import SmallGraph from '../../components/SmallGraph/SmallGraph';
+import Table from '../../components/Tables';
+import Areas from '../../components/Visual/Areas';
+import { SEARCH_USER } from '../../graphql/mutation';
+import { GET_GRAPH, GET_STATS_USERS_AGE } from '../../graphql/query';
+import { handleHeader } from '../../hooks/handleHeader';
+
 import { useLazyQuery, useQuery } from '@apollo/client';
-import DoughnutChart from 'components/Charts/DoughnutChart';
-import SmallGraph from 'components/SmallGraph/SmallGraph';
-import Table from 'components/Tables';
-import Areas from 'components/Visual/Areas';
-import { SEARCH_USER } from 'graphql/mutation';
-import { GET_GRAPH, GET_STATS_USERS_AGE } from 'graphql/query';
-import { handleHeader } from 'hooks/handleHeader';
-import jsPDF from 'jspdf';
+import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { parse } from 'querystring';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const ListOfColors = [
   '#307BF4',
@@ -63,7 +64,7 @@ const UserPage = () => {
           return [username, email, mobileNumber, status];
         }
       );
-      const doc = new jsPDF({
+      const doc = new JsPDF({
         orientation: 'landscape',
       });
 
@@ -78,11 +79,11 @@ const UserPage = () => {
         startY: 36,
         head: [['Username', 'Email', 'Phone Number', 'Status']],
         body,
-        didDrawPage: (data) => {
+        didDrawPage: (datas) => {
           let str = `Page ${doc.internal.getNumberOfPages()}`;
           // Total page number plugin only available in jspdf v1.0+
           if (typeof doc.putTotalPages === 'function') {
-            str = `${str} of ${data.pageCount}`;
+            str = `${str} of ${datas.pageCount}`;
           }
           doc.setFontSize(10);
 
@@ -91,7 +92,7 @@ const UserPage = () => {
           const pageHeight = pageSize.height
             ? pageSize.height
             : pageSize.getHeight();
-          doc.text(str, data.settings.margin.left, pageHeight - 10);
+          doc.text(str, datas.settings.margin.left, pageHeight - 10);
         },
       });
 
@@ -112,7 +113,7 @@ const UserPage = () => {
     if (option && stateGraph) {
       if (called) refetch({ graphType: option, state: stateGraph });
     }
-  }, [option, stateGraph]);
+  }, [option, called, stateGraph, refetch]);
 
   useEffect(() => {
     if (!_isMounted.current) {
@@ -138,12 +139,19 @@ const UserPage = () => {
     }
   }, [parseQs, _isMounted, called, onSearchRefetch, searchUser]);
 
+  const onExportData = (payload = {}) => {
+    _processPdf.current = false; // pretend to double save pdf
+    if (calledExport) refetchExport({ useExport: true, ...payload });
+    searchUserExportData({
+      variables: { useExport: true, search: headerSearch, ...payload },
+    });
+  };
   const onFilters = (filter = [], exportData = false) => {
     const newFilter = {};
     let newStatus = '';
 
-    if (filter.some((data) => data.from && data.to)) {
-      newFilter.timestamp = filter.find((data) => data.from);
+    if (filter.some((datas) => datas.from && datas.to)) {
+      newFilter.timestamp = filter.find((datas) => datas.from);
     }
     if (filter.includes('hasEmail')) {
       newFilter.hasEmail = true;
@@ -178,15 +186,8 @@ const UserPage = () => {
       return onExportData({ filters: newFilter, status: newStatus });
 
     if (called) onSearchRefetch({ filters: newFilter, status: newStatus });
-    else searchUser({ filters: newFilter, status: newStatus });
-  };
-
-  const onExportData = (payload = {}) => {
-    _processPdf.current = false; // pretend to double save pdf
-    if (calledExport) refetchExport({ useExport: true, ...payload });
-    searchUserExportData({
-      variables: { useExport: true, search: headerSearch, ...payload },
-    });
+    else return searchUser({ filters: newFilter, status: newStatus });
+    return searchUser({ filters: newFilter, status: newStatus });
   };
 
   const handleChangeGraph = (state) => {
@@ -232,14 +233,14 @@ const UserPage = () => {
   return (
     <div>
       <div className='grid-container'>
-        {summaryData.map((data, idx) => {
+        {summaryData.map((datas, idx) => {
           return (
             <div key={idx} className='h-full'>
               <SmallGraph
-                data={data}
+                data={datas}
                 loading={loading}
                 onClick={handleChangeGraph}
-                simple={data.name !== 'New User'}
+                simple={datas.name !== 'New User'}
               />
             </div>
           );
@@ -289,7 +290,7 @@ const UserPage = () => {
               className={`${
                 option === 'daily' ? 'bg-primary-100' : ''
               } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-              onClick={() => handleStateOfGraph('daily')}
+              onKeyDown={() => handleStateOfGraph('daily')}
             >
               Daily
             </div>
@@ -297,7 +298,7 @@ const UserPage = () => {
               className={`${
                 option === 'monthly' ? 'bg-primary-100' : ''
               } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-              onClick={() => handleStateOfGraph('monthly')}
+              onKeyDown={() => handleStateOfGraph('monthly')}
             >
               Monthly
             </div>
@@ -305,7 +306,7 @@ const UserPage = () => {
               className={`${
                 option === 'yearly' ? 'bg-primary-100' : ''
               } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-              onClick={() => handleStateOfGraph('yearly')}
+              onKeyDown={() => handleStateOfGraph('yearly')}
             >
               Yearly
             </div>

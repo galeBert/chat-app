@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
 
+import SearchInput from '../../components/SearchInput/SearchInput';
+
 import { createAutocomplete } from '@algolia/autocomplete-core';
 import { getAlgoliaResults } from '@algolia/autocomplete-preset-algolia';
 import algoliasearch from 'algoliasearch/lite';
-import SearchInput from 'components/SearchInput/SearchInput';
 import { useHistory } from 'react-router-dom';
 
 const searchClient = algoliasearch(
@@ -109,16 +110,16 @@ export const Autocomplete = () => {
                       <li
                         key={item.objectID}
                         className='aa-Item cursor-pointer p-2 relative'
+                        onKeyDownCapture={() =>
+                          history.push(`${item.url}?search=${item.query}`)
+                        }
                         {...autocomplete.getItemProps({
                           item,
                           source,
                         })}
-                        onClick={() =>
-                          history.push(`${item.url}?search=${item.query}`)
-                        }
                       >
                         <div>
-                          <div>search "{item.query}"</div>
+                          <div>search {item.query}</div>
                           <div>in {item.target}</div>
                         </div>
                         <div

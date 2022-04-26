@@ -1,4 +1,5 @@
-import blank_profile_picture from 'assets/blank_profile_picture.png';
+import blank_profile_picture from '../../assets/blank_profile_picture.png';
+
 import moment from 'moment';
 
 const AdminRoleTable = ({ data }) => {

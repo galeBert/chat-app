@@ -9,7 +9,7 @@ import {
 } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import { useField } from 'formik';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 // import { CHECK_USERNAME } from 'graphql/mutations'
 

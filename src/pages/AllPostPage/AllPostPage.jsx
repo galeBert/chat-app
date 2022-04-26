@@ -2,22 +2,25 @@ import './AllPostPage.css';
 
 import { useEffect, useRef, useState } from 'react';
 
+import SmallGraph from '../../components/SmallGraph/SmallGraph';
+import Table from '../../components/Tables';
+import { SEARCH_POST, SEARCH_POST_EXPORT } from '../../graphql/mutation';
+import { GET_GRAPH } from '../../graphql/query';
+import { handleHeader } from '../../hooks/handleHeader';
+
 import { useLazyQuery } from '@apollo/client';
-import SmallGraph from 'components/SmallGraph/SmallGraph';
-import Table from 'components/Tables';
-import { SEARCH_POST, SEARCH_POST_EXPORT } from 'graphql/mutation';
-import { GET_GRAPH } from 'graphql/query';
-import { handleHeader } from 'hooks/handleHeader';
-import jsPDF from 'jspdf';
+import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import moment from 'moment';
 import { parse } from 'querystring';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const AllPostPage = () => {
   const _processPdf = useRef(false);
-  const [stateGraph, setStateGraph] = useState('post.total');
-  const [option, setOption] = useState('daily');
+  const stateGraph = 'post.total';
+  // const [stateGraph, setStateGraph] = useState('post.total');
+  const option = 'daily';
+  // const [option, setOption] = useState('daily');
   const [filters, setFilters] = useState([]);
   const [headerSearch, setHeaderSearch] = useState('');
   const _isMounted = useRef(false);
@@ -30,15 +33,15 @@ const AllPostPage = () => {
     {
       data: dataAllPost,
       loading: loadingGrapgh,
-      refetch: refetchGraph,
-      called: calledGraph,
+      // refetch: refetchGraph,
+      // called: calledGraph,
     },
   ] = useLazyQuery(GET_GRAPH);
   useEffect(() => {
     getInitGraph({
       variables: { graphType: option, state: stateGraph },
     });
-  }, []);
+  }, [getInitGraph, option, stateGraph]);
 
   const summary = dataAllPost?.getGraphSummary?.summary;
 
@@ -69,29 +72,21 @@ const AllPostPage = () => {
 
   const [searchPostExportData, { refetch, called: calledExport }] =
     useLazyQuery(SEARCH_POST_EXPORT, {
-      onCompleted: (data) => {
-        if (data?.searchPosts?.hits.length) {
-          const doc = new jsPDF({
+      onCompleted: (datas) => {
+        if (datas?.searchPosts?.hits.length) {
+          const doc = new JsPDF({
             orientation: 'landscape',
           });
           //Header
-          handleHeader(doc, 'Post', filters, data?.searchPosts?.hits.length);
+          handleHeader(doc, 'Post', filters, datas?.searchPosts?.hits.length);
 
           //Footer
           doc.setFontSize(9);
           //table
           autoTable(doc, { html: '#posts' });
 
-          const newExport = data?.searchPosts?.hits.map(
-            ({
-              owner,
-              text,
-              createdAt,
-              location,
-              id,
-              status = '',
-              ...props
-            }) => {
+          const newExport = datas?.searchPosts?.hits.map(
+            ({ owner, text, createdAt, location, id, status = '' }) => {
               const { markdownContent } = JSON.parse(text);
               const datetime = moment(createdAt)
                 .utc()
@@ -123,7 +118,7 @@ const AllPostPage = () => {
             startY: 36,
             head: [head],
             body: newExport,
-            didDrawPage: (data) => {
+            didDrawPage: (docs) => {
               const str = `Page ${doc.internal.getNumberOfPages()}`;
               // Total page number plugin only available in jspdf v1.0+
               // if (typeof doc.putTotalPages === 'function') {
@@ -136,7 +131,7 @@ const AllPostPage = () => {
               const pageHeight = pageSize.height
                 ? pageSize.height
                 : pageSize.getHeight();
-              doc.text(str, data.settings.margin.left, pageHeight - 10);
+              doc.text(str, docs.settings.margin.left, pageHeight - 10);
             },
           });
           if (!_processPdf.current) {
@@ -177,8 +172,15 @@ const AllPostPage = () => {
         _prevSearch.current = parseQs?.search || '';
       }
     }
-  }, [_isMounted, parseQs]);
+  }, [_isMounted, parseQs, called, onSearchRefetch, searchPost]);
 
+  const onExportData = ({ filter }) => {
+    _processPdf.current = false; // pretend to double save pdf
+    if (calledExport) refetch({ useExport: true, filter });
+    searchPostExportData({
+      variables: { useExport: true, filter, search: headerSearch },
+    });
+  };
   const onFilters = (filter = [], exportData = false) => {
     const newFilter = {
       media: [],
@@ -189,8 +191,8 @@ const AllPostPage = () => {
       },
     };
 
-    if (filter.some((data) => data.from && data.to)) {
-      newFilter.timestamp = filter.find((data) => data.from);
+    if (filter.some((date) => date.from && date.to)) {
+      newFilter.timestamp = filter.find((doc) => doc.from);
     }
     if (filter.includes('active')) {
       newFilter.status = 'active';
@@ -224,21 +226,13 @@ const AllPostPage = () => {
     else searchPost({ filters: newFilter });
   };
 
-  const onExportData = ({ filters }) => {
-    _processPdf.current = false; // pretend to double save pdf
-    if (calledExport) refetch({ useExport: true, filters });
-    searchPostExportData({
-      variables: { useExport: true, filters, search: headerSearch },
-    });
-  };
-
   return (
     <div>
       <div className='allpost-insight'>
         {summaryData &&
           summaryData.map((dataGraph, key) => {
             return (
-              <div ke={key} style={{ width: '100%', height: '100%' }}>
+              <div key={key} style={{ width: '100%', height: '100%' }}>
                 <SmallGraph
                   data={dataGraph}
                   loading={loadingGrapgh}

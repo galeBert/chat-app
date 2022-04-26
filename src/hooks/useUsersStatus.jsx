@@ -1,8 +1,9 @@
+import { CHANGE_USER_STATUS, SEARCH_USER } from '../graphql/mutation';
+import { useModal } from '../hooks/useModal';
+
 import { useMutation } from '@apollo/client';
-import { CHANGE_USER_STATUS, SEARCH_USER } from 'graphql/mutation';
-import { useModal } from 'hooks/useModal';
 import { parse } from 'querystring';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 export const useUserStatus = (
   shouldBeUpdateCache = true,

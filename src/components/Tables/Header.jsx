@@ -2,18 +2,18 @@ import './style.css';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import NewDropDown from '../../components/DropDown/DropdownResponsive';
+import Modal from '../../components/Modal/Modal';
+import SearchInput from '../../components/SearchInput/SearchInput';
+import { useModal } from '../../hooks/useModal';
+
 import {
   ClipboardCopyIcon,
   FilterIcon,
   SortAscendingIcon,
 } from '@heroicons/react/solid';
-import NewDropDown from 'components/DropDown/DropdownResponsive';
-import Modal from 'components/Modal/Modal';
-import SearchInput from 'components/SearchInput/SearchInput';
-import { useModal } from 'hooks/useModal';
 import { debounce } from 'lodash';
-import { useHistory, useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 const defaultOptions = [
   { label: 'Active', to: '#' },
@@ -26,7 +26,6 @@ const defaultOptions = [
 //isloading didnt work properly
 const Header = ({
   title,
-  setAllUser,
   onRefetch,
   onFilters,
   isLoading,
@@ -35,7 +34,6 @@ const Header = ({
   filter,
   initialSearch,
   useMultipleFilter,
-  ...rest
 }) => {
   const [modalOpen, setOpenModal] = useState(false);
   const modal = useModal();
@@ -44,7 +42,7 @@ const Header = ({
 
   const [filterSearch, setFilterSearch] = useState([]);
   //try using useState to handle loading but didnt find the best way to turn it off when the loading is over
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handleSearchMutation = useCallback(
     (searchContent) => {
@@ -53,14 +51,14 @@ const Header = ({
       if (typeof onRefetch === 'function') {
         onRefetch(payload);
       }
-      if (!isLoading) setLoading(false);
+      // if (!isLoading) setLoading(false);
     },
-    [onRefetch, isLoading]
+    [onRefetch]
   );
 
   const handleChange = debounce((e) => {
     const value = e.target.value;
-    setLoading(true);
+    // setLoading(true);
     handleSearchMutation(value);
     props.headerSearch(value);
     const queryParams = new URLSearchParams(location.search);
@@ -131,32 +129,32 @@ const Header = ({
 
   useEffect(() => {
     if (onFilters) onFilters(filterSearch);
-  }, [filterSearch]);
+  }, [filterSearch, onFilters]);
 
   //handle filter tidak memberi data sesuai filter
-  const handleFilters = (filter, exported = false) => {
+  const handleFilters = (filters) => {
     let newFilter = [];
     if (useMultipleFilter) {
-      if (filterSearch.includes(filter)) {
-        newFilter = filterSearch.filter((fill) => fill !== filter);
-      } else if (filter.to || filter.from) {
+      if (filterSearch.includes(filters)) {
+        newFilter = filterSearch.filter((fill) => fill !== filters);
+      } else if (filters.to || filters.from) {
         const oldFilterTimestamp = filterSearch.filter(
           (fill) => fill.to || fill.from
         );
         if (oldFilterTimestamp.length) {
-          const target = `${filter.to ? 'to' : 'from'}`;
+          const target = `${filters.to ? 'to' : 'from'}`;
           const updated = {
             ...oldFilterTimestamp[0],
-            [target]: filter[target],
+            [target]: filters[target],
           };
 
           newFilter = [...newFilter, updated];
-        } else newFilter = [...filterSearch, filter];
+        } else newFilter = [...filterSearch, filters];
       } else {
-        newFilter = [...filterSearch, filter];
+        newFilter = [...filterSearch, filters];
       }
     } else {
-      newFilter = [filter];
+      newFilter = [filters];
     }
 
     setFilterSearch(newFilter);
@@ -183,7 +181,7 @@ const Header = ({
           };
         })
       : defaultOptions;
-  }, [filter, filterSearch]);
+  }, [filter, filterSearch, handleFilters]);
 
   const handleExport = () => {
     if (
@@ -268,7 +266,7 @@ const Header = ({
             {!props.noExport && (
               <div
                 className='flex items-center cursor-pointer'
-                onClick={handleExport}
+                onKeyDown={handleExport}
               >
                 <ClipboardCopyIcon className=' w-5 h-5' />
                 <span className='inline-block'>Export</span>
@@ -279,7 +277,7 @@ const Header = ({
               onClick={() => onFilters(filterSearch, true)}
               setModalOpen={setOpenModal}
             >
-              You're about to export a data from {exportDate()}
+              <p>You're about to export a data from {exportDate()}</p>
             </Modal>
           </div>
         </div>

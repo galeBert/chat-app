@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
+import Table from '../../components/Tables';
+import { SEARCH_ROOMS } from '../../graphql/query';
+
 import { useLazyQuery } from '@apollo/client';
-import Table from 'components/Tables';
-import { SEARCH_ROOMS } from 'graphql/query';
 
 const AvailableRoomPage = () => {
   const [

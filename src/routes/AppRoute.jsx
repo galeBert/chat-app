@@ -1,25 +1,26 @@
 // Routes
+import ModalProvider from '../context/ModalContext';
+// Importing Provider
+import UserProvider from '../context/UserContext';
+import AdminPage from '../pages/AdminPage/AdminPage';
+import AllPostPage from '../pages/AllPostPage/AllPostPage';
+import AvailableRoomPage from '../pages/AvailableRoomPage/AvailableRoomPage';
+import AvaliableRoomForm from '../pages/AvalilableRoomForm';
+// Pages
+import LoginPage from '../pages/LoginPage/LoginPage';
+import NotificationPage from '../pages/NotificationPage/NotificationPage';
+import RandomizationPage from '../pages/RadomizationPage/RandomizationPage';
+import RandomizationContentPage from '../pages/RandomizationContentPage/RandomizationContentPage';
+import ReportedPostPage from '../pages/ReportedPostPage/ReportedPostPage';
+import SinglePostPage from '../pages/SinglePostPage/SinglePostPage';
+import SingleReportedPostPage from '../pages/SingleReportedPostPage/SingleReportedPostPage';
+import SingleRoomPage from '../pages/SingleRoomPage/SingleRoomPage';
+import SingleUserPage from '../pages/SingleUserPage/SingleUserPage';
+import UsersPage from '../pages/UsersPage/UsersPage';
+
 import DashboardRoute from './DashboardRoute';
 import UserRoute from './UserRoute';
 
-import ModalProvider from 'context/ModalContext';
-// Importing Provider
-import UserProvider from 'context/UserContext';
-import AdminPage from 'pages/AdminPage/AdminPage';
-import AllPostPage from 'pages/AllPostPage/AllPostPage';
-import AvailableRoomPage from 'pages/AvailableRoomPage/AvailableRoomPage';
-import AvaliableRoomForm from 'pages/AvalilableRoomForm';
-// Pages
-import LoginPage from 'pages/LoginPage/LoginPage';
-import NotificationPage from 'pages/NotificationPage/NotificationPage';
-import RandomizationPage from 'pages/RadomizationPage/RandomizationPage';
-import RandomizationContentPage from 'pages/RandomizationContentPage/RandomizationContentPage';
-import ReportedPostPage from 'pages/ReportedPostPage/ReportedPostPage';
-import SinglePostPage from 'pages/SinglePostPage/SinglePostPage';
-import SingleReportedPostPage from 'pages/SingleReportedPostPage/SingleReportedPostPage';
-import SingleRoomPage from 'pages/SingleRoomPage/SingleRoomPage';
-import SingleUserPage from 'pages/SingleUserPage/SingleUserPage';
-import UsersPage from 'pages/UsersPage/UsersPage';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 export default function AppRoute() {

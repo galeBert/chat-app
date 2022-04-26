@@ -1,6 +1,7 @@
 // Layout
-import AppLayout from 'pages/layouts/AppLayout';
-import { Redirect, Route } from 'react-router';
+import AppLayout from '../pages/layouts/AppLayout';
+
+import { Redirect, Route } from 'react-router-dom';
 
 const UserRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('token');

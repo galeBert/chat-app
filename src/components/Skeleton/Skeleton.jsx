@@ -1,7 +1,8 @@
 import './Skeleton.css';
 
+import StatusContainer from '../../components/StatusContainer';
+
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
-import StatusContainer from 'components/StatusContainer';
 
 export const SkeletonText = () => (
   <div className='skeleton w-full h-3 m-auto' />
@@ -46,41 +47,40 @@ export const AllUserSkeleton = () => {
 };
 
 export const AllPostSkeleton = () => {
-  for (let i = 0; i < 5; i++)
-    return (
-      <tr className='text-center'>
-        <td className='p-5 w-60'>
+  return (
+    <tr className='text-center'>
+      <td className='p-5 w-60'>
+        <SkeletonText />
+      </td>
+      <td className='p-5 w-60'>
+        <SkeletonText />
+      </td>
+      <td className='text-left p-5'>
+        <div className='grid grid-cols-2'>
+          <SkeletonImageRound />
           <SkeletonText />
-        </td>
-        <td className='p-5 w-60'>
-          <SkeletonText />
-        </td>
-        <td className='text-left p-5'>
-          <div className='grid grid-cols-2'>
-            <SkeletonImageRound />
-            <SkeletonText />
-          </div>
-        </td>
-        <td className='p-5 w-60'>
-          <SkeletonText />
-        </td>
-        <td className='p-5'>
-          <SkeletonMedia />
-        </td>
-        <td className='p-5'>0</td>
-        <td className='p-5'>0</td>
-        <td className='p-5'>0</td>
-        <td className='p-5'>0</td>
-        <td className='p-5'>
-          <div className='flex justify-center items-center'>
-            <StatusContainer loading={true} />
-          </div>
-        </td>
-        <td className='p-5'>
-          <DotsHorizontalIcon className='w-5 h-5 m-auto' />
-        </td>
-      </tr>
-    );
+        </div>
+      </td>
+      <td className='p-5 w-60'>
+        <SkeletonText />
+      </td>
+      <td className='p-5'>
+        <SkeletonMedia />
+      </td>
+      <td className='p-5'>0</td>
+      <td className='p-5'>0</td>
+      <td className='p-5'>0</td>
+      <td className='p-5'>0</td>
+      <td className='p-5'>
+        <div className='flex justify-center items-center'>
+          <StatusContainer loading={true} />
+        </div>
+      </td>
+      <td className='p-5'>
+        <DotsHorizontalIcon className='w-5 h-5 m-auto' />
+      </td>
+    </tr>
+  );
 };
 
 export const ReportedPostSkeleton = () => {

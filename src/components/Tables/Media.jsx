@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
+import PostImageSlider from '../../components/PostImageSlider/PostImageSlider';
+
 import { Gif, VideoOverlay } from '@giphy/react-components';
 import { XIcon } from '@heroicons/react/outline';
-import PostImageSlider from 'components/PostImageSlider/PostImageSlider';
 
 const Media = ({ media, ...props }) => {
   const traslatedMedia = [];
@@ -22,7 +23,7 @@ const Media = ({ media, ...props }) => {
                   key={key}
                   alt='img_err'
                   className={` rounded object-cover`}
-                  onClick={() => setIsOpen(true)}
+                  onKeyDownCapture={() => setIsOpen(true)}
                   src={data?.secure_url}
                   style={{
                     width: `${props.width || 20}px`,

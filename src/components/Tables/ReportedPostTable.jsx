@@ -1,14 +1,21 @@
 import { useState } from 'react';
 
+import blank_profile_picture from '../../assets/blank_profile_picture.png';
+import NewDropdown from '../../components/DropDown/DropdownResponsive';
+import { ReportedPostSkeleton } from '../../components/Skeleton/Skeleton';
+import StatusContainer from '../../components/StatusContainer';
+import {
+  CHANGE_COMMENT_STATUS,
+  CHANGE_POST_STATUS,
+} from '../../graphql/mutation';
+import {
+  GET_COMMENTS_REPORTED,
+  SEARCH_REPORTED_POST,
+} from '../../graphql/query';
+
 import Media from './Media';
 
 import { useMutation } from '@apollo/client';
-import blank_profile_picture from 'assets/blank_profile_picture.png';
-import NewDropdown from 'components/DropDown/DropdownResponsive';
-import { ReportedPostSkeleton } from 'components/Skeleton/Skeleton';
-import StatusContainer from 'components/StatusContainer';
-import { CHANGE_COMMENT_STATUS, CHANGE_POST_STATUS } from 'graphql/mutation';
-import { GET_COMMENTS_REPORTED, SEARCH_REPORTED_POST } from 'graphql/query';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
@@ -146,6 +153,7 @@ const ReportedPostTable = ({
                 <td className='text-left'>
                   <div className='flex' style={{ alignItem: 'center' }}>
                     <img
+                      alt=''
                       className='table-photo-container'
                       src={reportedPost?.photoProfile || blank_profile_picture}
                     />

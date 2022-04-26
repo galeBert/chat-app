@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 
+import Table from '../../components/Tables';
+import UserDetailCard from '../../components/UserDetailCard';
+import { GET_REPORTED_LIST, GET_SINGLE_POST } from '../../graphql/query';
+
 import { useLazyQuery } from '@apollo/client';
-import Table from 'components/Tables';
-import UserDetailCard from 'components/UserDetailCard';
-import { GET_REPORTED_LIST, GET_SINGLE_POST } from 'graphql/query';
 
 const SingleReportedPostPage = (props) => {
   const postId = props.match.params.id;

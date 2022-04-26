@@ -1,24 +1,24 @@
+import { auth, db, googleAuthProvider } from '../utils/firebase';
+
+import {
+  getAuth,
+  getIdToken,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
 import {
   collection,
   getDocs,
+  onSnapshot,
   query,
   where,
-  onSnapshot,
 } from 'firebase/firestore';
-import { auth, db, googleAuthProvider } from 'utils/firebase';
-import {
-  signInWithPopup,
-  signOut,
-  getIdToken,
-  getAuth,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import { useModal } from 'hooks/useModal';
 
 export const getCollection = async (data, doc, value) => {
-  const getCollection = query(collection(db, data), where(doc, '==', value));
+  const getCollections = query(collection(db, data), where(doc, '==', value));
 
-  return await getDocs(getCollection);
+  return getDocs(getCollections);
 };
 
 export const observeSnapshot = async (
@@ -26,15 +26,14 @@ export const observeSnapshot = async (
   doc,
   value,
   onReceived,
-  onError,
-  userData
+  onError
 ) => {
-  const auth = getAuth();
-  await onAuthStateChanged(auth, async (user) => {
+  const getAuthData = getAuth();
+  await onAuthStateChanged(getAuthData, async (user) => {
     console.log('user', user);
     if (user) {
       const userInfo = await getCollection('admin', 'email', user.email);
-      const parseUserInfo = await userInfo.docs.map((doc) => doc.data());
+      const parseUserInfo = await userInfo.docs.map((datas) => datas.data());
 
       if (parseUserInfo[0]?.level < 3) {
         await onSnapshot(

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
+import Blank from '../../assets/blank_profile_picture.png';
+import NewDropdown from '../../components/DropDown/DropdownResponsive';
+import { AvailableRoomSkeleton } from '../../components/Skeleton/Skeleton';
+import StatusContainer from '../../components/StatusContainer';
+import { DELETE_ROOM, UPDATE_ROOM } from '../../graphql/mutation';
+import { SEARCH_ROOMS } from '../../graphql/query';
+
 import { useMutation } from '@apollo/client';
-import Blank from 'assets/blank_profile_picture.png';
-import NewDropdown from 'components/DropDown/DropdownResponsive';
-import { AvailableRoomSkeleton } from 'components/Skeleton/Skeleton';
-import StatusContainer from 'components/StatusContainer';
-import { DELETE_ROOM, UPDATE_ROOM } from 'graphql/mutation';
-import { SEARCH_ROOMS } from 'graphql/query';
 import { Link, useHistory } from 'react-router-dom';
 
 const AvailableTable = ({ data, isLoading }) => {
@@ -54,32 +55,29 @@ const AvailableTable = ({ data, isLoading }) => {
     },
   });
 
-  const [deleteRoom, { loading: loadingDeleteRoom }] = useMutation(
-    DELETE_ROOM,
-    {
-      update(cache, { data: newDataMutation }) {
-        const { deleteRoom } = newDataMutation;
+  const [deleteRoom] = useMutation(DELETE_ROOM, {
+    update(cache, { data: newDataMutation }) {
+      const { deleteRoom: deleteRoomData } = newDataMutation;
 
-        const { searchRoom } = cache.readQuery({
-          query: SEARCH_ROOMS,
-          variables: { name: '', perPage: 5, page: 0 },
-        });
-        const newHits = searchRoom.hits.filter(
-          (res) => res.id !== deleteRoom.id
-        );
-        cache.writeQuery({
-          query: SEARCH_ROOMS,
-          variables: { name: '', perPage: 5, page: 0 },
-          data: {
-            searchRoom: {
-              ...searchRoom,
-              hits: newHits,
-            },
+      const { searchRoom } = cache.readQuery({
+        query: SEARCH_ROOMS,
+        variables: { name: '', perPage: 5, page: 0 },
+      });
+      const newHits = searchRoom.hits.filter(
+        (res) => res.id !== deleteRoomData.id
+      );
+      cache.writeQuery({
+        query: SEARCH_ROOMS,
+        variables: { name: '', perPage: 5, page: 0 },
+        data: {
+          searchRoom: {
+            ...searchRoom,
+            hits: newHits,
           },
-        });
-      },
-    }
-  );
+        },
+      });
+    },
+  });
 
   const handleChangeRoomStatus = (status, currentRoomId) => {
     setRoomId(currentRoomId);

@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 
+import Modal from '../../components/Modal/Modal';
+import SelectField from '../../components/SelectField/SelectField';
+import Table from '../../components/Tables';
+import TextField from '../../components/TextField';
+import { getCollection } from '../../functions/auth';
+import { CREATE_NEW_ADMIN, SEARCH_ADMINS } from '../../graphql/mutation';
+import { useModal } from '../../hooks/useModal';
+
 import { useLazyQuery, useMutation } from '@apollo/client';
-import Modal from 'components/Modal/Modal';
-import SelectField from 'components/SelectField/SelectField';
-import Table from 'components/Tables';
-import TextField from 'components/TextField';
 import { Form, Formik } from 'formik';
-import { getCollection } from 'functions/auth';
-import { CREATE_NEW_ADMIN, SEARCH_ADMINS } from 'graphql/mutation';
-import { useModal } from 'hooks/useModal';
 
 const AdminPage = () => {
   const modal = useModal();
@@ -24,14 +25,14 @@ const AdminPage = () => {
     { data, refetch: onSearchRefetch, loading: isLoading, called },
   ] = useLazyQuery(SEARCH_ADMINS, { notifyOnNetworkStatusChange: true });
   const [createNewAdmin] = useMutation(CREATE_NEW_ADMIN, {
-    onCompleted: (data) => {
-      modal.actions.onSetSnackbar(data?.registerAdmin);
+    onCompleted: (datas) => {
+      modal.actions.onSetSnackbar(datas?.registerAdmin);
       setOpenModal(false);
     },
     onError: (err) => {
       alert(err?.exception?.stacktrace[0]);
     },
-    update: (cache, { data }) => {
+    update: () => {
       onSearchRefetch();
     },
   });
@@ -42,7 +43,7 @@ const AdminPage = () => {
       return;
     }
     searchAdmin({ page: 0, perPage: 10 });
-  }, []);
+  }, [called, onSearchRefetch, searchAdmin]);
 
   return (
     <div>
@@ -71,13 +72,13 @@ const AdminPage = () => {
             role: '',
             code: '',
           }}
-          onSubmit={async (data, { setSubmitting, setErrors }) => {
+          onSubmit={async (docs, { setSubmitting, setErrors }) => {
             setSubmitting(true);
 
             const accessCodeSnapshot = await getCollection(
               'adminAccessCode',
               'code',
-              data.code
+              docs.code
             );
 
             if (accessCodeSnapshot.empty) {
@@ -86,10 +87,10 @@ const AdminPage = () => {
             } else {
               createNewAdmin({
                 variables: {
-                  name: data.name,
-                  email: data.email,
+                  name: docs.name,
+                  email: docs.email,
                   level: Number(role?.value),
-                  accessCode: data.code,
+                  accessCode: docs.code,
                 },
               });
               setSubmitting(false);

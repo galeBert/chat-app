@@ -2,12 +2,13 @@ import './NotificationPage.css';
 
 import { useEffect, useState } from 'react';
 
-import Table from 'components/Tables';
-import { observeSnapshot } from 'functions/auth';
+import Table from '../../components/Tables';
+import { observeSnapshot } from '../../functions/auth';
 
 const NotificationPage = () => {
   const [notification, setNotification] = useState([]);
   const [error, setError] = useState('');
+  console.log(error);
 
   const onReceived = (doc) => setNotification(doc);
   const onError = (err) => setError(err);

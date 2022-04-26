@@ -3,21 +3,22 @@ import './LoginPage.css';
 
 import React, { useState } from 'react';
 
-import { useMutation } from '@apollo/client';
-import { ReactComponent as GoogleIcon } from 'assets/google-icon.svg';
-import Button from 'components/Button';
-import LoadingScreen from 'components/LoadingScreen';
-import Logo from 'components/Logo';
-import TextField from 'components/TextField';
-import { Form, Formik } from 'formik';
+import { ReactComponent as GoogleIcon } from '../../assets/google-icon.svg';
+import Button from '../../components/Button';
+import LoadingScreen from '../../components/LoadingScreen';
+import Logo from '../../components/Logo';
+import TextField from '../../components/TextField';
 //importing functions
-import { getCollection, handleAuth } from 'functions/auth';
+import { getCollection, handleAuth } from '../../functions/auth';
 //importing gql
-import { CHECK_EMAIL } from 'graphql/mutation';
-import { GET_ADMIN_LOGIN } from 'graphql/query';
-import { useAdminContext } from 'hooks/useAdmin';
-import { useModal } from 'hooks/useModal';
-import { useHistory } from 'react-router';
+import { CHECK_EMAIL } from '../../graphql/mutation';
+import { GET_ADMIN_LOGIN } from '../../graphql/query';
+import { useAdminContext } from '../../hooks/useAdmin';
+import { useModal } from '../../hooks/useModal';
+
+import { useMutation } from '@apollo/client';
+import { Form, Formik } from 'formik';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginPage() {
   const modal = useModal();
@@ -28,6 +29,11 @@ export default function LoginPage() {
   const [token, setToken] = useState(null);
   const [error, setError] = useState(null);
 
+  const [getAdminLogin] = useMutation(GET_ADMIN_LOGIN, {
+    update(_, { data: { getAdminLogin: adminLoginData } }) {
+      admin.actions.onSetAdminLogin(adminLoginData);
+    },
+  });
   const [check] = useMutation(CHECK_EMAIL, {
     update(_, { data: { checkEmail } }) {
       if (checkEmail?.isBanned) {
@@ -47,12 +53,6 @@ export default function LoginPage() {
         setError('Your Email Invalid');
         modal.actions.setIsLoadingScreen(false);
       }
-    },
-  });
-
-  const [getAdminLogin] = useMutation(GET_ADMIN_LOGIN, {
-    update(_, { data: { getAdminLogin } }) {
-      admin.actions.onSetAdminLogin(getAdminLogin);
     },
   });
 
@@ -98,7 +98,7 @@ export default function LoginPage() {
               setSubmitting(false);
             }}
           >
-            {({ handleSubmit, isSubmitting, errors }) => (
+            {({ handleSubmit, isSubmitting }) => (
               <Form className='text-center' onSubmit={handleSubmit}>
                 <TextField label='Password' name='password' type='password' />
                 {isSubmitting ? (

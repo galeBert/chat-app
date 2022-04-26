@@ -1,5 +1,15 @@
 import { useEffect, useRef } from 'react';
 
+import Table from '../../components/Tables';
+import UserDetailCard from '../../components/UserDetailCard';
+import {
+  SEARCH_POST,
+  SEARCH_POST_EXPORT,
+  SEARCH_USER,
+} from '../../graphql/mutation';
+import { handleHeader } from '../../hooks/handleHeader';
+import { useUserStatus } from '../../hooks/useUsersStatus';
+
 import { useLazyQuery } from '@apollo/client';
 import {
   ChatIcon,
@@ -7,12 +17,7 @@ import {
   HeartIcon,
   RefreshIcon,
 } from '@heroicons/react/outline';
-import Table from 'components/Tables';
-import UserDetailCard from 'components/UserDetailCard';
-import { SEARCH_POST, SEARCH_POST_EXPORT, SEARCH_USER } from 'graphql/mutation';
-import { handleHeader } from 'hooks/handleHeader';
-import { useUserStatus } from 'hooks/useUsersStatus';
-import jsPDF from 'jspdf';
+import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { get } from 'lodash';
 import moment from 'moment';
@@ -65,7 +70,7 @@ const SingleUserPage = (props) => {
     {
       onCompleted: (data) => {
         if (data?.searchPosts?.hits.length) {
-          const doc = new jsPDF({
+          const doc = new JsPDF({
             orientation: 'landscape',
           });
           //Header
@@ -77,15 +82,7 @@ const SingleUserPage = (props) => {
           autoTable(doc, { html: '#posts' });
 
           const newExport = data?.searchPosts?.hits.map(
-            ({
-              owner,
-              text,
-              createdAt,
-              location,
-              id,
-              status = '',
-              ...props
-            }) => {
+            ({ owner, text, createdAt, location, id, status = '' }) => {
               const { markdownContent } = JSON.parse(text);
               const datetime = moment(createdAt)
                 .utc()
@@ -104,7 +101,6 @@ const SingleUserPage = (props) => {
               ];
             }
           );
-
           const head = [
             'Owner',
             'Caption',
@@ -117,7 +113,7 @@ const SingleUserPage = (props) => {
             startY: 36,
             head: [head],
             body: newExport,
-            didDrawPage: (data) => {
+            didDrawPage: (datas) => {
               const str = `Page ${doc.internal.getNumberOfPages()}`;
               // Total page number plugin only available in jspdf v1.0+
               // if (typeof doc.putTotalPages === 'function') {
@@ -130,7 +126,7 @@ const SingleUserPage = (props) => {
               const pageHeight = pageSize.height
                 ? pageSize.height
                 : pageSize.getHeight();
-              doc.text(str, data.settings.margin.left, pageHeight - 10);
+              doc.text(str, datas.settings.margin.left, pageHeight - 10);
             },
           });
           if (!_processPdf.current) {
@@ -143,15 +139,16 @@ const SingleUserPage = (props) => {
       fetchPolicy: 'network-only',
     }
   );
-  const onFilters = (filter = [], exportData = false) => {
-    if (exportData) {
-      onExportData();
-    }
-  };
+
   const onExportData = () => {
     _processPdf.current = false; // pretend to double save pdf
     if (calledExport) refetch({ useExport: true });
     searchPostExportData({ variables: { useExport: true, search: username } });
+  };
+  const onFilters = (_, exportData = false) => {
+    if (exportData) {
+      onExportData();
+    }
   };
 
   const singleUser = get(dataUser, 'searchUser.hits.[0]', []);

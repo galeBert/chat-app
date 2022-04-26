@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Pie from 'components/Visual/Pie';
+import Pie from '../../components/Visual/Pie';
 
 const DoughnutChart = ({ data }) => (
   <Pie

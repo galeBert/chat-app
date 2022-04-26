@@ -2,15 +2,16 @@ import './Sidebar.css';
 
 import { useState } from 'react';
 
+import { ReactComponent as AdminsIcon } from '../assets/Icon/IconAdmins.svg';
+import { ReactComponent as AvailableRoomIcon } from '../assets/Icon/IconAvailableRoom.svg';
+import { ReactComponent as PostIcon } from '../assets/Icon/IconPosts.svg';
+import { ReactComponent as RandomIcon } from '../assets/Icon/IconRandom.svg';
+import { ReactComponent as SummaryIcon } from '../assets/Icon/iconSummary.svg';
+import { ReactComponent as UserIcon } from '../assets/Icon/IconUser.svg';
+
 import Logo from './Logo';
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline';
-import { ReactComponent as AdminsIcon } from 'assets/Icon/IconAdmins.svg';
-import { ReactComponent as AvailableRoomIcon } from 'assets/Icon/IconAvailableRoom.svg';
-import { ReactComponent as PostIcon } from 'assets/Icon/IconPosts.svg';
-import { ReactComponent as RandomIcon } from 'assets/Icon/IconRandom.svg';
-import { ReactComponent as SummaryIcon } from 'assets/Icon/iconSummary.svg';
-import { ReactComponent as UserIcon } from 'assets/Icon/IconUser.svg';
 import classNames from 'classnames';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -19,7 +20,7 @@ export default function Sidebar() {
 
   const [active, setActive] = useState(false);
   const [name, setName] = useState('');
-  const [navigation, setNavigation] = useState([
+  const navigation = [
     {
       name: 'Summary',
       to: '/',
@@ -77,17 +78,16 @@ export default function Sidebar() {
       current: false,
       child: null,
     },
-  ]);
+  ];
   const handleActive = (item) => {
     const path = `/${history.location.pathname.split('/')[1]}`;
     path === item.to ? (item.current = true) : (item.current = false);
   };
   const handleChild = (item) => {
-    setActive((active) => !active);
+    setActive((value) => !value);
     setName(item.name);
   };
 
-  const path = useHistory().location.pathname;
   return (
     <nav aria-label='Sidebar' className='sticky top-0 divide-y divide-gray-300'>
       <div className='flex flex-col overflow-y-hidden'>
@@ -140,25 +140,25 @@ export default function Sidebar() {
                 <div
                   className={`sidebar-child_container ${active && 'active'}`}
                 >
-                  {item.child.map((item) => {
+                  {item.child.map((datas) => {
                     return (
                       <Link
-                        key={item.name}
+                        key={datas.name}
                         className={classNames(
-                          item.current
+                          datas.current
                             ? 'bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 rounded-md'
                             : ' bg-dark-100 text-gray-100 hover:bg-dark-600 dark:text-gray-100',
                           '  group flex items-center px-2 py-2 font-semibold  antialiased'
                         )}
-                        onClick={handleActive(item)}
-                        to={item.to}
+                        onClick={handleActive(datas)}
+                        to={datas.to}
                         type='button'
                       >
-                        {item.icon ? (
-                          <item.icon
+                        {datas.icon ? (
+                          <datas.icon
                             aria-hidden='true'
                             className={classNames(
-                              item.current ? 'text-gray-100' : '',
+                              datas.current ? 'text-gray-100' : '',
                               'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
                             )}
                           />
@@ -166,7 +166,7 @@ export default function Sidebar() {
                           <div className='mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7' />
                         )}
 
-                        <span className='hidden lg:block'>{item.name}</span>
+                        <span className='hidden lg:block'>{datas.name}</span>
                       </Link>
                     );
                   })}

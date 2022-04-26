@@ -4,19 +4,19 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import curiousLogo from '../../assets/curious_icon_png.png';
 import insvireLogo from '../../assets/horizontal logo.png';
-
-import { useLazyQuery, useQuery } from '@apollo/client';
-import SmallGraph from 'components/SmallGraph/SmallGraph';
-import Table from 'components/Tables';
+import SmallGraph from '../../components/SmallGraph/SmallGraph';
+import Table from '../../components/Tables';
 // Components
-import Areas from 'components/Visual/Areas';
+import Areas from '../../components/Visual/Areas';
 import {
   GET_ADMIN_LOGS,
   GET_ADMIN_LOGS_EXPORTS,
   GET_GRAPH,
   SEARCH_ROOMS,
-} from 'graphql/query';
-import jsPDF from 'jspdf';
+} from '../../graphql/query';
+
+import { useLazyQuery, useQuery } from '@apollo/client';
+import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
@@ -32,9 +32,9 @@ function SummaryPage() {
   const { data: dataLogs, refetch: onSearchLog } = useQuery(GET_ADMIN_LOGS);
   const [getExportAdminLogs, { refetch: refetchExport, called: calledExport }] =
     useLazyQuery(GET_ADMIN_LOGS_EXPORTS, {
-      onCompleted: (data) => {
-        if (data?.getAdminLogs?.hits.length) {
-          const doc = new jsPDF({
+      onCompleted: (datas) => {
+        if (datas?.getAdminLogs?.hits.length) {
+          const doc = new JsPDF({
             orientation: 'landscape',
           });
           //Header
@@ -44,16 +44,15 @@ function SummaryPage() {
           //Summary
           doc.setFontSize(9);
           doc.text('Data Type: Admin Log', 15, 20);
-          doc.text(`Total Data: ${data?.getAdminLogs?.hits.length}`, 15, 24);
+          doc.text(`Total Data: ${datas?.getAdminLogs?.hits.length}`, 15, 24);
 
           //Footer
           doc.setFontSize(9);
           //table
           autoTable(doc, { html: '#posts' });
 
-          const newExport = data?.getAdminLogs?.hits.map(
+          const newExport = datas?.getAdminLogs?.hits.map(
             ({ name, message, createdAt, role }) => {
-              console.log('createdAt: ', createdAt);
               const datetime = moment(+createdAt)
                 .utc()
                 .format('DD MMM YYYY hh:mm');
@@ -69,11 +68,11 @@ function SummaryPage() {
               cellWidth: 'wrap',
             },
             body: newExport,
-            didDrawPage: (data) => {
+            didDrawPage: (docs) => {
               let str = `Page ${doc.internal.getNumberOfPages()}`;
               // Total page number plugin only available in jspdf v1.0+
               if (typeof doc.putTotalPages === 'function') {
-                str = `${str} of ${data.pageCount}`;
+                str = `${str} of ${docs.pageCount}`;
               }
               doc.setFontSize(10);
 
@@ -82,7 +81,7 @@ function SummaryPage() {
               const pageHeight = pageSize.height
                 ? pageSize.height
                 : pageSize.getHeight();
-              doc.text(str, data.settings.margin.left, pageHeight - 10);
+              doc.text(str, docs.settings.margin.left, pageHeight - 10);
             },
           });
 
@@ -119,16 +118,16 @@ function SummaryPage() {
   const handleStateOfGraph = (state) => {
     setOption(state);
   };
-  const onFilters = (filter = [], exportData = false) => {
-    if (exportData) {
-      onExportData();
-    }
-  };
 
   const onExportData = () => {
     _processPdf.current = false; // pretend to double save pdf
     if (calledExport) refetchExport({ useExport: true });
     getExportAdminLogs({ variables: { useExport: true } });
+  };
+  const onFilters = (_, exportData = false) => {
+    if (exportData) {
+      onExportData();
+    }
   };
 
   const summary = data?.getGraphSummary?.summary;
@@ -169,11 +168,11 @@ function SummaryPage() {
   return (
     <div>
       <div className='summary-insight'>
-        {summaryData.map((data, idx) => {
+        {summaryData.map((datas, idx) => {
           return (
             <div key={idx} className='h-full'>
               <SmallGraph
-                data={data}
+                data={datas}
                 loading={loading}
                 onClick={handleChangeGraph}
                 simple={data.name !== 'New User'}
@@ -195,7 +194,7 @@ function SummaryPage() {
                 className={`${
                   option === 'daily' ? 'bg-primary-100' : ''
                 } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-                onClick={() => handleStateOfGraph('daily')}
+                onKeyDown={() => handleStateOfGraph('daily')}
               >
                 Daily
               </div>
@@ -203,7 +202,7 @@ function SummaryPage() {
                 className={`${
                   option === 'monthly' ? 'bg-primary-100' : ''
                 } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-                onClick={() => handleStateOfGraph('monthly')}
+                onKeyDown={() => handleStateOfGraph('monthly')}
               >
                 Monthly
               </div>
@@ -211,7 +210,7 @@ function SummaryPage() {
                 className={`${
                   option === 'yearly' ? 'bg-primary-100' : ''
                 } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-                onClick={() => handleStateOfGraph('yearly')}
+                onKeyDown={() => handleStateOfGraph('yearly')}
               >
                 Yearly
               </div>

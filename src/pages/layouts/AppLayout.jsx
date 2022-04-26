@@ -1,8 +1,9 @@
 import './AppLayout.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Nav from 'components/Nav';
-import Sidebar from 'components/Sidebar';
+import Nav from '../../components/Nav';
+import Sidebar from '../../components/Sidebar';
+
 // import { useModal } from 'hooks/useModal';
 import { ToastContainer } from 'react-toastify';
 // import LoadingScreen from "components/LoadingScreen";

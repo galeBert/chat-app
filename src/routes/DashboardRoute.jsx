@@ -1,9 +1,10 @@
 // Layout
-import AppLayout from 'pages/layouts/AppLayout';
-import LoginPage from 'pages/LoginPage/LoginPage';
+import AppLayout from '../pages/layouts/AppLayout';
+import LoginPage from '../pages/LoginPage/LoginPage';
 // Pages
-import SummaryPage from 'pages/SummaryPage/SummaryPage';
-import { Route } from 'react-router';
+import SummaryPage from '../pages/SummaryPage/SummaryPage';
+
+import { Route } from 'react-router-dom';
 
 const DashboardRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('token');

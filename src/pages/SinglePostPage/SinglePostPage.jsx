@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 
+import UserDetailCard from '../../components/UserDetailCard';
+import { GET_SINGLE_POST } from '../../graphql/query';
+import { useUserStatus } from '../../hooks/useUsersStatus';
+
 import { useLazyQuery } from '@apollo/client';
-import UserDetailCard from 'components/UserDetailCard';
-import { GET_SINGLE_POST } from 'graphql/query';
-import { useUserStatus } from 'hooks/useUsersStatus';
 
 const SinglePostPage = (props) => {
   const postId = props.match.params.id;

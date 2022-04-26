@@ -3,6 +3,8 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { onRefreshToken } from '../src/functions/auth';
+
 import App from './App';
 
 // Apollo
@@ -15,7 +17,6 @@ import {
   InMemoryCache,
 } from '@apollo/client/core';
 import { onError } from '@apollo/client/link/error';
-import { onRefreshToken } from 'functions/auth';
 
 const httpUrl =
   'https://asia-southeast2-insvire-curious-app.cloudfunctions.net/admin';
@@ -79,7 +80,7 @@ const client = new ApolloClient({
             ],
             // Concatenate the incoming list items with
             // the existing list items.
-            merge(existing = [], incoming) {
+            merge(_, incoming) {
               return incoming;
             },
           },
@@ -90,7 +91,7 @@ const client = new ApolloClient({
             // keyArgs: false,
             // Concatenate the incoming list items with
             // the existing list items.
-            merge(existing = [], incoming) {
+            merge(_, incoming) {
               return incoming;
             },
           },

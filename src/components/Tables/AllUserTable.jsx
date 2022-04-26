@@ -2,17 +2,14 @@ import './style.css';
 
 import { useState } from 'react';
 
-import { useMutation } from '@apollo/client';
+import noPhoto from '../../assets/blank_profile_picture.png';
+import NewDropdown from '../../components/DropDown/DropdownResponsive';
+import { AllUserSkeleton } from '../../components/Skeleton/Skeleton';
+import StatusContainer from '../../components/StatusContainer';
+import { useUserStatus } from '../../hooks/useUsersStatus';
+
 import { XCircleIcon } from '@heroicons/react/outline';
-import noPhoto from 'assets/blank_profile_picture.png';
-import NewDropdown from 'components/DropDown/DropdownResponsive';
-import { AllUserSkeleton } from 'components/Skeleton/Skeleton';
-import StatusContainer from 'components/StatusContainer';
-import { CHANGE_USER_STATUS, SEARCH_USER } from 'graphql/mutation';
-import { useUserStatus } from 'hooks/useUsersStatus';
 import moment from 'moment';
-import { parse } from 'querystring';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const headers = [

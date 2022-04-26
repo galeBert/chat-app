@@ -1,5 +1,18 @@
 import React, { useCallback, useMemo } from 'react';
 
+import {
+  accentColor,
+  accentColorDark,
+  background,
+  background2,
+  bisectDate,
+  formatDate,
+  getDate,
+  getRegistrationValue,
+  getRegistrationYScale,
+  tooltipStyles as defaultTooltipStyle,
+} from '../../utils/visx';
+
 import { curveMonotoneX } from '@visx/curve';
 import { localPoint } from '@visx/event';
 import { LinearGradient } from '@visx/gradient';
@@ -14,18 +27,6 @@ import {
   withTooltip,
 } from '@visx/tooltip';
 import { extent, max } from 'd3-array';
-import {
-  accentColor,
-  accentColorDark,
-  background,
-  background2,
-  bisectDate,
-  formatDate,
-  getDate,
-  getRegistrationValue,
-  getRegistrationYScale,
-  tooltipStyles as defaultTooltipStyle,
-} from 'utils/visx';
 
 const AreasTooltip = withTooltip(
   ({

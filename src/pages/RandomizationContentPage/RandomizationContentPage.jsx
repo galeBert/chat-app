@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from 'react';
 
+import Table from '../../components/Tables';
+import { GET_THEMES } from '../../graphql/query';
+
 import { useLazyQuery } from '@apollo/client';
 import { ChevronLeftIcon } from '@heroicons/react/solid';
-import Table from 'components/Tables';
-import { GET_THEMES } from 'graphql/query';
 import { get } from 'lodash';
 import { useHistory } from 'react-router-dom';
 

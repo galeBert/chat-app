@@ -2,15 +2,16 @@ import './style.css';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 
+import UploadIcon from '../../assets/imageDefault.svg';
+import ColorPicker from '../../components/ColorPicker';
+import { DELETE_ITEM_THEME, UPDATE_THEMES } from '../../graphql/mutation';
+import { storage } from '../../utils/firebase';
+
 import { useMutation } from '@apollo/client';
 import { CheckIcon, XIcon } from '@heroicons/react/outline';
-import UploadIcon from 'assets/imageDefault.svg';
 import cn from 'classnames';
-import ColorPicker from 'components/ColorPicker';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { DELETE_ITEM_THEME, UPDATE_THEMES } from 'graphql/mutation';
 import { useHistory } from 'react-router-dom';
-import { storage } from 'utils/firebase';
 import { v4 as uuidv4 } from 'uuid';
 
 const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
@@ -21,14 +22,13 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
 
   //change path space to underscore
   const path = useMemo(() => {
-    let path = pathname.split('/')[2];
-    let i = 0,
-      pathLength = path.length;
-    for (i; i < pathLength; i++) {
-      path = path.replace(' ', '_');
+    let paths = pathname.split('/')[2];
+    let i = 0;
+    for (i; i < paths.length; i++) {
+      paths = paths.replace(' ', '_');
     }
 
-    return path;
+    return paths;
   }, [pathname]);
 
   //end
@@ -42,16 +42,13 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
   const [newInput, setNewInput] = useState(false);
   const [progress, setProgress] = useState(0);
   const [switchButton, setSwitchButton] = useState(null);
-
-  const [deleteConfigThemeById, { loading: loadingRemove }] = useMutation(
-    DELETE_ITEM_THEME,
-    {
-      onCompleted() {
-        if (typeof onRefetch === 'function') onRefetch();
-        setIsCompleteUpdate(true);
-      },
-    }
-  );
+  console.log(progress);
+  const [deleteConfigThemeById] = useMutation(DELETE_ITEM_THEME, {
+    onCompleted() {
+      if (typeof onRefetch === 'function') onRefetch();
+      setIsCompleteUpdate(true);
+    },
+  });
   const [updateThemes, { loading }] = useMutation(UPDATE_THEMES, {
     onCompleted() {
       if (typeof onRefetch === 'function') onRefetch();
@@ -148,10 +145,10 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
         return uploadTask.on(
           'state_changed',
           (snapshot) => {
-            const progress = Math.round(
+            const percent = Math.round(
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             );
-            setProgress(progress);
+            setProgress(percent);
           },
           (err) => console.log('err', err),
           () => {
@@ -220,7 +217,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
         : { backgroundImage: `url(${UploadIcon})` }),
       backgroundSize: 'contain',
     }),
-    [previewImg, UploadIcon]
+    [previewImg]
   );
 
   const handleFocus = (e) => {
@@ -286,8 +283,8 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
       <table className='table-responsive w-full overflow-scroll h-4'>
         <thead>
           <tr>
-            {tableHead.map((label) => (
-              <th className={`p-1.5 ${label === 'Action' && ' w-8'}`}>
+            {tableHead.map((label, key) => (
+              <th key={key} className={`p-1.5 ${label === 'Action' && ' w-8'}`}>
                 {label}
               </th>
             ))}
@@ -295,9 +292,9 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
         </thead>
         <tbody>
           {props.isLoading &&
-            skeletonLoop.map(() => {
+            skeletonLoop.map((_, idx) => {
               return (
-                <tr>
+                <tr key={idx}>
                   <td>
                     <div className='skeleton w-80 h-8 m-2' />
                   </td>
@@ -310,37 +307,37 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
               );
             })}
           {data && data.length
-            ? data.map((data, idx) => {
+            ? data.map((datas, idx) => {
                 return (
                   <tr key={idx} ref={wrapper}>
                     <td className='border-transparent'>
                       <div className='relative'>
                         <input
-                          key={data.id}
+                          key={datas.id}
                           className={`table-input-skin p-2 max-w-sm ${
-                            (data?.avatarUrl || data?.hex) && 'pl-11'
+                            (datas?.avatarUrl || datas?.hex) && 'pl-11'
                           }`}
-                          defaultValue={data?.name}
-                          id={data.id}
-                          onChange={(e) => handleChange(e, data?.name)}
+                          defaultValue={datas?.name}
+                          id={datas.id}
+                          onChange={(e) => handleChange(e, datas?.name)}
                           onFocus={handleFocus}
                         />
-                        {data?.avatarUrl && (
+                        {datas?.avatarUrl && (
                           <img
-                            alt='image broken'
+                            alt='img_broken'
                             className='text-white absolute left-4 w-7 h-7 rounded-md top-4'
-                            src={data?.avatarUrl}
+                            src={datas?.avatarUrl}
                           />
                         )}
-                        {data?.hex && (
+                        {datas?.hex && (
                           <div className='relative'>
                             <div
                               className='test w-7 h-7 rounded-md absolute -top-11 bg-primary-100 left-4'
                               style={{
                                 backgroundColor: `${
-                                  isNewHex?.hex && isNewHex.id === data.id
+                                  isNewHex?.hex && isNewHex.id === datas.id
                                     ? isNewHex.hex
-                                    : data.hex
+                                    : datas.hex
                                 }`,
                               }}
                             />
@@ -348,7 +345,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
                             <div className='absolute testnyaa -top-11 left-4 z-10'>
                               <ColorPicker
                                 onChange={(e) =>
-                                  callbackPickeronChange(e, data.hex, data.id)
+                                  callbackPickeronChange(e, datas.hex, datas.id)
                                 }
                               />
                             </div>
@@ -358,18 +355,18 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
                     </td>
                     <td
                       className='text-center flex justify-center items-center h-full border-transparent'
-                      id={data.id}
+                      id={datas.id}
                     >
-                      {switchButton === data.id ? (
+                      {switchButton === datas.id ? (
                         <button
                           className='w-5 h-5'
                           onClick={() =>
                             handleSubmitForm(
                               title,
-                              data.id,
-                              isNewHex?.hex ? isNewHex.hex : data.hex,
+                              datas.id,
+                              isNewHex?.hex ? isNewHex.hex : datas.hex,
                               null,
-                              data.name
+                              datas.name
                             )
                           }
                         >
@@ -378,7 +375,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
                       ) : (
                         <button
                           className='w-5 h-5'
-                          onClick={handleRemoveConfig(data.id)}
+                          onClick={handleRemoveConfig(datas.id)}
                         >
                           <XIcon />
                         </button>

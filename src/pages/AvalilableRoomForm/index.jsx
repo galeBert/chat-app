@@ -2,6 +2,12 @@ import './index.styles.css';
 
 import { useEffect, useState } from 'react';
 
+import { CREATE_ROOM, UPDATE_ROOM } from '../../graphql/mutation';
+import { GET_DETAIL_ROOM } from '../../graphql/query';
+import { useModal } from '../../hooks/useModal';
+import { storage } from '../../utils/firebase';
+import { uuidv4 } from '../../utils/uuid';
+
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { Circle, GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import classNames from 'classnames';
@@ -10,13 +16,8 @@ import {
   ref as refStore,
   uploadBytesResumable,
 } from 'firebase/storage';
-import { CREATE_ROOM, UPDATE_ROOM } from 'graphql/mutation';
-import { GET_DETAIL_ROOM } from 'graphql/query';
-import { useModal } from 'hooks/useModal';
 import { usePlacesWidget } from 'react-google-autocomplete';
-import { Redirect, useHistory } from 'react-router-dom';
-import { storage } from 'utils/firebase';
-import { uuidv4 } from 'utils/uuid';
+import { useHistory } from 'react-router-dom';
 
 const MAP_API_KEY = 'AIzaSyCl0eTUbnDS4-kFW9-Xwb3Ih8KVuWRYeI4';
 const libraries = ['places'];
@@ -53,6 +54,7 @@ const AvaliableRoomForm = (props) => {
 
   const [updateRoom, { loading: loadingEdit }] = useMutation(UPDATE_ROOM, {
     onCompleted: (res) => {
+      console.log(loadingEdit, res);
       modal.actions.onSetSnackbar('success update room');
       history.push('/available-room');
     },
@@ -65,6 +67,7 @@ const AvaliableRoomForm = (props) => {
     useLazyQuery(GET_DETAIL_ROOM);
   const [createRoom, { data, loading }] = useMutation(CREATE_ROOM, {
     onCompleted: (res) => {
+      console.log(isLoadingRoom, data);
       // window.location.href = "/available-room"
       modal.actions.onSetSnackbar(res?.createRoom);
       history.push('/available-room');
@@ -78,7 +81,7 @@ const AvaliableRoomForm = (props) => {
     if (roomId) {
       getDetailRoom({ variables: { id: roomId } });
     }
-  }, [roomId]);
+  }, [getDetailRoom, roomId]);
 
   const { ref } = usePlacesWidget({
     apiKey: MAP_API_KEY,
@@ -122,13 +125,13 @@ const AvaliableRoomForm = (props) => {
       }
     }
 
-    const { lat, lng, detail } = selectedLocation;
+    const { lat, lng, detail: detailLocation } = selectedLocation;
     const defaultPayload = {
       roomName: detailLoc.name,
       tillDate: detailLoc.endDate,
       description: detailLoc.description,
       startingDate: detailLoc.startDate,
-      location: { lat, lng, detail },
+      location: { lat, lng, detailLocation },
       range: radius,
     };
 
@@ -149,13 +152,15 @@ const AvaliableRoomForm = (props) => {
     const uploadAsset = uploadBytesResumable(storageRef, detailLoc.file.file);
     uploadAsset.on(
       'state_changed',
-      (snap) => {}, // TODO: set progress and showing to UI
+      (snap) => {
+        console.log(snap);
+      }, // TODO: set progress and showing to UI
       (err) => console.error(err), // TODO: Need create snackbar for showing error uploaded file
       async () => {
         const assetUrl = await getDownloadURL(uploadAsset.snapshot.ref);
 
         // Display picture still mocking
-        const { lat, lng, detail } = selectedLocation;
+        // const { lat, lng, detail } = selectedLocation;
         const payload = {
           variables: {
             ...defaultPayload,
@@ -307,7 +312,6 @@ const AvaliableRoomForm = (props) => {
                 radius={radius * 100}
               />
               {/* Child components, such as markers, info windows, etc. */}
-              <></>
             </GoogleMap>
           </LoadScript>
         </div>

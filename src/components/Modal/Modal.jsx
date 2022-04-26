@@ -1,8 +1,9 @@
 import { Fragment } from 'react';
 
+import { useModal } from '../../hooks/useModal';
+
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
-import { useModal } from 'hooks/useModal';
 
 export default function Modal({
   modalTitle,

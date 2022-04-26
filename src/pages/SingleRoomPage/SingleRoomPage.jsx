@@ -2,11 +2,12 @@ import './SingleRoomPage.css';
 
 import { useEffect } from 'react';
 
+import Table from '../../components/Tables';
+import UserDetailCard from '../../components/UserDetailCard';
+import { SEARCH_POST, UPDATE_ROOM } from '../../graphql/mutation';
+import { SEARCH_ROOMS } from '../../graphql/query';
+
 import { useLazyQuery, useMutation } from '@apollo/client';
-import Table from 'components/Tables';
-import UserDetailCard from 'components/UserDetailCard';
-import { SEARCH_POST, UPDATE_ROOM } from 'graphql/mutation';
-import { SEARCH_ROOMS } from 'graphql/query';
 
 const SingleRoomPage = (props) => {
   const roomId = props.match.params.id;
@@ -73,8 +74,9 @@ const SingleRoomPage = (props) => {
   );
 
   const singleRoom = dataRoom?.searchRoom?.hits.filter(
-    (data) => data.id === roomId
+    (docs) => docs.id === roomId
   )[0];
+
   return (
     <div>
       <div className='mb-5'>

@@ -1,17 +1,16 @@
 import { useState } from 'react';
 
+import blank_profile_picture from '../../assets/blank_profile_picture.png';
+import NewDropdown from '../../components/DropDown/DropdownResponsive';
+import { AllPostSkeleton } from '../../components/Skeleton/Skeleton';
+import StatusContainer from '../../components/StatusContainer';
+import { usePostStatus } from '../../hooks/usePostStatus';
+
 import Media from './Media';
 
-import { useMutation } from '@apollo/client';
 import { XCircleIcon } from '@heroicons/react/outline';
-import blank_profile_picture from 'assets/blank_profile_picture.png';
-import NewDropdown from 'components/DropDown/DropdownResponsive';
-import { AllPostSkeleton } from 'components/Skeleton/Skeleton';
-import StatusContainer from 'components/StatusContainer';
-import { usePostStatus } from 'hooks/usePostStatus';
 import moment from 'moment';
-import { parse } from 'querystring';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const tableHead = [
   'Location',
@@ -28,7 +27,7 @@ const tableHead = [
   'Action',
 ];
 
-const AllPostTable = ({ data, isLoading, props, ...rest }) => {
+const AllPostTable = ({ data, isLoading, props }) => {
   const [postId, setPostId] = useState('');
 
   const [changePostStatus, { loading }] = usePostStatus(

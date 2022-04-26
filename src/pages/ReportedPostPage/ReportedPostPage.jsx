@@ -2,16 +2,17 @@ import './ReportedPostPage.css';
 
 import { useEffect, useRef, useState } from 'react';
 
-import { useLazyQuery } from '@apollo/client';
-import SwitchButton from 'components/SwitchButton';
-import Table from 'components/Tables';
-import Areas from 'components/Visual/Areas';
+import SwitchButton from '../../components/SwitchButton';
+import Table from '../../components/Tables';
+import Areas from '../../components/Visual/Areas';
 import {
   GET_COMMENTS_REPORTED,
   GET_GRAPH,
   SEARCH_REPORTED_POST,
-} from 'graphql/query';
-import jsPDF from 'jspdf';
+} from '../../graphql/query';
+
+import { useLazyQuery } from '@apollo/client';
+import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
 const ReportedPostPage = () => {
@@ -44,15 +45,15 @@ const ReportedPostPage = () => {
     searchReportedExportPost,
     { refetch: refetchExport, called: calledExport },
   ] = useLazyQuery(SEARCH_REPORTED_POST, {
-    onCompleted: (data) => {
-      const exportedData = data?.searchPosts?.hits;
+    onCompleted: (datas) => {
+      const exportedData = datas?.searchPosts?.hits;
 
       if (exportedData.length) {
-        const doc = new jsPDF();
+        const doc = new JsPDF();
 
         autoTable(doc, { html: '#reported-posts' });
 
-        const newExport = data?.searchPosts?.hits.map(
+        const newExport = datas?.searchPosts?.hits.map(
           ({
             owner,
             text,
@@ -120,15 +121,15 @@ const ReportedPostPage = () => {
 
   const [searchReportedExportComment, { refetch: refetchExportComment }] =
     useLazyQuery(GET_COMMENTS_REPORTED, {
-      onCompleted: (data) => {
-        const exportedData = data?.searchCommentReported?.hits;
+      onCompleted: (datas) => {
+        const exportedData = datas?.searchCommentReported?.hits;
 
         if (exportedData.length) {
-          const doc = new jsPDF();
+          const doc = new JsPDF();
 
           autoTable(doc, { html: '#reported-comments' });
 
-          const newExport = data?.searchCommentReported?.hits.map(
+          const newExport = datas?.searchCommentReported?.hits.map(
             ({ owner, text, status, reportedCount }) => {
               const { markdownContent } = JSON.parse(text);
 
@@ -187,12 +188,30 @@ const ReportedPostPage = () => {
 
       searchReportedPost({ variables: { search: '', perPage: 20, page: 0 } });
     }
-  }, [state]);
+  }, [
+    called,
+    calledComment,
+    onSearchRefetch,
+    onSearchReportedRefetch,
+    searchReportedComments,
+    searchReportedPost,
+    state,
+  ]);
 
-  const handleCallbackSwitch = (state) => {
-    setstate(state);
+  const handleCallbackSwitch = (value) => {
+    setstate(value);
   };
 
+  const onExportData = (isComments) => {
+    _processPdf.current = false; // pretend to double save pdf
+    const refetchFunc = isComments ? refetchExportComment : refetchExport;
+    const searchExportFunc = isComments
+      ? searchReportedExportComment
+      : searchReportedExportPost;
+
+    if (calledExport) refetchFunc({ useExport: true });
+    searchExportFunc({ variables: { useExport: true } });
+  };
   const onFilters = (filter = [], exportData = false) => {
     const newFilter = {
       media: '',
@@ -202,8 +221,8 @@ const ReportedPostPage = () => {
       },
     };
 
-    if (filter.some((data) => data?.from && data?.to)) {
-      newFilter.timestamp = filter.find((data) => data.from);
+    if (filter.some((date) => date?.from && date?.to)) {
+      newFilter.timestamp = filter.find((docs) => docs.from);
     }
 
     if (state !== 'Comment') {
@@ -230,18 +249,8 @@ const ReportedPostPage = () => {
     else searchReportedPost({ filters: newFilter });
   };
 
-  const onExportData = (isComments) => {
-    _processPdf.current = false; // pretend to double save pdf
-    const refetchFunc = isComments ? refetchExportComment : refetchExport;
-    const searchExportFunc = isComments
-      ? searchReportedExportComment
-      : searchReportedExportPost;
-
-    if (calledExport) refetchFunc({ useExport: true });
-    searchExportFunc({ variables: { useExport: true } });
-  };
-  const handleStateOfGraph = (state) => {
-    setOption(state);
+  const handleStateOfGraph = (values) => {
+    setOption(values);
   };
 
   const dataTable =
@@ -272,7 +281,7 @@ const ReportedPostPage = () => {
             className={`${
               option === 'daily' ? 'bg-primary-100' : ''
             } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-            onClick={() => handleStateOfGraph('daily')}
+            onKeyDown={() => handleStateOfGraph('daily')}
           >
             Daily
           </div>
@@ -280,7 +289,7 @@ const ReportedPostPage = () => {
             className={`${
               option === 'monthly' ? 'bg-primary-100' : ''
             } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-            onClick={() => handleStateOfGraph('monthly')}
+            onKeyDown={() => handleStateOfGraph('monthly')}
           >
             Monthly
           </div>
@@ -288,7 +297,7 @@ const ReportedPostPage = () => {
             className={`${
               option === 'yearly' ? 'bg-primary-100' : ''
             } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-            onClick={() => handleStateOfGraph('yearly')}
+            onKeyDown={() => handleStateOfGraph('yearly')}
           >
             Yearly
           </div>

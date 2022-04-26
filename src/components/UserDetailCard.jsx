@@ -1,13 +1,13 @@
+import Blank from '../assets/blank_profile_picture.png';
+import StatusContainer from '../components/StatusContainer';
+
 import Dropdown from './DropDown/DropdownResponsive';
 import Media from './Tables/Media';
 
 import { ChevronLeftIcon } from '@heroicons/react/outline';
-import Blank from 'assets/blank_profile_picture.png';
-import StatusContainer from 'components/StatusContainer';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const UserDetailCard = ({ data, title, post, ...props }) => {
-  console.log('data', data);
   const history = useHistory();
   const detailList =
     data?.__typename === 'Room'
@@ -63,7 +63,7 @@ const UserDetailCard = ({ data, title, post, ...props }) => {
     <div className='card'>
       <div
         className='flex justify-start items-center p-1 w-full cursor-pointer -mt-5'
-        onClick={() => history.goBack()}
+        onKeyDown={() => history.goBack()}
       >
         <ChevronLeftIcon className='w-4 h-4 ' />
         <h1 className=' font-thin p-1'>{title}</h1>
@@ -75,6 +75,7 @@ const UserDetailCard = ({ data, title, post, ...props }) => {
               <div className='skeleton w-36 h-36 rounded-3xl' />
             ) : (
               <img
+                alt=''
                 className=' w-36  h-36 object-cover rounded-3xl'
                 src={data?.profilePicture || data?.displayPicture || Blank}
               />
@@ -87,15 +88,15 @@ const UserDetailCard = ({ data, title, post, ...props }) => {
               className='grid grid-cols-2'
               style={{ width: 400, wordBreak: 'break-word' }}
             >
-              {detailList.map((data, key) => {
+              {detailList.map((datas, key) => {
                 return (
                   <div key={key} className=' w-60'>
-                    <span className=' font-semibold'>{data.name}</span>
+                    <span className=' font-semibold'>{datas.name}</span>
                     <br />
                     {props.loading ? (
                       <div className='skeleton w-24 h-4' />
                     ) : (
-                      <span className='w-24'>{data.data}</span>
+                      <span className='w-24'>{datas.data}</span>
                     )}
                     <br />
                   </div>

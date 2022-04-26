@@ -1,20 +1,21 @@
 import { useState } from 'react';
 
-import { useMutation } from '@apollo/client';
-import blank_profile_picture from 'assets/blank_profile_picture.png';
-import NewDropdown from 'components/DropDown/DropdownResponsive';
+import blank_profile_picture from '../../assets/blank_profile_picture.png';
+import NewDropdown from '../../components/DropDown/DropdownResponsive';
 // import { DotsHorizontalIcon } from "@heroicons/react/outline";
 // import { Link } from "react-router-dom";
-import StatusContainer from 'components/StatusContainer';
-import { SEARCH_ADMINS, SET_STATUS_ADMIN } from 'graphql/mutation';
+import StatusContainer from '../../components/StatusContainer';
+import { SEARCH_ADMINS, SET_STATUS_ADMIN } from '../../graphql/mutation';
 
-const AdminTable = ({ data, isLoading }) => {
+import { useMutation } from '@apollo/client';
+
+const AdminTable = ({ data }) => {
   const [adminId, setAdmiId] = useState('');
   const tableHead = ['Name', 'Email', 'Role', 'Status', 'Action'];
 
   const [changeAdminStatus, { loading }] = useMutation(SET_STATUS_ADMIN, {
-    update(cache, { data: newDataMutation }) {
-      const { setStatusAdmin } = newDataMutation;
+    update(cache) {
+      // const { setStatusAdmin } = newDataMutation;
 
       const test = cache.readQuery({
         query: SEARCH_ADMINS,
@@ -59,11 +60,12 @@ const AdminTable = ({ data, isLoading }) => {
     changeAdminStatus({ variables: { ...statusAdmin, adminId: id } });
   };
 
-  const adminRole = (data) => {
-    if (data === 1) return 'Super Admin';
-    if (data === 2) return 'Co-Super Admin';
-    if (data === 3) return 'Admin User';
-    if (data === 4) return 'Admin Post';
+  const adminRole = (level) => {
+    if (level === 1) return 'Super Admin';
+    if (level === 2) return 'Co-Super Admin';
+    if (level === 3) return 'Admin User';
+    if (level === 4) return 'Admin Post';
+    return 'Super Admin';
   };
   return (
     <table className='table-responsive w-full overflow-scroll h-4'>
@@ -96,7 +98,7 @@ const AdminTable = ({ data, isLoading }) => {
               idx
             ) => {
               return (
-                <tr>
+                <tr key={idx}>
                   <td className='p-5'>
                     <div className='flex row-username'>
                       <img

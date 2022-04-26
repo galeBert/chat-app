@@ -1,21 +1,17 @@
-import { useMutation } from '@apollo/client';
-import {
-  CHANGE_POST_STATUS,
-  CHANGE_USER_STATUS,
-  SEARCH_POST,
-  SEARCH_USER,
-} from 'graphql/mutation';
-import { useModal } from 'hooks/useModal';
-import { parse } from 'querystring';
-import { useHistory, useParams } from 'react-router';
+import { CHANGE_POST_STATUS, SEARCH_POST } from '../graphql/mutation';
+import { useModal } from '../hooks/useModal';
 
-export const usePostStatus = (
-  shouldBeUpdateCache = true,
-  currentPages,
-  gqlSchema,
-  postId,
-  props
-) => {
+import { useMutation } from '@apollo/client';
+import { parse } from 'querystring';
+import { useHistory, useParams } from 'react-router-dom';
+
+export const usePostStatus = () => {
+  // shouldBeUpdateCache = true,
+  // currentPages,
+  // gqlSchema,
+  // postId,
+  // props
+
   const path = useParams();
 
   console.log('path', path);

@@ -2,20 +2,22 @@ import moment from 'moment';
 
 const headers = ['Name', 'Role', 'Timestamp', 'Activity'];
 
-const AllUserTable = ({ data, ...props }) => {
+const AllUserTable = ({ data }) => {
   return (
     <table className='table-responsive w-full overflow-scroll h-4'>
       <thead>
         <tr>
-          {headers.map((label) => (
-            <th className='p-1.5'>{label}</th>
+          {headers.map((label, key) => (
+            <th key={key} className='p-1.5'>
+              {label}
+            </th>
           ))}
         </tr>
       </thead>
       <tbody className='relative'>
         {!!data.length &&
-          data.map(({ name, message, createdAt, role }) => (
-            <tr>
+          data.map(({ name, message, createdAt, role }, key) => (
+            <tr key={key}>
               <td className='p-5'>
                 <div className='flex row-username'>
                   <img

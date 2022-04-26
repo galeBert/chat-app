@@ -63,7 +63,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
     <div className='d-action text-center'>
       <div
         className='three-dots'
-        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={() => setIsOpen(!isOpen)}
         ref={wrapper}
       >
         {Icon ? (
@@ -99,7 +99,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                   className={`dropdown-item ${uniqueId || 0} relative ${
                     isActive ? 'bg-primary-100' : ''
                   }`}
-                  onClick={() => {
+                  onKeyDownCapture={() => {
                     if (typeof onClick === 'function') {
                       onClick();
                       setIsOpen(!isOpen);
@@ -133,29 +133,34 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                     >
                       {child.map(
                         (
-                          { label, onClick, hasTimeStampInput, ...props },
-                          key
+                          {
+                            label: childLabel,
+                            onClick: childOnClick,
+                            hasTimeStampInput: childHasTimeStampInput,
+                            ...props
+                          },
+                          keys
                         ) => {
                           return (
                             <li
-                              key={key}
+                              key={keys}
                               className={`${
-                                hasTimeStampInput
+                                childHasTimeStampInput
                                   ? 'dropdown-item-child'
                                   : 'dropdown-item'
                               } relative `}
-                              onClick={() => {
+                              onKeyDownCapture={() => {
                                 if (
-                                  typeof onClick === 'function' &&
-                                  !hasTimeStampInput
+                                  typeof childOnClick === 'function' &&
+                                  !childHasTimeStampInput
                                 ) {
-                                  onClick();
+                                  childOnClick();
                                   setIsOpen(!isOpen);
                                 }
                               }}
                             >
-                              {label}
-                              {hasTimeStampInput && (
+                              {childLabel}
+                              {childHasTimeStampInput && (
                                 <div className='text-left'>
                                   <div>
                                     <span>From</span>
@@ -197,7 +202,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                                       onClick={() =>
                                         handleSubmitTimestamp(
                                           props.setTimestamp,
-                                          onClick
+                                          childOnClick
                                         )
                                       }
                                     >

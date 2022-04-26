@@ -2,15 +2,15 @@ import './style.css';
 
 import { useEffect, useMemo, useState } from 'react';
 
+import { Autocomplete } from '../../components/Autocomplete';
+import NewDropdown from '../../components/DropDown/DropdownResponsive';
+import { observeSnapshot } from '../../functions/auth';
+import { useAdminContext } from '../../hooks/useAdmin';
+import { auth } from '../../utils/firebase';
+
 import { BellIcon } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import { Autocomplete } from 'components/Autocomplete';
-import NewDropdown from 'components/DropDown/DropdownResponsive';
-import { observeSnapshot } from 'functions/auth';
-import { useAdminContext } from 'hooks/useAdmin';
 import { Link, useHistory } from 'react-router-dom';
-import { auth } from 'utils/firebase';
-
 // const searchClient = algoliasearch('X3DO93E2H0', 'a95bc441f3391e56089fb3abedecc24a');
 
 export default function Nav() {
@@ -40,7 +40,7 @@ export default function Nav() {
   }, [admin]);
 
   useEffect(() => {
-    observeSnapshot('notifications', 'isVerify', false, onReceived, () => {});
+    observeSnapshot('notifications', 'isVerify', false, onReceived);
   }, []);
   return (
     <div className=' fixed  w-full left-0 -top-1 p-4 bg-dark-300 z-30'>

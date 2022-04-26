@@ -1,14 +1,15 @@
 // import DropDown from "components/DropDown/DropDown";
 import { useState } from 'react';
 
+import NewDropdown from '../../components/DropDown/DropdownResponsive';
+import { AllPostSkeleton } from '../../components/Skeleton/Skeleton';
+import StatusContainer from '../../components/StatusContainer';
+import { CHANGE_POST_STATUS, SEARCH_POST } from '../../graphql/mutation';
+import { useModal } from '../../hooks/useModal';
+
 import Media from './Media';
 
 import { useMutation } from '@apollo/client';
-import NewDropdown from 'components/DropDown/DropdownResponsive';
-import { AllPostSkeleton } from 'components/Skeleton/Skeleton';
-import StatusContainer from 'components/StatusContainer';
-import { CHANGE_POST_STATUS, SEARCH_POST } from 'graphql/mutation';
-import { useModal } from 'hooks/useModal';
 import moment from 'moment';
 import { parse } from 'querystring';
 import { useHistory } from 'react-router-dom';
@@ -26,8 +27,9 @@ const tableHead = [
   'Action',
 ];
 
-const UserPostTable = ({ data, isLoading, ...rest }) => {
+const UserPostTable = ({ data, isLoading }) => {
   const [postId, setPostId] = useState('');
+  console.log(postId);
   const modal = useModal();
   const queryString = useHistory().location.search;
   const username = useHistory().location.pathname.split('/')[2];
@@ -35,6 +37,7 @@ const UserPostTable = ({ data, isLoading, ...rest }) => {
 
   const [changePostStatus, { loading }] = useMutation(CHANGE_POST_STATUS, {
     update(cache, { data: newDataMutation }) {
+      console.log(loading);
       const { setStatusPost } = newDataMutation;
 
       modal.actions.onSetSnackbar(setStatusPost.message);
@@ -92,8 +95,12 @@ const UserPostTable = ({ data, isLoading, ...rest }) => {
   return (
     <table className='table-container'>
       <tr>
-        {tableHead.map((data, idx) => {
-          return <th className={data === 'Location' && 'max-w-xs'}>{data}</th>;
+        {tableHead.map((docs, idx) => {
+          return (
+            <th key={idx} className={docs === 'Location' && 'max-w-xs'}>
+              {docs}
+            </th>
+          );
         })}
       </tr>
       {isLoading
@@ -108,7 +115,7 @@ const UserPostTable = ({ data, isLoading, ...rest }) => {
               : statusPost.takedown && 'Takedown';
             const text = JSON.parse(post.text).markdownContent;
             return (
-              <tr className='text-center'>
+              <tr key={idx} className='text-center'>
                 <td className='max-w-xs'>
                   {post.location.detail.formattedAddress}
                 </td>
