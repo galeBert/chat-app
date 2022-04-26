@@ -1,11 +1,9 @@
-import { Redirect, Route } from "react-router";
-
 // Layout
-import AppLayout from "pages/layouts/AppLayout";
-
+import AppLayout from 'pages/layouts/AppLayout';
+import { Redirect, Route } from 'react-router';
 
 const UserRoute = ({ component: Component, ...rest }) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   return (
     <Route
@@ -16,7 +14,7 @@ const UserRoute = ({ component: Component, ...rest }) => {
             <Component {...props} />
           </AppLayout>
         ) : (
-          <Redirect to="/" />
+          <Redirect to='/' />
         );
       }}
     />

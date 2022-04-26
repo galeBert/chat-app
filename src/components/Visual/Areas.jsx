@@ -1,26 +1,31 @@
-import React, { useMemo, useCallback } from 'react';
-import { AreaClosed, Line, Bar } from '@visx/shape';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import React, { useCallback, useMemo } from 'react';
+
 import { curveMonotoneX } from '@visx/curve';
-import { GridRows, GridColumns } from '@visx/grid';
-import { scaleTime, scaleLinear } from '@visx/scale';
-import { withTooltip, Tooltip, TooltipWithBounds, defaultStyles } from '@visx/tooltip';
 import { localPoint } from '@visx/event';
 import { LinearGradient } from '@visx/gradient';
-import { max, extent } from 'd3-array';
-
+import { GridColumns, GridRows } from '@visx/grid';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { scaleLinear, scaleTime } from '@visx/scale';
+import { AreaClosed, Bar, Line } from '@visx/shape';
 import {
+  defaultStyles,
+  Tooltip,
+  TooltipWithBounds,
+  withTooltip,
+} from '@visx/tooltip';
+import { extent, max } from 'd3-array';
+import {
+  accentColor,
+  accentColorDark,
+  background,
+  background2,
+  bisectDate,
   formatDate,
   getDate,
   getRegistrationValue,
   getRegistrationYScale,
-  bisectDate,
   tooltipStyles as defaultTooltipStyle,
-  background,
-  background2,
-  accentColor,
-  accentColorDark
-} from 'utils/visx'
+} from 'utils/visx';
 
 const AreasTooltip = withTooltip(
   ({
@@ -38,12 +43,14 @@ const AreasTooltip = withTooltip(
     tooltipTop = 0,
     tooltipLeft = 0,
   }) => {
-    const sortData = data ? data.sort((a, b) => {
-      var dateA = new Date(a.date).getTime();
-      var dateB = new Date(b.date).getTime();
-  
-      return dateA > dateB ? 1 : -1;  
-    }) : []
+    const sortData = data
+      ? data.sort((a, b) => {
+          const dateA = new Date(a.date).getTime();
+          const dateB = new Date(b.date).getTime();
+
+          return dateA > dateB ? 1 : -1;
+        })
+      : [];
     if (width < 10) return null;
 
     // bounds
@@ -57,15 +64,16 @@ const AreasTooltip = withTooltip(
           range: [margin.left, innerWidth + margin.left],
           domain: extent(data, getDate),
         }),
-      [innerWidth, margin.left],
+      [innerWidth, margin.left]
     );
     const registValueScale = useMemo(
-      () => scaleLinear({
-        range: [innerHeight + margin.top, margin.top],
-        domain: [0, (max(data, getRegistrationValue) || 0) + innerHeight / 3],
-        nice: true,
-      }),
-      [margin.top, innerHeight],
+      () =>
+        scaleLinear({
+          range: [innerHeight + margin.top, margin.top],
+          domain: [0, (max(data, getRegistrationValue) || 0) + innerHeight / 3],
+          nice: true,
+        }),
+      [margin.top, innerHeight]
     );
 
     // tooltip handler
@@ -78,7 +86,11 @@ const AreasTooltip = withTooltip(
         const d1 = sortData[index];
         let d = d0;
         if (d1 && getDate(d1)) {
-          d = x0.valueOf() - getDate(d0).valueOf() > getDate(d1).valueOf() - x0.valueOf() ? d1 : d0;
+          d =
+            x0.valueOf() - getDate(d0).valueOf() >
+            getDate(d1).valueOf() - x0.valueOf()
+              ? d1
+              : d0;
         }
         showTooltip({
           tooltipData: d,
@@ -86,91 +98,100 @@ const AreasTooltip = withTooltip(
           tooltipTop: registValueScale(getRegistrationValue(d)),
         });
       },
-      [showTooltip, registValueScale, dateScale],
+      [showTooltip, registValueScale, dateScale]
     );
 
     return (
       <div className=' border border-solid border-grey-600 -ml-1 rounded-md'>
-        <svg width={width} height={height}>
+        <svg height={height} width={width}>
           <rect
+            fill='url(#area-background-gradient)'
+            height={height}
+            rx={14}
+            width={width}
             x={0}
             y={0}
-            width={width}
-            height={height}
-            fill="url(#area-background-gradient)"
-            rx={14}
           />
-          <LinearGradient id="area-background-gradient" from={background} to={background2} />
-          <LinearGradient id="area-gradient" from={accentColor} to={accentColor} toOpacity={0.1} />
+          <LinearGradient
+            from={background}
+            id='area-background-gradient'
+            to={background2}
+          />
+          <LinearGradient
+            from={accentColor}
+            id='area-gradient'
+            to={accentColor}
+            toOpacity={0.1}
+          />
           <GridRows
             left={margin.left}
+            pointerEvents='none'
             scale={registValueScale}
-            width={innerWidth}
-            strokeDasharray="1,3"
             stroke={accentColor}
+            strokeDasharray='1,3'
             strokeOpacity={0}
-            pointerEvents="none"
+            width={innerWidth}
           />
           <GridColumns
-            top={margin.top}
-            scale={dateScale}
             height={innerHeight}
-            strokeDasharray="1,3"
+            pointerEvents='none'
+            scale={dateScale}
             stroke={accentColor}
+            strokeDasharray='1,3'
             strokeOpacity={0.2}
-            pointerEvents="none"
+            top={margin.top}
           />
           <AreaClosed
+            curve={curveMonotoneX}
             data={data}
+            fill='url(#area-gradient)'
+            stroke='url(#area-gradient)'
+            strokeWidth={1}
             x={(d) => dateScale(getDate(d)) ?? 0}
             y={(d) => registValueScale(getRegistrationYScale(d)) ?? 0}
             yScale={registValueScale}
-            strokeWidth={1}
-            stroke="url(#area-gradient)"
-            fill="url(#area-gradient)"
-            curve={curveMonotoneX}
           />
           <Bar
+            fill='transparent'
+            height={innerHeight}
+            onMouseLeave={() => hideTooltip()}
+            onMouseMove={handleTooltip}
+            onTouchMove={handleTooltip}
+            onTouchStart={handleTooltip}
+            rx={14}
+            width={innerWidth}
             x={margin.left}
             y={margin.top}
-            width={innerWidth}
-            height={innerHeight}
-            fill="transparent"
-            rx={14}
-            onTouchStart={handleTooltip}
-            onTouchMove={handleTooltip}
-            onMouseMove={handleTooltip}
-            onMouseLeave={() => hideTooltip()}
           />
           {tooltipData && (
             <g>
               <Line
                 from={{ x: tooltipLeft, y: margin.top }}
-                to={{ x: tooltipLeft, y: innerHeight + margin.top }}
+                pointerEvents='none'
                 stroke={accentColorDark}
+                strokeDasharray='5,2'
                 strokeWidth={2}
-                pointerEvents="none"
-                strokeDasharray="5,2"
+                to={{ x: tooltipLeft, y: innerHeight + margin.top }}
               />
               <circle
                 cx={tooltipLeft}
                 cy={tooltipTop + 1}
-                r={4}
-                fill="black"
+                fill='black'
                 fillOpacity={0.1}
-                stroke="black"
+                pointerEvents='none'
+                r={4}
+                stroke='black'
                 strokeOpacity={0.1}
                 strokeWidth={2}
-                pointerEvents="none"
               />
               <circle
                 cx={tooltipLeft}
                 cy={tooltipTop}
-                r={4}
                 fill={accentColorDark}
-                stroke="white"
+                pointerEvents='none'
+                r={4}
+                stroke='white'
                 strokeWidth={2}
-                pointerEvents="none"
               />
             </g>
           )}
@@ -179,22 +200,22 @@ const AreasTooltip = withTooltip(
           <div>
             <TooltipWithBounds
               key={Math.random()}
-              top={tooltipTop - 12}
               left={tooltipLeft + 12}
               style={{
                 ...defaultTooltipStyle,
-                ...tooltipStyle // Can override style tooltip
+                ...tooltipStyle, // Can override style tooltip
               }}
+              top={tooltipTop - 12}
             >
               {`${titleTooltip} ${getRegistrationValue(tooltipData)}`}
             </TooltipWithBounds>
             <Tooltip
-              className="visx__tooltip"
-              top={innerHeight + margin.top - 14}
+              className='visx__tooltip'
               left={tooltipLeft}
               style={{
-                ...defaultStyles
+                ...defaultStyles,
               }}
+              top={innerHeight + margin.top - 14}
             >
               {formatDate(getDate(tooltipData))}
             </Tooltip>
@@ -202,18 +223,18 @@ const AreasTooltip = withTooltip(
         )}
       </div>
     );
-  },
+  }
 );
 const Areas = ({ loading, ...args }) => {
-
   return loading ? (
-    <div className="skeleton w-full h-full" />
-
-  ) : (<ParentSize>
-    {({ width, height }) => (
-      <AreasTooltip width={width} height={height} {...args} />
-    )}
-  </ParentSize>)
-}
+    <div className='skeleton w-full h-full' />
+  ) : (
+    <ParentSize>
+      {({ width, height }) => (
+        <AreasTooltip height={height} width={width} {...args} />
+      )}
+    </ParentSize>
+  );
+};
 
 export default Areas;

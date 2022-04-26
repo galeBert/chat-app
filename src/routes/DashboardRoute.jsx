@@ -1,14 +1,12 @@
-import { Route } from "react-router";
-
 // Layout
-import AppLayout from "pages/layouts/AppLayout";
-
+import AppLayout from 'pages/layouts/AppLayout';
+import LoginPage from 'pages/LoginPage/LoginPage';
 // Pages
-import SummaryPage from "pages/SummaryPage/SummaryPage";
-import LoginPage from "pages/LoginPage/LoginPage";
+import SummaryPage from 'pages/SummaryPage/SummaryPage';
+import { Route } from 'react-router';
 
 const DashboardRoute = ({ component: Component, ...rest }) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
 
   return (
     <Route
@@ -16,7 +14,7 @@ const DashboardRoute = ({ component: Component, ...rest }) => {
       render={(props) => {
         return token ? (
           <AppLayout>
-            <Route exact path="/" component={SummaryPage} />
+            <Route component={SummaryPage} exact path='/' />
           </AppLayout>
         ) : (
           <LoginPage>

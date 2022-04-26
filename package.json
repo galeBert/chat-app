@@ -54,7 +54,12 @@
     "build": "CI=false craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint \"**/*.{js,jsx}\"",
+    "lint:fix": "eslint --fix && yarn format",
+    "format": "prettier -w \"./**/*.{js,jsx}\"",
+    "format:check": "prettier -c \"./**/*.{js,jsx}\"",
+    "validate": "npm run lint"
   },
   "eslintConfig": {
     "extends": [
@@ -85,8 +90,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,html,css,json}": [
-      "yarn prettier --write"
-    ]
+    "src/**/*.{js,jsx,}": [],
+    "src/**/*.{json,css,scss,md}": []
   }
 }

@@ -8,20 +8,20 @@ module.exports = {
       primary: {
         100: '#7F57FF',
         300: '#724EE6',
-        600: '#6646CC'
+        600: '#6646CC',
       },
       red: {
         100: '#FF0073',
         300: '#E60068',
-        600: '#CC005C'
+        600: '#CC005C',
       },
       yellow: {
         100: '#F6C059',
         300: '#DDAD50',
-        600: '#C59A47'
+        600: '#C59A47',
       },
       green: {
-        300: "#2FDD92"
+        300: '#2FDD92',
       },
       blue: {
         100: '#307BF4',
@@ -38,13 +38,13 @@ module.exports = {
         100: '#FAFAFA',
         300: '#E6E6E6',
         600: '#6E6E6E',
-        900: '#585858'
+        900: '#585858',
       },
       twitter: {
         100: '#2DAAE1',
         300: '#2999CB',
-        600: '#2488B4'
-      }
+        600: '#2488B4',
+      },
     },
     fontFamily: {
       sans: ['Avenir-Book', 'Helvetica', 'sans-serif'],
@@ -60,12 +60,12 @@ module.exports = {
         '6/7': '85.7142857%',
       },
       fontSize: {
-        'vxs': '10px',
+        vxs: '10px',
       },
       padding: {
-        '0.5': '2px'
-      }
-    }
+        0.5: '2px',
+      },
+    },
   },
   variants: {
     extend: {
@@ -74,4 +74,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
