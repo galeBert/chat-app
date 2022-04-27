@@ -1,11 +1,12 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react';
+
 import { toast } from 'react-toastify';
 
 export const ModalContext = createContext({});
 
 export default function ModalProvider({ children }) {
-  const [openModal, setOpenModal] = useState(false)
-  const [isLoadingScreen, setIsLoadingScreen] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
+  const [isLoadingScreen, setIsLoadingScreen] = useState(false);
 
   const setSnackbar = (message) => toast(message);
   const onCloseSnackbar = () => setSnackbar(false, '');
@@ -13,19 +14,17 @@ export default function ModalProvider({ children }) {
   const value = {
     value: {
       isOpen: openModal,
-      isLoadingScreen
+      isLoadingScreen,
     },
     actions: {
       onSetSnackbar: setSnackbar,
       onCloseSnackbar,
       setOpenModal,
-      setIsLoadingScreen
-    }
-  }
+      setIsLoadingScreen,
+    },
+  };
 
   return (
-    <ModalContext.Provider value={value}>
-      {children}
-    </ModalContext.Provider>
-  )
+    <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
+  );
 }

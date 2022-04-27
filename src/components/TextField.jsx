@@ -1,15 +1,15 @@
-import { useRef, useState } from "react";
-import { useHistory } from "react-router";
-import { useField } from "formik";
-import classNames from "classnames";
+import './TextField.css';
 
-import "./TextField.css";
+import { useRef, useState } from 'react';
 
 import {
+  ExclamationCircleIcon,
   EyeIcon,
   EyeOffIcon,
-  ExclamationCircleIcon,
-} from "@heroicons/react/solid";
+} from '@heroicons/react/solid';
+import classNames from 'classnames';
+import { useField } from 'formik';
+import { useHistory } from 'react-router-dom';
 
 // import { CHECK_USERNAME } from 'graphql/mutations'
 
@@ -53,25 +53,25 @@ const TextField = ({
   return (
     <div
       className={classNames(
-        "textfield-container",
-        meta.touched ? (meta.error ? "invalid" : "") : ""
+        'textfield-container',
+        meta.touched ? (meta.error ? 'invalid' : '') : ''
       )}
     >
       <input
-        ref={input}
-        className="textfield-input"
-        placeholder=" "
+        className='textfield-input'
         id={field.name}
         onKeyUp={
-          props.name === "username" && path === "/register"
+          props.name === 'username' && path === '/register'
             ? () => setIsValidUsername(true)
             : null
         }
+        placeholder=' '
+        ref={input}
         {...field}
         {...props}
-        type={visible === true ? "text" : props.type}
+        type={visible === true ? 'text' : props.type}
       />
-      <label htmlFor={field.name} className="textfield-label">
+      <label className='textfield-label' htmlFor={field.name}>
         {label}
       </label>
 
@@ -86,27 +86,27 @@ const TextField = ({
         </button>
       )} */}
 
-      {props.type === "password" && (
+      {props.type === 'password' && (
         <button
-          type="button"
+          className='absolute w-4 right-3.5 top-6'
           onClick={handleClickVisible}
-          className="absolute w-4 right-3.5 top-6"
+          type='button'
         >
           {visible ? (
-            <EyeIcon className="fill-current text-white w-4" />
+            <EyeIcon className='fill-current text-white w-4' />
           ) : (
-            <EyeOffIcon className="fill-current text-white w-4" />
+            <EyeOffIcon className='fill-current text-white w-4' />
           )}
         </button>
       )}
 
       {meta.touched && meta.error ? (
         <label
+          className='absolute flex flex-row items-center right-4 top-1 text-sm text-yellow-300 cursor-pointer'
           htmlFor={field.name}
-          className="absolute flex flex-row items-center right-4 top-1 text-sm text-yellow-300 cursor-pointer"
         >
           {meta.error}
-          <ExclamationCircleIcon className="w-3.5 ml-1" />
+          <ExclamationCircleIcon className='w-3.5 ml-1' />
         </label>
       ) : null}
     </div>

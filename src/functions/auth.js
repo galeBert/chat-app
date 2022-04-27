@@ -1,61 +1,79 @@
-import { collection, getDocs, query, where, onSnapshot } from "firebase/firestore";
-import { auth, db, googleAuthProvider } from "utils/firebase";
-import { signInWithPopup, signOut, getIdToken, getAuth, onAuthStateChanged } from "firebase/auth";
-import { useModal } from "hooks/useModal";
+import { auth, db, googleAuthProvider } from '../utils/firebase';
+
+import {
+  getAuth,
+  getIdToken,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from 'firebase/firestore';
 
 export const getCollection = async (data, doc, value) => {
-  const getCollection = query(collection(db, data), where(doc, "==", value));
+  const getCollections = query(collection(db, data), where(doc, '==', value));
 
-  return await getDocs(getCollection);
+  return getDocs(getCollections);
 };
 
-export const observeSnapshot = async (data, doc, value, onReceived, onError, userData) => {
-  const auth = getAuth();
-  await onAuthStateChanged(auth, async (user) => {
-    console.log("user", user);
+export const observeSnapshot = async (
+  data,
+  doc,
+  value,
+  onReceived,
+  onError
+) => {
+  const getAuthData = getAuth();
+  await onAuthStateChanged(getAuthData, async (user) => {
+    console.log('user', user);
     if (user) {
-      const userInfo = await getCollection("admin", "email", user.email)
-      const parseUserInfo = await userInfo.docs.map(doc => doc.data())
+      const userInfo = await getCollection('admin', 'email', user.email);
+      const parseUserInfo = await userInfo.docs.map((datas) => datas.data());
 
       if (parseUserInfo[0]?.level < 3) {
         await onSnapshot(
-          query(collection(db, data), where(doc, "==", value)),
+          query(collection(db, data), where(doc, '==', value)),
           { includeMetadataChanges: true },
           (docs) => {
-            const list = []
+            const list = [];
             docs.forEach(async (notif) => {
               list.push({
                 id: notif.id,
-                ...notif.data()
-              })
+                ...notif.data(),
+              });
             });
 
-            onReceived(list)
-          }, err => {
-            onError(err)
+            onReceived(list);
+          },
+          (err) => {
+            onError(err);
           }
         );
       }
       // ...
     } else {
-      onReceived([])
+      onReceived([]);
       // User is signed out
       // ...
     }
   });
-
-}
+};
 
 export const handleAuth = (check, setToken, accessCodeAccount) => {
-
-  return signInWithPopup(auth, googleAuthProvider)
-    .then(async (result) => {
-      console.log('result: ', result)
-      const token = result.user.accessToken;
-      const email = result.user.email;
-      setToken(token)
-      check({ variables: { email, accessCode: accessCodeAccount, uid: result.user.uid } })
-    })
+  return signInWithPopup(auth, googleAuthProvider).then(async (result) => {
+    console.log('result: ', result);
+    const token = result.user.accessToken;
+    const email = result.user.email;
+    setToken(token);
+    check({
+      variables: { email, accessCode: accessCodeAccount, uid: result.user.uid },
+    });
+  });
 
   // .catch((error) => {
   //   // modal.actions.setIsLoadingScreen(true)
@@ -71,17 +89,19 @@ export const handleAuth = (check, setToken, accessCodeAccount) => {
   // });
 };
 export const handleLogout = () => {
-  signOut(auth).then((data) => console.log("keluar", data)).catch(err => console.log(err))
+  signOut(auth)
+    .then((data) => console.log('keluar', data))
+    .catch((err) => console.log(err));
 };
 
 export const onRefreshToken = () => {
-  getIdToken(auth.currentUser, true).then(
-    newToken => {
-      localStorage.setItem("token", newToken);
+  getIdToken(auth.currentUser, true)
+    .then((newToken) => {
+      localStorage.setItem('token', newToken);
 
       window.location.reload();
-    }
-  ).catch(err => {
-    console.error(err)
-  })
-}
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};

@@ -19,6 +19,7 @@
     "@visx/event": "^2.1.2",
     "@visx/gradient": "^2.1.0",
     "@visx/grid": "^2.4.0",
+    "@visx/group": "^2.1.0",
     "@visx/mock-data": "^2.1.2",
     "@visx/responsive": "^2.4.1",
     "@visx/scale": "^2.2.2",
@@ -31,10 +32,13 @@
     "firebase": "^9.1.3",
     "formik": "^2.2.9",
     "graphql": "^15.7.0",
+    "graphql-tag": "^2.12.6",
     "js-base64": "^3.7.2",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.23",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-color": "^2.19.3",
     "react-dom": "^17.0.2",
@@ -42,7 +46,7 @@
     "react-image-lightbox": "^5.1.4",
     "react-json-csv": "^2.0.0",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "5.0.1",
     "react-slideshow-image": "^3.7.0",
     "react-spring": "^9.3.2",
     "react-toastify": "^8.1.1",
@@ -51,17 +55,16 @@
     "yarn": "^1.22.18"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "husky install"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "prepare": "husky install",
+    "lint": "eslint \"**/*.{js,jsx}\"",
+    "lint:fix": "eslint --fix && yarn format",
+    "format": "prettier -w \"./**/*.{js,jsx}\"",
+    "format:check": "prettier -c \"./**/*.{js,jsx}\"",
+    "validate": "npm run lint"
   },
   "browserslist": {
     "production": [
@@ -79,15 +82,18 @@
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "autoprefixer": "^9.8.8",
+    "eslint": "^8.14.0",
+    "eslint-config-kdnj": "^2.0.4",
     "husky": "^7.0.0",
     "lint-staged": "^12.4.0",
     "postcss": "^7.0.39",
     "prettier": "^2.6.2",
+    "stylelint": "^14.7.1",
+    "stylelint-config-recommended": "^7.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,html,css,json}": [
-      "yarn prettier --write"
-    ]
+    "src/**/*.{js,jsx,}": [],
+    "src/**/*.{json,css,scss,md}": []
   }
 }
