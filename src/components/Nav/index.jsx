@@ -33,10 +33,12 @@ export default function Nav() {
     setTotal(doc.length || 0);
   };
   const adminRole = useMemo(() => {
-    if (admin?.value?.level === 1) return 'Super Admin';
-    if (admin?.value?.level === 2) return 'Co-Super Admin';
-    if (admin?.value?.level === 3) return 'Admin User';
-    if (admin?.value?.level === 4) return 'Admin Post';
+    let role;
+    if (admin?.value?.level === 1) role = 'Super Admin';
+    if (admin?.value?.level === 2) role = 'Co-Super Admin';
+    if (admin?.value?.level === 3) role = 'Admin User';
+    if (admin?.value?.level === 4) role = 'Admin Post';
+    return role;
   }, [admin]);
 
   useEffect(() => {

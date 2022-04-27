@@ -23,7 +23,7 @@ const Media = ({ media, ...props }) => {
                   key={key}
                   alt='img_err'
                   className={` rounded object-cover`}
-                  onKeyDownCapture={() => setIsOpen(true)}
+                  onClickCapture={() => setIsOpen(true)}
                   src={data?.secure_url}
                   style={{
                     width: `${props.width || 20}px`,

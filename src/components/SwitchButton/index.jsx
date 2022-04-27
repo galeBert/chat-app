@@ -12,11 +12,14 @@ const SwitchButton = ({ onSwitch }) => {
   };
   return (
     <div className='button-wrapper mb-3 mt-3'>
-      <button className={active === 'Post' && 'active'} onClick={handleClick}>
+      <button
+        className={active === 'Post' ? 'active' : ''}
+        onClick={handleClick}
+      >
         Post
       </button>
       <button
-        className={active === 'Comment' && 'active'}
+        className={active === 'Comment' ? 'active' : ''}
         onClick={handleClick}
       >
         Comment

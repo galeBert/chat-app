@@ -19,7 +19,7 @@ export default function Sidebar() {
   const history = useHistory();
 
   const [active, setActive] = useState(false);
-  const [name, setName] = useState('');
+  const [name, setName] = useState('Summary');
   const navigation = [
     {
       name: 'Summary',
@@ -80,6 +80,7 @@ export default function Sidebar() {
     },
   ];
   const handleActive = (item) => {
+    setName(item.name);
     const path = `/${history.location.pathname.split('/')[1]}`;
     path === item.to ? (item.current = true) : (item.current = false);
   };
@@ -87,7 +88,6 @@ export default function Sidebar() {
     setActive((value) => !value);
     setName(item.name);
   };
-
   return (
     <nav aria-label='Sidebar' className='sticky top-0 divide-y divide-gray-300'>
       <div className='flex flex-col overflow-y-hidden'>
@@ -95,85 +95,92 @@ export default function Sidebar() {
           <Logo className='lg:w-40 sm:w-20 text-gray-300' />
         </Link>
         <nav className='border-b border-t border-dark-50 py-4 mx-2 space-y-2'>
-          {navigation.map((item, idx) => (
-            <div key={idx} className='sidebar-container' id={idx}>
-              <Link
-                key={item.name}
-                className={classNames(
-                  item.current
-                    ? 'bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 sidebar-main_container'
-                    : 'sidebar-main_container text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100',
-                  ' sidebar-main_containergroup flex items-center px-2 py-2 font-semibold rounded-md antialiased'
-                )}
-                onClick={
-                  item.child ? () => handleChild(item) : handleActive(item)
-                }
-                to={item.to}
-                type='button'
-              >
-                <div className='flex items-center justify-between w-full'>
-                  <div className='flex justify-center items-center'>
-                    {item.icon ? (
-                      <item.icon
-                        aria-hidden='true'
-                        className={classNames(
-                          item.current ? 'text-gray-100' : '',
-                          'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
-                        )}
-                      />
-                    ) : (
-                      <div className='mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7' />
-                    )}
-
-                    <span className='hidden lg:block'>{item.name}</span>
-                  </div>
-                  {item.child &&
-                    (active ? (
-                      <ChevronUpIcon className='w-4 h-4' />
-                    ) : (
-                      <ChevronDownIcon className='w-4 h-4' />
-                    ))}
-                  {/* {console.log("checking.. ", item.child && item.child.filter(data => data.to === path))} */}
-                </div>
-              </Link>
-              {item.child && name === item.name && (
-                <div
-                  className={`sidebar-child_container ${active && 'active'}`}
+          {navigation.map((item, idx) => {
+            console.log('item dari nav', item.name, name);
+            return (
+              <div key={idx} className='sidebar-container' id={idx}>
+                <Link
+                  key={item.name}
+                  className={classNames(
+                    item.name === name
+                      ? 'bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 sidebar-main_container'
+                      : 'sidebar-main_container text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100',
+                    ' sidebar-main_containergroup flex items-center px-2 py-2 font-semibold rounded-md antialiased'
+                  )}
+                  onClick={
+                    item.child
+                      ? () => handleChild(item)
+                      : () => handleActive(item)
+                  }
+                  to={item.to}
+                  type='button'
                 >
-                  {item.child.map((datas) => {
-                    return (
-                      <Link
-                        key={datas.name}
-                        className={classNames(
-                          datas.current
-                            ? 'bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 rounded-md'
-                            : ' bg-dark-100 text-gray-100 hover:bg-dark-600 dark:text-gray-100',
-                          '  group flex items-center px-2 py-2 font-semibold  antialiased'
-                        )}
-                        onClick={handleActive(datas)}
-                        to={datas.to}
-                        type='button'
-                      >
-                        {datas.icon ? (
-                          <datas.icon
-                            aria-hidden='true'
-                            className={classNames(
-                              datas.current ? 'text-gray-100' : '',
-                              'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
-                            )}
-                          />
-                        ) : (
-                          <div className='mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7' />
-                        )}
+                  <div className='flex items-center justify-between w-full'>
+                    <div className='flex justify-center items-center'>
+                      {item.icon ? (
+                        <item.icon
+                          aria-hidden='true'
+                          className={classNames(
+                            item.current ? 'text-gray-100' : '',
+                            'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
+                          )}
+                        />
+                      ) : (
+                        <div className='mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7' />
+                      )}
 
-                        <span className='hidden lg:block'>{datas.name}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          ))}
+                      <span className='hidden lg:block'>{item.name}</span>
+                    </div>
+                    {item.child &&
+                      (active ? (
+                        <ChevronUpIcon className='w-4 h-4' />
+                      ) : (
+                        <ChevronDownIcon className='w-4 h-4' />
+                      ))}
+                    {/* {console.log("checking.. ", item.child && item.child.filter(data => data.to === path))} */}
+                  </div>
+                </Link>
+                {item.child && name === item.name && (
+                  <div
+                    className={`sidebar-child_container ${
+                      active ? 'active' : ''
+                    }`}
+                  >
+                    {item.child.map((datas) => {
+                      return (
+                        <Link
+                          key={datas.name}
+                          className={classNames(
+                            datas.current
+                              ? 'bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 rounded-md'
+                              : ' bg-dark-100 text-gray-100 hover:bg-dark-600 dark:text-gray-100',
+                            '  group flex items-center px-2 py-2 font-semibold  antialiased'
+                          )}
+                          onClick={handleActive(datas)}
+                          to={datas.to}
+                          type='button'
+                        >
+                          {datas.icon ? (
+                            <datas.icon
+                              aria-hidden='true'
+                              className={classNames(
+                                datas.current ? 'text-gray-100' : '',
+                                'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
+                              )}
+                            />
+                          ) : (
+                            <div className='mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7' />
+                          )}
+
+                          <span className='hidden lg:block'>{datas.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
       </div>
     </nav>

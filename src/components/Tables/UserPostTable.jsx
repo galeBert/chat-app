@@ -94,90 +94,96 @@ const UserPostTable = ({ data, isLoading }) => {
   const skeletonLoop = [1, 2, 3, 4, 5];
   return (
     <table className='table-container'>
-      <tr>
-        {tableHead.map((docs, idx) => {
-          return (
-            <th key={idx} className={docs === 'Location' && 'max-w-xs'}>
-              {docs}
-            </th>
-          );
-        })}
-      </tr>
-      {isLoading
-        ? skeletonLoop.map((_, key) => <AllPostSkeleton key={key} />)
-        : data.map((post, idx) => {
-            const createAt = new Date(post.createdAt);
-            const statusPost = post.status;
-            const status = statusPost.active
-              ? 'Active'
-              : statusPost.flag?.length
-              ? 'Flag'
-              : statusPost.takedown && 'Takedown';
-            const text = JSON.parse(post.text).markdownContent;
+      <thead>
+        <tr>
+          {tableHead.map((docs, idx) => {
             return (
-              <tr key={idx} className='text-center'>
-                <td className='max-w-xs'>
-                  {post.location.detail.formattedAddress}
-                </td>
-                <td>{moment(createAt).format('DD MMM YYYY hh:mm')}</td>
-                <td>{post.id}</td>
-                <td>{text}</td>
-                <td>
-                  <Media media={post.media || []} />
-                </td>
-                <td>{post.likeCount}</td>
-                <td>{post.commentCount}</td>
-                <td>{post.repostCount}</td>
-                <td>
-                  <div className='flex justify-center items-center mt-2 mb-2'>
-                    <StatusContainer>{status}</StatusContainer>
-                  </div>
-                </td>
-                <td>
-                  <NewDropdown
-                    options={[
-                      {
-                        label: 'Active',
-                        onClick: () => handleChangeStatus('active', post.id),
-                      },
-                      {
-                        label: 'Take Down',
-                        onClick: () => handleChangeStatus('takedown', post.id),
-                      },
-                      {
-                        label: 'Set Flag',
-                        onClick: null,
-                        child: [
-                          {
-                            label: 'Disturbing',
-                            onClick: () =>
-                              handleChangeStatus('Disturbing', post.id),
-                          },
-                          {
-                            label: 'Sensitive',
-                            onClick: () =>
-                              handleChangeStatus('takedown', post.id),
-                          },
-                          {
-                            label: 'Pornography',
-                            onClick: () =>
-                              handleChangeStatus('takedown', post.id),
-                          },
-                          {
-                            label: 'Racist',
-                            onClick: () =>
-                              handleChangeStatus('takedown', post.id),
-                          },
-                        ],
-                      },
-                      { label: 'See Detail', to: `/all-post/${post.id}` },
-                    ]}
-                    uniqueId={idx}
-                  />
-                </td>
-              </tr>
+              <th key={idx} className={docs === 'Location' ? 'max-w-xs' : ''}>
+                {docs}
+              </th>
             );
           })}
+        </tr>
+      </thead>
+
+      <tbody>
+        {isLoading
+          ? skeletonLoop.map((_, key) => <AllPostSkeleton key={key} />)
+          : data.map((post, idx) => {
+              const createAt = new Date(post.createdAt);
+              const statusPost = post.status;
+              const status = statusPost.active
+                ? 'Active'
+                : statusPost.flag?.length
+                ? 'Flag'
+                : statusPost.takedown && 'Takedown';
+              const text = JSON.parse(post.text).markdownContent;
+              return (
+                <tr key={idx} className='text-center'>
+                  <td className='max-w-xs'>
+                    {post.location.detail.formattedAddress}
+                  </td>
+                  <td>{moment(createAt).format('DD MMM YYYY hh:mm')}</td>
+                  <td>{post.id}</td>
+                  <td>{text}</td>
+                  <td>
+                    <Media media={post.media || []} />
+                  </td>
+                  <td>{post.likeCount}</td>
+                  <td>{post.commentCount}</td>
+                  <td>{post.repostCount}</td>
+                  <td>
+                    <div className='flex justify-center items-center mt-2 mb-2'>
+                      <StatusContainer>{status}</StatusContainer>
+                    </div>
+                  </td>
+                  <td>
+                    <NewDropdown
+                      options={[
+                        {
+                          label: 'Active',
+                          onClick: () => handleChangeStatus('active', post.id),
+                        },
+                        {
+                          label: 'Take Down',
+                          onClick: () =>
+                            handleChangeStatus('takedown', post.id),
+                        },
+                        {
+                          label: 'Set Flag',
+                          onClick: null,
+                          child: [
+                            {
+                              label: 'Disturbing',
+                              onClick: () =>
+                                handleChangeStatus('Disturbing', post.id),
+                            },
+                            {
+                              label: 'Sensitive',
+                              onClick: () =>
+                                handleChangeStatus('takedown', post.id),
+                            },
+                            {
+                              label: 'Pornography',
+                              onClick: () =>
+                                handleChangeStatus('takedown', post.id),
+                            },
+                            {
+                              label: 'Racist',
+                              onClick: () =>
+                                handleChangeStatus('takedown', post.id),
+                            },
+                          ],
+                        },
+                        { label: 'See Detail', to: `/all-post/${post.id}` },
+                      ]}
+                      uniqueId={idx}
+                    />
+                  </td>
+                </tr>
+              );
+            })}
+      </tbody>
     </table>
   );
 };

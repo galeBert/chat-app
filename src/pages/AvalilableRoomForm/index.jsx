@@ -6,7 +6,6 @@ import { CREATE_ROOM, UPDATE_ROOM } from '../../graphql/mutation';
 import { GET_DETAIL_ROOM } from '../../graphql/query';
 import { useModal } from '../../hooks/useModal';
 import { storage } from '../../utils/firebase';
-import { uuidv4 } from '../../utils/uuid';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { Circle, GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
@@ -18,6 +17,7 @@ import {
 } from 'firebase/storage';
 import { usePlacesWidget } from 'react-google-autocomplete';
 import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const MAP_API_KEY = 'AIzaSyCl0eTUbnDS4-kFW9-Xwb3Ih8KVuWRYeI4';
 const libraries = ['places'];
@@ -96,7 +96,7 @@ const AvaliableRoomForm = (props) => {
 
   const handleRadiusMap = (e) => {
     const r = e.target.value;
-    if (r >= 10) setRadius(parseInt(r));
+    if (r >= 10) setRadius(parseInt(r, 10));
   };
 
   const handleChangeText = (e) => {
@@ -183,7 +183,7 @@ const AvaliableRoomForm = (props) => {
     <>
       <div className='grid grid-cols-2'>
         <div className='w-full col-span-1 pl-5 pb-5 pr-5 pt-4 bg-dark-100 rounded-xl'>
-          <h1>{!roomId ? 'New' : 'Update'} Available Room</h1>
+          <h1>{roomId ? 'Update' : 'New'} Available Room</h1>
           <div className='grid grid-cols-2 grid-rows-3 mt-6 mb-6'>
             <div className='mt-1 mb-1'>
               <h6 className='mb-2 font-bold'>Name</h6>

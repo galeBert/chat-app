@@ -1,6 +1,6 @@
 import './AllPostPage.css';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import SmallGraph from '../../components/SmallGraph/SmallGraph';
 import Table from '../../components/Tables';
@@ -174,57 +174,63 @@ const AllPostPage = () => {
     }
   }, [_isMounted, parseQs, called, onSearchRefetch, searchPost]);
 
-  const onExportData = ({ filter }) => {
-    _processPdf.current = false; // pretend to double save pdf
-    if (calledExport) refetch({ useExport: true, filter });
-    searchPostExportData({
-      variables: { useExport: true, filter, search: headerSearch },
-    });
-  };
-  const onFilters = (filter = [], exportData = false) => {
-    const newFilter = {
-      media: [],
-      status: '',
-      timestamp: {
-        from: null,
-        to: null,
-      },
-    };
+  const onExportData = useCallback(
+    ({ filter }) => {
+      _processPdf.current = false; // pretend to double save pdf
+      if (calledExport) refetch({ useExport: true, filter });
+      searchPostExportData({
+        variables: { useExport: true, filter, search: headerSearch },
+      });
+    },
+    [calledExport, headerSearch, refetch, searchPostExportData]
+  );
+  const onFilters = useCallback(
+    (filter = [], exportData = false) => {
+      const newFilter = {
+        media: [],
+        status: '',
+        timestamp: {
+          from: null,
+          to: null,
+        },
+      };
 
-    if (filter.some((date) => date.from && date.to)) {
-      newFilter.timestamp = filter.find((doc) => doc.from);
-    }
-    if (filter.includes('active')) {
-      newFilter.status = 'active';
-    }
+      if (filter.some((date) => date.from && date.to)) {
+        newFilter.timestamp = filter.find((doc) => doc.from);
+      }
+      if (filter.includes('active')) {
+        newFilter.status = 'active';
+      }
 
-    if (filter.includes('takedown')) {
-      newFilter.status = 'takedown';
-    }
-    if (filter.includes('video')) {
-      newFilter.media.push('video');
-    }
+      if (filter.includes('takedown')) {
+        newFilter.status = 'takedown';
+      }
+      if (filter.includes('video')) {
+        newFilter.media.push('video');
+      }
 
-    if (filter.includes('photo')) {
-      newFilter.media.push('image');
-    }
+      if (filter.includes('photo')) {
+        newFilter.media.push('image');
+      }
 
-    if (filter.includes('voice')) {
-      newFilter.media = 'voice';
-    }
+      if (filter.includes('voice')) {
+        newFilter.media = 'voice';
+      }
 
-    if (filter.includes('gif')) {
-      newFilter.media.push('gif');
-    }
-    if (exportData) {
-      onExportData({ filters: newFilter });
-      return;
-    }
+      if (filter.includes('gif')) {
+        newFilter.media.push('gif');
+      }
+      if (exportData) {
+        onExportData({ filters: newFilter });
+        return;
+      }
 
-    setFilters(newFilter);
-    if (called) onSearchRefetch({ filters: newFilter, page: 0, perPage: 20 });
-    else searchPost({ filters: newFilter });
-  };
+      setFilters(newFilter);
+      if (called) onSearchRefetch({ filters: newFilter, page: 0, perPage: 20 });
+      else searchPost({ filters: newFilter });
+    },
+    [called, onExportData, onSearchRefetch, searchPost]
+  );
 
   return (
     <div>

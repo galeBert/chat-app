@@ -44,20 +44,21 @@ const AreasTooltip = withTooltip(
     tooltipTop = 0,
     tooltipLeft = 0,
   }) => {
-    const sortData = data
-      ? data.sort((a, b) => {
-          const dateA = new Date(a.date).getTime();
-          const dateB = new Date(b.date).getTime();
+    //sordata was here before
+    // const sortData =
+    //   data
+    //     ? data.sort((a, b) => {
+    //         const dateA = new Date(a.date).getTime();
+    //         const dateB = new Date(b.date).getTime();
 
-          return dateA > dateB ? 1 : -1;
-        })
-      : [];
+    //         return dateA > dateB ? 1 : -1;
+    //       })
+    //     : [];
+
     if (width < 10) return null;
-
     // bounds
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
-
     // scales
     const dateScale = useMemo(
       () =>
@@ -65,7 +66,7 @@ const AreasTooltip = withTooltip(
           range: [margin.left, innerWidth + margin.left],
           domain: extent(data, getDate),
         }),
-      [innerWidth, margin.left]
+      [data, innerWidth, margin.left]
     );
     const registValueScale = useMemo(
       () =>
@@ -74,9 +75,18 @@ const AreasTooltip = withTooltip(
           domain: [0, (max(data, getRegistrationValue) || 0) + innerHeight / 3],
           nice: true,
         }),
-      [margin.top, innerHeight]
+      [innerHeight, margin.top, data]
     );
+    const sortData = useMemo(() => {
+      data
+        ? data.sort((a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
 
+            return dateA > dateB ? 1 : -1;
+          })
+        : [];
+    }, [data]);
     // tooltip handler
     const handleTooltip = useCallback(
       (event) => {
@@ -99,7 +109,7 @@ const AreasTooltip = withTooltip(
           tooltipTop: registValueScale(getRegistrationValue(d)),
         });
       },
-      [showTooltip, registValueScale, dateScale]
+      [dateScale, sortData, showTooltip, registValueScale]
     );
 
     return (

@@ -92,12 +92,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,}": [
-      "eslint --max-warnings=0",
-      "prettier -w"
-    ],
-    "src/**/*.{json,css,scss,md}": [
-      "prettier -w"
-    ]
+    "src/**/*.{js,jsx,}": [],
+    "src/**/*.{json,css,scss,md}": []
   }
 }

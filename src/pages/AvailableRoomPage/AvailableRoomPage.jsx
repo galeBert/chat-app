@@ -18,7 +18,7 @@ const AvailableRoomPage = () => {
       return;
     }
     searchRooms({ variables: { name: '', perPage: 5, page: 0 } });
-  }, []);
+  }, [called, onSearchRefetch, searchRooms]);
 
   return (
     <div>

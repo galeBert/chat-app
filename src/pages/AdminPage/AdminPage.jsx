@@ -30,7 +30,8 @@ const AdminPage = () => {
       setOpenModal(false);
     },
     onError: (err) => {
-      alert(err?.exception?.stacktrace[0]);
+      // alert(err?.exception?.stacktrace[0]);
+      console.log(err?.exception?.stacktrace[0]);
     },
     update: () => {
       onSearchRefetch();

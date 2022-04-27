@@ -14,7 +14,7 @@ const SmallGraph = ({ data, simple, onClick, loading }) => {
     }
   };
   return (
-    <div className='cursor-pointer' onKeyDown={handleClick}>
+    <div className='cursor-pointer' onClickCapture={handleClick}>
       {simple ? (
         <div className='card text-left flex justify-between item flex-col w-80'>
           <div>

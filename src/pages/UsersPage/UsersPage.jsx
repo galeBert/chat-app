@@ -1,6 +1,6 @@
 import './UsersPage.css';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import DoughnutChart from '../../components/Charts/DoughnutChart';
 import SmallGraph from '../../components/SmallGraph/SmallGraph';
@@ -113,7 +113,8 @@ const UserPage = () => {
     if (option && stateGraph) {
       if (called) refetch({ graphType: option, state: stateGraph });
     }
-  }, [option, called, stateGraph, refetch]);
+  }, [called, option, refetch, stateGraph]);
+  // }, [option, called, stateGraph, refetch]);
 
   useEffect(() => {
     if (!_isMounted.current) {
@@ -139,56 +140,63 @@ const UserPage = () => {
     }
   }, [parseQs, _isMounted, called, onSearchRefetch, searchUser]);
 
-  const onExportData = (payload = {}) => {
-    _processPdf.current = false; // pretend to double save pdf
-    if (calledExport) refetchExport({ useExport: true, ...payload });
-    searchUserExportData({
-      variables: { useExport: true, search: headerSearch, ...payload },
-    });
-  };
-  const onFilters = (filter = [], exportData = false) => {
-    const newFilter = {};
-    let newStatus = '';
+  const onExportData = useCallback(
+    (payload = {}) => {
+      _processPdf.current = false; // pretend to double save pdf
+      if (calledExport) refetchExport({ useExport: true, ...payload });
+      searchUserExportData({
+        variables: { useExport: true, search: headerSearch, ...payload },
+      });
+    },
+    [calledExport, headerSearch, refetchExport, searchUserExportData]
+  );
 
-    if (filter.some((datas) => datas.from && datas.to)) {
-      newFilter.timestamp = filter.find((datas) => datas.from);
-    }
-    if (filter.includes('hasEmail')) {
-      newFilter.hasEmail = true;
-    }
+  const onFilters = useCallback(
+    (filter = [], exportData = false) => {
+      const newFilter = {};
+      let newStatus = '';
 
-    if (filter.includes('hasPhoneNumber')) {
-      newFilter.hasPhoneNumber = true;
-    }
+      if (filter.some((datas) => datas.from && datas.to)) {
+        newFilter.timestamp = filter.find((datas) => datas.from);
+      }
+      if (filter.includes('hasEmail')) {
+        newFilter.hasEmail = true;
+      }
 
-    if (filter.includes(['takedown'])) {
-      newStatus = 'takedown';
-    }
+      if (filter.includes('hasPhoneNumber')) {
+        newFilter.hasPhoneNumber = true;
+      }
 
-    if (filter.includes(['active'])) {
-      newStatus = 'active';
-    }
+      if (filter.includes(['takedown'])) {
+        newStatus = 'takedown';
+      }
 
-    if (filter.includes(['banned'])) {
-      newStatus = 'banned';
-    }
+      if (filter.includes(['active'])) {
+        newStatus = 'active';
+      }
 
-    if (filter.includes('active')) {
-      newStatus = 'active';
-    }
+      if (filter.includes(['banned'])) {
+        newStatus = 'banned';
+      }
 
-    if (filter.includes('banned')) {
-      newStatus = 'banned';
-    }
-    setFilters(newFilter);
+      if (filter.includes('active')) {
+        newStatus = 'active';
+      }
 
-    if (exportData)
-      return onExportData({ filters: newFilter, status: newStatus });
+      if (filter.includes('banned')) {
+        newStatus = 'banned';
+      }
+      setFilters(newFilter);
 
-    if (called) onSearchRefetch({ filters: newFilter, status: newStatus });
-    else return searchUser({ filters: newFilter, status: newStatus });
-    return searchUser({ filters: newFilter, status: newStatus });
-  };
+      if (exportData)
+        return onExportData({ filters: newFilter, status: newStatus });
+
+      if (called) onSearchRefetch({ filters: newFilter, status: newStatus });
+      else searchUser({ filters: newFilter, status: newStatus });
+      return '';
+    },
+    [called, onExportData, onSearchRefetch, searchUser]
+  );
 
   const handleChangeGraph = (state) => {
     setStateGraph(state?.label);
@@ -229,7 +237,6 @@ const UserPage = () => {
     ...stat,
     usage: stat.total,
   }));
-  console.log('filters', filters);
   return (
     <div>
       <div className='grid-container'>
@@ -290,7 +297,7 @@ const UserPage = () => {
               className={`${
                 option === 'daily' ? 'bg-primary-100' : ''
               } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-              onKeyDown={() => handleStateOfGraph('daily')}
+              onClickCapture={() => handleStateOfGraph('daily')}
             >
               Daily
             </div>
@@ -298,7 +305,7 @@ const UserPage = () => {
               className={`${
                 option === 'monthly' ? 'bg-primary-100' : ''
               } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-              onKeyDown={() => handleStateOfGraph('monthly')}
+              onClickCapture={() => handleStateOfGraph('monthly')}
             >
               Monthly
             </div>
@@ -306,7 +313,7 @@ const UserPage = () => {
               className={`${
                 option === 'yearly' ? 'bg-primary-100' : ''
               } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-              onKeyDown={() => handleStateOfGraph('yearly')}
+              onClickCapture={() => handleStateOfGraph('yearly')}
             >
               Yearly
             </div>

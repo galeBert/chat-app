@@ -9,34 +9,56 @@ import { useHistory } from 'react-router-dom';
 
 const UserDetailCard = ({ data, title, post, ...props }) => {
   const history = useHistory();
-  const detailList =
-    data?.__typename === 'Room'
-      ? [
-          { name: 'Name', data: data?.roomName || '-' },
-          { name: 'Center Location', data: 'Bandung' || '-' },
-          { name: 'Start Date', data: data?.startingDate || '-' },
-          { name: 'Coverage Radius', data: '10KM' || '-' },
-          { name: 'End Date', data: data?.tillDate || '-' },
-          { name: 'Total Post', data: data?.totalPost || '0' },
-        ]
-      : [
-          { name: 'Email', data: data?.email || '-' },
-          { name: 'ID', data: data?.id || '-' },
-          { name: 'Mobile Number', data: data?.mobileNumber || '-' },
-          { name: 'Created', data: data?.created || '-' },
-          { name: 'Username', data: data?.username || '-' },
-          { name: 'Last Active', data: data?.created || '-' },
-          { name: 'Date of Birth', data: data?.dob || '-' },
-          {
-            name: 'Interest',
-            data: data?.interest
-              ? data?.interest.map(
-                  (doc, key) =>
-                    doc + (data.interest.length - 1 !== key ? ', ' : '')
-                ) || '-'
-              : '-',
-          },
-        ];
+  console.log('data user detail', data);
+  const leftList = [
+    { name: 'Name', data: data?.roomName || '-' },
+    { name: 'Center Location', data: 'Bandung' || '-' },
+    { name: 'Start Date', data: data?.startingDate || '-' },
+    { name: 'Coverage Radius', data: '10KM' || '-' },
+    { name: 'End Date', data: data?.tillDate || '-' },
+    { name: 'Total Post', data: data?.totalPost || '0' },
+  ];
+
+  const rightList = [
+    { name: 'Email', data: data?.email || '-' },
+    { name: 'ID', data: data?.id || '-' },
+    { name: 'Mobile Number', data: data?.mobileNumber || '-' },
+    // { name: 'Created', data: data?.created || '-' },
+    // { name: 'Username', data: data?.username || '-' },
+    // { name: 'Last Active', data: data?.created || '-' },
+    // { name: 'Date of Birth', data: data?.dob || '-' },
+    // {name: 'Interest', data: 'test',},
+  ];
+
+  const detailList = data?.__typename === 'Room' ? leftList : rightList;
+  // const detailList =
+  //   data?.__typename === 'Room'
+  //     ? [
+  //         { name: 'Name', data: data?.roomName || '-' },
+  //         { name: 'Center Location', data: 'Bandung' || '-' },
+  //         { name: 'Start Date', data: data?.startingDate || '-' },
+  //         { name: 'Coverage Radius', data: '10KM' || '-' },
+  //         { name: 'End Date', data: data?.tillDate || '-' },
+  //         { name: 'Total Post', data: data?.totalPost || '0' },
+  //       ]
+  //     : [
+  //         { name: 'Email', data: data?.email || '-' },
+  //         { name: 'ID', data: data?.id || '-' },
+  //         { name: 'Mobile Number', data: data?.mobileNumber || '-' },
+  //         { name: 'Created', data: data?.created || '-' },
+  //         { name: 'Username', data: data?.username || '-' },
+  //         { name: 'Last Active', data: data?.created || '-' },
+  //         { name: 'Date of Birth', data: data?.dob || '-' },
+  //         {
+  //           name: 'Interest',
+  //           data: data?.interest
+  //             ? data?.interest.map(
+  //                 (doc, key) =>
+  //                   doc + (data.interest.length - 1 !== key ? ', ' : '')
+  //               ) || '-'
+  //             : '-',
+  //         },
+  //       ];
   const caption = post?.caption && JSON.parse(post.caption).markdownContent;
 
   // const actionVariabels = data?.__typename === "Room" ? [
@@ -50,20 +72,21 @@ const UserDetailCard = ({ data, title, post, ...props }) => {
   const handleChangeStatus = (type, status, target, action) => {
     let variables;
     if (type !== 'Room') variables = { status, username: target };
-    else
+    else if (type === 'Room') {
       variables = {
         roomId: target,
         isDeactive: status !== 'active',
         isDelete: false,
       };
-    action({ variables }, true);
+      action({ variables }, true);
+    }
   };
 
   return (
     <div className='card'>
       <div
         className='flex justify-start items-center p-1 w-full cursor-pointer -mt-5'
-        onKeyDown={() => history.goBack()}
+        onClickCapture={() => history.goBack()}
       >
         <ChevronLeftIcon className='w-4 h-4 ' />
         <h1 className=' font-thin p-1'>{title}</h1>

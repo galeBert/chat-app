@@ -110,7 +110,7 @@ export const Autocomplete = () => {
                       <li
                         key={item.objectID}
                         className='aa-Item cursor-pointer p-2 relative'
-                        onKeyDownCapture={() =>
+                        onClickCapture={() =>
                           history.push(`${item.url}?search=${item.query}`)
                         }
                         {...autocomplete.getItemProps({

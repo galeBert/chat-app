@@ -130,12 +130,14 @@ const ReportedPostTable = ({
 
   return (
     <table className='table-container'>
-      <tbody>
+      <thead>
         <tr>
           {tableHead.map((labelHeader, idx) => {
             return <th key={idx}>{labelHeader}</th>;
           })}
         </tr>
+      </thead>
+      <tbody>
         {isLoading && <ReportedPostSkeleton />}
         {data &&
           data.map((reportedPost, idx) => {

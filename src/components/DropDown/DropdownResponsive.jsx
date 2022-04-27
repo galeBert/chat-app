@@ -63,7 +63,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
     <div className='d-action text-center'>
       <div
         className='three-dots'
-        onKeyDown={() => setIsOpen(!isOpen)}
+        onClickCapture={() => setIsOpen(!isOpen)}
         ref={wrapper}
       >
         {Icon ? (
@@ -99,7 +99,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                   className={`dropdown-item ${uniqueId || 0} relative ${
                     isActive ? 'bg-primary-100' : ''
                   }`}
-                  onKeyDownCapture={() => {
+                  onClickCapture={() => {
                     if (typeof onClick === 'function') {
                       onClick();
                       setIsOpen(!isOpen);
@@ -149,7 +149,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                                   ? 'dropdown-item-child'
                                   : 'dropdown-item'
                               } relative `}
-                              onKeyDownCapture={() => {
+                              onClickCapture={() => {
                                 if (
                                   typeof childOnClick === 'function' &&
                                   !childHasTimeStampInput

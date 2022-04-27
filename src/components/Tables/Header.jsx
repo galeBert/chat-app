@@ -71,94 +71,97 @@ const Header = ({
     }
   }, 1000);
 
-  const defaultOptionsSort = !props.noRating
-    ? [
+  const withRating = [
+    {
+      label: 'Date',
+      onClick: null,
+      child: [
         {
-          label: 'Date',
-          onClick: null,
-          child: [
-            {
-              label: 'oldest to newest',
-              onClick: () => onRefetch({ sortBy: 'asc' }),
-            },
-            {
-              label: 'newest to oldest',
-              onClick: () => onRefetch({ sortBy: 'desc' }),
-            },
-          ],
+          label: 'oldest to newest',
+          onClick: () => onRefetch({ sortBy: 'asc' }),
         },
         {
-          label: 'Rating',
-          onClick: null,
-          child: [
-            {
-              label: 'oldest to newest',
-              onClick: () => onRefetch({ sortBy: 'rank_asc' }),
-            },
-            {
-              label: 'newest to oldest',
-              onClick: () => onRefetch({ sortBy: 'rank_desc' }),
-            },
-          ],
+          label: 'newest to oldest',
+          onClick: () => onRefetch({ sortBy: 'desc' }),
+        },
+      ],
+    },
+    {
+      label: 'Rating',
+      onClick: null,
+      child: [
+        {
+          label: 'oldest to newest',
+          onClick: () => onRefetch({ sortBy: 'rank_asc' }),
         },
         {
-          label: 'Reset',
-          onClick: () => onRefetch({ sortBy: '' }),
+          label: 'newest to oldest',
+          onClick: () => onRefetch({ sortBy: 'rank_desc' }),
         },
-      ]
-    : [
+      ],
+    },
+    {
+      label: 'Reset',
+      onClick: () => onRefetch({ sortBy: '' }),
+    },
+  ];
+  const noRating = [
+    {
+      label: 'Date',
+      onClick: null,
+      child: [
         {
-          label: 'Date',
-          onClick: null,
-          child: [
-            {
-              label: 'oldest to newest',
-              onClick: () => onRefetch({ sortBy: 'asc' }),
-            },
-            {
-              label: 'newest to oldest',
-              onClick: () => onRefetch({ sortBy: 'desc' }),
-            },
-          ],
+          label: 'oldest to newest',
+          onClick: () => onRefetch({ sortBy: 'asc' }),
         },
         {
-          label: 'Reset',
-          onClick: () => onRefetch({ sortBy: '' }),
+          label: 'newest to oldest',
+          onClick: () => onRefetch({ sortBy: 'desc' }),
         },
-      ];
+      ],
+    },
+    {
+      label: 'Reset',
+      onClick: () => onRefetch({ sortBy: '' }),
+    },
+  ];
+  const defaultOptionsSort = props.noRating ? noRating : withRating;
 
   useEffect(() => {
     if (onFilters) onFilters(filterSearch);
   }, [filterSearch, onFilters]);
 
-  //handle filter tidak memberi data sesuai filter
-  const handleFilters = (filters) => {
-    let newFilter = [];
-    if (useMultipleFilter) {
-      if (filterSearch.includes(filters)) {
-        newFilter = filterSearch.filter((fill) => fill !== filters);
-      } else if (filters.to || filters.from) {
-        const oldFilterTimestamp = filterSearch.filter(
-          (fill) => fill.to || fill.from
-        );
-        if (oldFilterTimestamp.length) {
-          const target = `${filters.to ? 'to' : 'from'}`;
-          const updated = {
-            ...oldFilterTimestamp[0],
-            [target]: filters[target],
-          };
+  // handle filter tidak memberi data sesuai filter
+  const handleFilters = useCallback(
+    (filters) => {
+      let newFilter = [];
+      if (useMultipleFilter) {
+        if (filterSearch.includes(filters)) {
+          newFilter = filterSearch.filter((fill) => fill !== filters);
+        } else if (filters.to || filters.from) {
+          const oldFilterTimestamp = filterSearch.filter(
+            (fill) => fill.to || fill.from
+          );
+          if (oldFilterTimestamp.length) {
+            const target = `${filters.to ? 'to' : 'from'}`;
+            const updated = {
+              ...oldFilterTimestamp[0],
+              [target]: filters[target],
+            };
 
-          newFilter = [...newFilter, updated];
-        } else newFilter = [...filterSearch, filters];
+            newFilter = [...newFilter, updated];
+          } else newFilter = [...filterSearch, filters];
+        } else {
+          newFilter = [...filterSearch, filters];
+        }
       } else {
-        newFilter = [...filterSearch, filters];
+        newFilter = [filters];
       }
-    } else {
-      newFilter = [filters];
-    }
 
-    setFilterSearch(newFilter);
-  };
+      setFilterSearch(newFilter);
+    },
+    [filterSearch, useMultipleFilter]
+  );
 
   const options = useMemo(() => {
     return filter && filter.length
@@ -198,10 +201,12 @@ const Header = ({
   };
 
   const exportDate = () => {
-    if (filterSearch.some((data) => data.from)) {
+    let message = '';
+    if (filterSearch.some((data) => data)) {
       const { from, to } = filterSearch.find((data) => data.from);
-      return `${from} until ${to}`;
-    } else return '';
+      return (message = `${from} until ${to}`);
+    } else if (!filterSearch.some((data) => data)) message = '';
+    return message;
   };
   return (
     <div className='header-container'>
@@ -266,7 +271,7 @@ const Header = ({
             {!props.noExport && (
               <div
                 className='flex items-center cursor-pointer'
-                onKeyDown={handleExport}
+                onClickCapture={handleExport}
               >
                 <ClipboardCopyIcon className=' w-5 h-5' />
                 <span className='inline-block'>Export</span>
@@ -277,7 +282,7 @@ const Header = ({
               onClick={() => onFilters(filterSearch, true)}
               setModalOpen={setOpenModal}
             >
-              <p>You're about to export a data from {exportDate()}</p>
+              <p>You are about to export a data from {exportDate()}</p>
             </Modal>
           </div>
         </div>

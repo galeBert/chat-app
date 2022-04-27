@@ -104,7 +104,7 @@ export default function LoginPage() {
                 {isSubmitting ? (
                   <span>loading...</span>
                 ) : (
-                  <span>press 'Enter' to confirm password</span>
+                  <span>press &apos;Enter&apos; to confirm password</span>
                 )}
               </Form>
             )}

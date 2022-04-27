@@ -34,7 +34,7 @@ export const usePostStatus = () => {
           perPage: 20,
           page: 0,
           sortBy: 'desc',
-          filters: { owner: !roomId ? username || '' : '' },
+          filters: { owner: roomId ? '' : username || '' },
         },
       });
 
@@ -56,7 +56,7 @@ export const usePostStatus = () => {
           perPage: 20,
           page: 0,
           sortBy: 'desc',
-          filters: { owner: !roomId ? username || '' : '' },
+          filters: { owner: roomId ? '' : username || '' },
         },
         data: {
           searchPosts: {

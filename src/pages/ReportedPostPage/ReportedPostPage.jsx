@@ -1,6 +1,6 @@
 import './ReportedPostPage.css';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import SwitchButton from '../../components/SwitchButton';
 import Table from '../../components/Tables';
@@ -202,52 +202,65 @@ const ReportedPostPage = () => {
     setstate(value);
   };
 
-  const onExportData = (isComments) => {
-    _processPdf.current = false; // pretend to double save pdf
-    const refetchFunc = isComments ? refetchExportComment : refetchExport;
-    const searchExportFunc = isComments
-      ? searchReportedExportComment
-      : searchReportedExportPost;
+  const onExportData = useCallback(
+    (isComments) => {
+      _processPdf.current = false; // pretend to double save pdf
+      const refetchFunc = isComments ? refetchExportComment : refetchExport;
+      const searchExportFunc = isComments
+        ? searchReportedExportComment
+        : searchReportedExportPost;
 
-    if (calledExport) refetchFunc({ useExport: true });
-    searchExportFunc({ variables: { useExport: true } });
-  };
-  const onFilters = (filter = [], exportData = false) => {
-    const newFilter = {
-      media: '',
-      timestamp: {
-        from: null,
-        to: null,
-      },
-    };
+      if (calledExport) refetchFunc({ useExport: true });
+      searchExportFunc({ variables: { useExport: true } });
+    },
+    [
+      calledExport,
+      refetchExport,
+      refetchExportComment,
+      searchReportedExportComment,
+      searchReportedExportPost,
+    ]
+  );
+  const onFilters = useCallback(
+    (filter = [], exportData = false) => {
+      const newFilter = {
+        media: '',
+        timestamp: {
+          from: null,
+          to: null,
+        },
+      };
 
-    if (filter.some((date) => date?.from && date?.to)) {
-      newFilter.timestamp = filter.find((docs) => docs.from);
-    }
-
-    if (state !== 'Comment') {
-      if (filter.includes('video')) {
-        newFilter.media = 'video';
+      if (filter.some((date) => date?.from && date?.to)) {
+        newFilter.timestamp = filter.find((docs) => docs.from);
       }
 
-      if (filter.includes('image')) {
-        newFilter.media = 'image';
+      if (state !== 'Comment') {
+        if (filter.includes('video')) {
+          newFilter.media = 'video';
+        }
+
+        if (filter.includes('image')) {
+          newFilter.media = 'image';
+        }
+
+        if (filter.includes('voice')) {
+          newFilter.media = 'voice';
+        }
+
+        if (filter.includes('gif')) {
+          newFilter.media = 'gif';
+        }
       }
 
-      if (filter.includes('voice')) {
-        newFilter.media = 'voice';
-      }
+      if (exportData) return onExportData();
 
-      if (filter.includes('gif')) {
-        newFilter.media = 'gif';
-      }
-    }
-
-    if (exportData) return onExportData();
-
-    if (called) onSearchRefetch({ filters: newFilter });
-    else searchReportedPost({ filters: newFilter });
-  };
+      if (called) onSearchRefetch({ filters: newFilter });
+      else searchReportedPost({ filters: newFilter });
+      return newFilter;
+    },
+    [called, onExportData, onSearchRefetch, searchReportedPost, state]
+  );
 
   const handleStateOfGraph = (values) => {
     setOption(values);
@@ -281,7 +294,7 @@ const ReportedPostPage = () => {
             className={`${
               option === 'daily' ? 'bg-primary-100' : ''
             } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-            onKeyDown={() => handleStateOfGraph('daily')}
+            onClickCapture={() => handleStateOfGraph('daily')}
           >
             Daily
           </div>
@@ -289,7 +302,7 @@ const ReportedPostPage = () => {
             className={`${
               option === 'monthly' ? 'bg-primary-100' : ''
             } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-            onKeyDown={() => handleStateOfGraph('monthly')}
+            onClickCapture={() => handleStateOfGraph('monthly')}
           >
             Monthly
           </div>
@@ -297,7 +310,7 @@ const ReportedPostPage = () => {
             className={`${
               option === 'yearly' ? 'bg-primary-100' : ''
             } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
-            onKeyDown={() => handleStateOfGraph('yearly')}
+            onClickCapture={() => handleStateOfGraph('yearly')}
           >
             Yearly
           </div>

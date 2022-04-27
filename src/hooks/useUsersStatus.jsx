@@ -80,7 +80,8 @@ export const useUserStatus = (
       }
     },
     onError(err) {
-      alert(err);
+      // alert(err);
+      console.log(err);
     },
   });
 

@@ -1,8 +1,7 @@
 import Lightbox from 'react-image-lightbox';
 
 const ImageLightBox = ({ data, isOpen, setIsOpen }) => {
-  const photoList = [];
-  const parse = data && data.map((data) => JSON.parse(data).secure_url);
+  const parse = data && data.map((docs) => JSON.parse(docs).secure_url);
   return (
     <div>
       {isOpen && (

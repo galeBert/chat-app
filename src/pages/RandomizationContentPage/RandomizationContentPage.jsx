@@ -25,7 +25,7 @@ const RandomizationContentPage = () => {
       return;
     }
     searchTheme({ variables: { name: path } });
-  }, [path]);
+  }, [called, onSearchRefetch, path, searchTheme]);
 
   // const adjective = searchThemes?.adjective.map(adj => ({ name: adj })) || []
   const handleClick = () => history.goBack();

@@ -92,7 +92,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
 
   const callbackPickeronChange = (item, prevHex, id) => {
     if (!prevHex) setHexCode(item.hex);
-    else setIsNewHex({ hex: item.hex, id });
+    else if (prevHex) setIsNewHex({ hex: item.hex, id });
   };
   const handleUpload = (e) => {
     setIsCompleteUpdate(false);
@@ -186,12 +186,12 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
       setSwitchButton(null);
     }
     TextInput.current.value = null;
-    setInput('');
+    return setInput('');
   };
 
   const handleChange = (e, prevValue) => {
     if (!prevValue) setInput(e.target.value);
-    else setNewInput(e.target.value);
+    else if (prevValue) setNewInput(e.target.value);
 
     setIsCompleteUpdate(false);
   };

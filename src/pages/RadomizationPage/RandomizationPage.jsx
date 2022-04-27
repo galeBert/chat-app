@@ -61,12 +61,13 @@ const RandomizationPage = () => {
         query: GET_THEMES,
         variables: { name: '' },
       });
+      const searchThemesData = { ...getData?.searchThemes };
 
       cache.writeQuery({
         query: GET_THEMES,
         variables: { name: '' },
         data: {
-          searchThemes: [...getData?.searchThemes, dataCreateNewTheme],
+          searchThemes: [searchThemesData, dataCreateNewTheme],
         },
       });
     },
@@ -82,12 +83,13 @@ const RandomizationPage = () => {
         query: GET_THEMES,
         variables: { name: '' },
       });
+      const searchThemesData = { ...getData?.searchThemes };
 
       cache.writeQuery({
         query: GET_THEMES,
         variables: { name: '' },
         data: {
-          searchThemes: [...getData?.searchThemes, datadeleteThemeById],
+          searchThemes: [searchThemesData, datadeleteThemeById],
         },
       });
 
