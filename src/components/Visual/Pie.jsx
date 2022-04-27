@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import Pie from '@visx/shape/lib/shapes/Pie';
+
+import { Group } from '@visx/group';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { scaleOrdinal } from '@visx/scale';
-import { Group } from '@visx/group';
-import { animated, useTransition, interpolate } from 'react-spring';
+import Pie from '@visx/shape/lib/shapes/Pie';
+import { animated, interpolate, useTransition } from 'react-spring';
 
 // accessor functions
 const usage = (d) => d.usage;
@@ -17,7 +18,7 @@ const PieComponent = ({
   animate = true,
   pieThickness = 50,
   data = [],
-  listOfColors = []
+  listOfColors = [],
 }) => {
   const [selectedBrowser, setSelectedBrowser] = useState(null);
 
@@ -33,51 +34,62 @@ const PieComponent = ({
   // color scales
   const getBrowserColor = scaleOrdinal({
     domain: data.map(({ label }) => label),
-    range: listOfColors.length ? listOfColors : [
-      'rgba(255,255,255,0.7)',
-      'rgba(255,255,255,0.6)',
-      'rgba(255,255,255,0.5)',
-      'rgba(255,255,255,0.4)',
-      'rgba(255,255,255,0.3)',
-      'rgba(255,255,255,0.2)',
-      'rgba(255,255,255,0.1)',
-    ],
+    range: listOfColors.length
+      ? listOfColors
+      : [
+          'rgba(255,255,255,0.7)',
+          'rgba(255,255,255,0.6)',
+          'rgba(255,255,255,0.5)',
+          'rgba(255,255,255,0.4)',
+          'rgba(255,255,255,0.3)',
+          'rgba(255,255,255,0.2)',
+          'rgba(255,255,255,0.1)',
+        ],
   });
 
   return (
-    <svg width={width} height={height}>
-      <rect rx={14} width={width} height={height} fill="url('#visx-pie-gradient')" />
-      <Group top={centerY + margin.top} left={centerX + margin.left}>
+    <svg height={height} width={width}>
+      <rect
+        fill="url('#visx-pie-gradient')"
+        height={height}
+        rx={14}
+        width={width}
+      />
+      <Group left={centerX + margin.left} top={centerY + margin.top}>
         <Pie
-          data={
-            selectedBrowser ? data.filter(({ label }) => label === selectedBrowser) : data
-          }
-          pieValue={usage}
-          outerRadius={radius}
-          innerRadius={radius - donutThickness}
           cornerRadius={3}
+          data={
+            selectedBrowser
+              ? data.filter(({ label }) => label === selectedBrowser)
+              : data
+          }
+          innerRadius={radius - donutThickness}
+          outerRadius={radius}
           padAngle={0.005}
+          pieValue={usage}
         >
           {(pie) => (
             <AnimatedPie
               {...pie}
               animate={animate}
+              getColor={(arc) => {
+                const res = getBrowserColor(arc.data.label);
+                return res;
+              }}
               getKey={(arc) => arc.data.label}
               onClickDatum={({ data: { label } }) =>
                 animate &&
-                setSelectedBrowser(selectedBrowser && selectedBrowser === label ? null : label)
+                setSelectedBrowser(
+                  selectedBrowser && selectedBrowser === label ? null : label
+                )
               }
-              getColor={(arc) => {
-                const res = getBrowserColor(arc.data.label)
-                return res;
-              }}
             />
           )}
         </Pie>
       </Group>
     </svg>
   );
-}
+};
 
 const fromLeaveTransition = ({ endAngle }) => ({
   // enter from 360° if end angle is > 180°
@@ -91,14 +103,7 @@ const enterUpdateTransition = ({ startAngle, endAngle }) => ({
   opacity: 1,
 });
 
-function AnimatedPie({
-  animate,
-  arcs,
-  path,
-  getKey,
-  getColor,
-  onClickDatum,
-}) {
+function AnimatedPie({ animate, arcs, path, getKey, getColor, onClickDatum }) {
   const transitions = useTransition(arcs, {
     from: animate ? fromLeaveTransition : enterUpdateTransition,
     enter: enterUpdateTransition,
@@ -114,12 +119,14 @@ function AnimatedPie({
       <g key={key}>
         <animated.path
           // compute interpolated path d attribute from intermediate angle values
-          d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
-            path({
-              ...arc,
-              startAngle,
-              endAngle,
-            }),
+          d={interpolate(
+            [props.startAngle, props.endAngle],
+            (startAngle, endAngle) =>
+              path({
+                ...arc,
+                startAngle,
+                endAngle,
+              })
           )}
           fill={getColor(arc)}
           onClick={() => onClickDatum(arc)}
@@ -128,13 +135,13 @@ function AnimatedPie({
         {hasSpaceForLabel && (
           <animated.g style={{ opacity: props.opacity }}>
             <text
-              fill="white"
+              dy='.33em'
+              fill='white'
+              fontSize={9}
+              pointerEvents='none'
+              textAnchor='middle'
               x={centroidX}
               y={centroidY}
-              dy=".33em"
-              fontSize={9}
-              textAnchor="middle"
-              pointerEvents="none"
             >
               {getKey(arc)}
             </text>
@@ -145,22 +152,28 @@ function AnimatedPie({
   });
 }
 
-const PieGraph = ({ pieThickness, data, listOfColors, maxHeight = 300, ...args }) => (
+const PieGraph = ({
+  pieThickness,
+  data,
+  listOfColors,
+  maxHeight = 300,
+  ...args
+}) => (
   <ParentSize>
     {({ width, height: heightParent }) => {
       const h = Math.min(heightParent, maxHeight);
       return (
         <PieComponent
-          width={width}
-          height={h}
           data={data}
-          pieThickness={pieThickness}
+          height={h}
           listOfColors={listOfColors}
+          pieThickness={pieThickness}
+          width={width}
           {...args}
         />
-      )
+      );
     }}
   </ParentSize>
-)
+);
 
 export default PieGraph;

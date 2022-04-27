@@ -1,15 +1,17 @@
 .icon-stroke-color {
-  @apply stroke-current text-dark-100 dark:text-gray-100;
+  @apply text-dark-100 dark:text-gray-100;
+  /* stroke-current */
 }
 
 .icon-fill-color {
-  @apply fill-current text-dark-100 dark:text-gray-100;
+  @apply text-dark-100 dark:text-gray-100;
+  /* fill-current */
 }
 .flex-center {
   @apply flex justify-center items-center h-full;
 }
 h1 {
-  @apply text-white text-xl  ;
+  @apply text-white text-xl;
 }
 h2 {
   @apply text-white;
@@ -24,8 +26,7 @@ h5 {
   @apply text-white;
 }
 span {
-  @apply text-white text-sm 
-;
+  @apply text-white text-sm;
 }
 .card {
   @apply bg-dark-100 w-full h-full 
@@ -42,14 +43,14 @@ span {
 /* add custom width and height to use this class */
 .loading {
   @apply border-2 border-solid border-gray-100 rounded-full;
-  border-top-color: #7F57FF;
+  border-top-color: #7f57ff;
   animation: loading 1s linear infinite;
 }
 
 @keyframes loading {
-    to {
-        transform: rotate(1turn);
-    }
+  to {
+    transform: rotate(1turn);
+  }
 }
 
 /* custom scrollbar */
@@ -60,15 +61,15 @@ span {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
