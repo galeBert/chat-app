@@ -26,3 +26,5 @@ yarn-error.log*
 #config
 /src/utils/config
 .vercel
+
+.cache
