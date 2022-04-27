@@ -3322,18 +3322,9 @@
     classnames "^2.3.1"
     prop-types "^15.6.2"
 
-"@visx/group@2.1.0":
+"@visx/group@2.1.0", "@visx/group@^2.1.0":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@visx/group/-/group-2.1.0.tgz"
-  integrity sha512-bZKa54yVjGYPZZhzYHLz4AVlidSr4ET9B/xmSa7nnictMJWr7e/IuZThB/bMfDQlgdtvhcfTgs+ZluySc5SBUg==
-  dependencies:
-    "@types/react" "*"
-    classnames "^2.3.1"
-    prop-types "^15.6.2"
-
-"@visx/group@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@visx/group/-/group-2.1.0.tgz#65d4a72feb20dd09443f73cdc12ad5fb339792ef"
   integrity sha512-bZKa54yVjGYPZZhzYHLz4AVlidSr4ET9B/xmSa7nnictMJWr7e/IuZThB/bMfDQlgdtvhcfTgs+ZluySc5SBUg==
   dependencies:
     "@types/react" "*"
