@@ -1,6 +1,6 @@
-import { timeFormat } from 'd3-time-format';
-import { bisector } from 'd3-array';
 import { defaultStyles } from '@visx/tooltip';
+import { bisector } from 'd3-array';
+import { timeFormat } from 'd3-time-format';
 
 // util
 export const formatDate = timeFormat("%b %d, '%y");
@@ -11,8 +11,7 @@ export const getRegistrationYScale = (d) => d.totalRegistration * 4;
 export const getRegistrationValue = (d) => d.totalRegistration;
 export const bisectDate = bisector((d) => new Date(d.date)).left;
 
-
-// Background Colors 
+// Background Colors
 export const background = '#46374C';
 export const background2 = '#46374C';
 export const accentColor = '#7F57FF';

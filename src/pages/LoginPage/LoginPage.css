@@ -3,7 +3,8 @@
 }
 
 .logo-container {
-  @apply flex flex-col w-full justify-center items-center py-2 pl-2 fill-current text-dark-100;
+  @apply flex flex-col w-full justify-center items-center py-2 pl-2  text-dark-100;
+  /* fill-current */
 }
 
 .login-form {

@@ -1,23 +1,25 @@
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// Apollo
-import { ApolloProvider } from "@apollo/client";
-import {
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-  ApolloLink,
-  concat,
-} from "@apollo/client/core";
-import { onError } from "@apollo/client/link/error";
+import { onRefreshToken } from '../src/functions/auth';
 
-import { onRefreshToken } from 'functions/auth';
-
-import './index.css';
 import App from './App';
 
-const httpUrl = 'https://asia-southeast2-insvire-curious-app.cloudfunctions.net/admin';
+// Apollo
+import { ApolloProvider } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloLink,
+  concat,
+  HttpLink,
+  InMemoryCache,
+} from '@apollo/client/core';
+import { onError } from '@apollo/client/link/error';
+
+const httpUrl =
+  'https://asia-southeast2-insvire-curious-app.cloudfunctions.net/admin';
 // const httpUrl = 'http://localhost:5000/insvire-curious-app/asia-southeast2/admin';
 
 const httpLink = ApolloLink.from([
@@ -37,13 +39,13 @@ const httpLink = ApolloLink.from([
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    for (let err of graphQLErrors) {
+    for (const err of graphQLErrors) {
       switch (err.extensions.code) {
-        case "UNAUTHENTICATED":
+        case 'UNAUTHENTICATED':
           // error code is set to UNAUTHENTICATED
-          if (err.message.includes("Firebase ID token has expired")) {
+          if (err.message.includes('Firebase ID token has expired')) {
             console.log(err.message);
-            onRefreshToken()
+            onRefreshToken();
           }
           break;
         default:
@@ -67,32 +69,40 @@ const client = new ApolloClient({
           searchPosts: {
             // Don't cache separate results based on
             // any of this field's arguments.
-            keyArgs: ["useExport", "filters", "page", "hasReported", "media", "owner", "search"],
+            keyArgs: [
+              'useExport',
+              'filters',
+              'page',
+              'hasReported',
+              'media',
+              'owner',
+              'search',
+            ],
             // Concatenate the incoming list items with
             // the existing list items.
-            merge(existing = [], incoming) {
-              return incoming
+            merge(_, incoming) {
+              return incoming;
             },
           },
           searchUser: {
             // Don't cache separate results based on
             // any of this field's arguments.
-            keyArgs: ["useExport", "search"],
+            keyArgs: ['useExport', 'search'],
             // keyArgs: false,
             // Concatenate the incoming list items with
             // the existing list items.
-            merge(existing = [], incoming) {
-              return incoming
+            merge(_, incoming) {
+              return incoming;
             },
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   }),
   link: concat(errorLink, httpLink),
   defaultOptions: {
-    query: { fetchPolicy: "cache-first" },
-    mutate: { fetchPolicy: "network-only" },
+    query: { fetchPolicy: 'cache-first' },
+    mutate: { fetchPolicy: 'network-only' },
   },
 });
 
