@@ -1,0 +1,168 @@
+[debug] [2022-04-27T09:02:17.174Z] ----------------------------------------------------------------------
+[debug] [2022-04-27T09:02:17.175Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC-3\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting:github
+[debug] [2022-04-27T09:02:17.176Z] CLI Version:   9.18.0
+[debug] [2022-04-27T09:02:17.176Z] Platform:      win32
+[debug] [2022-04-27T09:02:17.176Z] Node Version:  v16.14.2
+[debug] [2022-04-27T09:02:17.177Z] Time:          Wed Apr 27 2022 16:02:17 GMT+0700 (Western Indonesia Time)
+[debug] [2022-04-27T09:02:17.177Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-27T09:02:17.225Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-27T09:02:17.226Z] > authorizing via signed-in user (rezisaktiva08@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\insvire-dev\curious-admin
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using insvire-curious-app. 
+[debug] [2022-04-27T09:02:37.588Z] > refreshing access token with scopes: []
+[debug] [2022-04-27T09:02:37.589Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-27T09:02:37.705Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Wed, 27 Apr 2022 09:02:37 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-04-27T09:02:37.750Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/insvire-curious-app [none]
+[debug] [2022-04-27T09:02:38.866Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/insvire-curious-app 200
+[debug] [2022-04-27T09:02:38.866Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/insvire-curious-app {"projectId":"insvire-curious-app","projectNumber":"32784977098","displayName":"curious-app","name":"projects/insvire-curious-app","resources":{"hostingSite":"insvire-curious-app","realtimeDatabaseInstance":"insvire-curious-app-default-rtdb","storageBucket":"insvire-curious-app.appspot.com","locationId":"asia-southeast2"},"state":"ACTIVE"}
+[info] 
+=== Hosting:github Setup
+[info] 
+[info] i  Detected a .git folder at D:\insvire-dev\curious-admin 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=1030219393&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2022-04-27T09:02:39.641Z] >>> HTTP REQUEST POST https://github.com/login/oauth/access_token  
+ {"client_id":"89cf50f02ac6aaed3484","client_secret":"3330d14abc895d9a74d5f17cd7a00711fa2c5bf0","code":"0f4af703fb6bf2bcf126","redirect_uri":"http://localhost:9005","state":"1030219393"}
+[debug] [2022-04-27T09:02:40.050Z] <<< HTTP RESPONSE 200 {"server":"GitHub.com","date":"Wed, 27 Apr 2022 09:02:39 GMT","content-type":"application/json; charset=utf-8","transfer-encoding":"chunked","vary":"X-PJAX, X-PJAX-Container, Accept-Encoding, Accept, X-Requested-With","permissions-policy":"interest-cohort=()","etag":"W/\"1023031bf9db5b1463bd5a9516e65b1a\"","cache-control":"max-age=0, private, must-revalidate","strict-transport-security":"max-age=31536000; includeSubdomains; preload","x-frame-options":"deny","x-content-type-options":"nosniff","x-xss-protection":"0","referrer-policy":"origin-when-cross-origin, strict-origin-when-cross-origin","expect-ct":"max-age=2592000, report-uri=\"https://api.github.com/_private/browser/errors\"","content-security-policy":"default-src 'none'; base-uri 'self'; block-all-mixed-content; child-src github.com/assets-cdn/worker/ gist.github.com/assets-cdn/worker/; connect-src 'self' uploads.github.com objects-origin.githubusercontent.com www.githubstatus.com collector.github.com raw.githubusercontent.com api.github.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com cdn.optimizely.com logx.optimizely.com/v1/events translator.github.com *.actions.githubusercontent.com wss://*.actions.githubusercontent.com online.visualstudio.com/api/v1/locations github-production-repository-image-32fea6.s3.amazonaws.com github-production-release-asset-2e65be.s3.amazonaws.com insights.github.com wss://alive.github.com; font-src github.githubassets.com; form-action 'self' github.com gist.github.com objects-origin.githubusercontent.com; frame-ancestors 'none'; frame-src render.githubusercontent.com viewscreen.githubusercontent.com notebooks.githubusercontent.com; img-src 'self' data: github.githubassets.com identicons.github.com github-cloud.s3.amazonaws.com secured-user-images.githubusercontent.com/ *.githubusercontent.com; manifest-src 'self'; media-src github.com user-images.githubusercontent.com/; script-src github.githubassets.com; style-src 'unsafe-inline' github.githubassets.com; worker-src github.com/assets-cdn/worker/ gist.github.com/assets-cdn/worker/","x-github-request-id":"340E:604F:280D20:2FB80E:626906AF"}
+[debug] [2022-04-27T09:02:40.052Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2022-04-27T09:02:40.481Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2022-04-27T09:02:40.482Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"reziSaktiva","id":76025284,"node_id":"MDQ6VXNlcjc2MDI1Mjg0","avatar_url":"https://avatars.githubusercontent.com/u/76025284?v=4","gravatar_id":"","url":"https://api.github.com/users/reziSaktiva","html_url":"https://github.com/reziSaktiva","followers_url":"https://api.github.com/users/reziSaktiva/followers","following_url":"https://api.github.com/users/reziSaktiva/following{/other_user}","gists_url":"https://api.github.com/users/reziSaktiva/gists{/gist_id}","starred_url":"https://api.github.com/users/reziSaktiva/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/reziSaktiva/subscriptions","organizations_url":"https://api.github.com/users/reziSaktiva/orgs","repos_url":"https://api.github.com/users/reziSaktiva/repos","events_url":"https://api.github.com/users/reziSaktiva/events{/privacy}","received_events_url":"https://api.github.com/users/reziSaktiva/received_events","type":"User","site_admin":false,"name":"Rezi Saktiva","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":3,"public_gists":0,"followers":0,"following":0,"created_at":"2020-12-15T03:17:54Z","updated_at":"2022-04-27T08:18:53Z","private_gists":0,"total_private_repos":1,"owned_private_repos":0,"disk_usage":46398,"collaborators":0,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] +  Success! Logged into GitHub as reziSaktiva 
+[info] 
+[debug] [2022-04-27T09:02:57.621Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:02:57.984Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:02:57.984Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:04:19.204Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:04:19.585Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:04:19.585Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:04:35.972Z] >>> [apiv2][query] GET https://api.github.com/repos/format:reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:04:36.319Z] <<< [apiv2][status] GET https://api.github.com/repos/format:reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:04:36.319Z] <<< [apiv2][body] GET https://api.github.com/repos/format:reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:04:42.620Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:04:42.999Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:04:42.999Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:05:03.357Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:05:03.758Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:05:03.758Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:05:06.428Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:05:06.799Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:05:06.800Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:05:08.108Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:05:08.470Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:05:08.470Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:05:09.267Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:05:09.627Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:05:09.628Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:05:10.451Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:05:10.843Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:05:10.843Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:05:11.579Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:05:11.941Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:05:11.941Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:07:13.234Z] >>> [apiv2][query] GET https://api.github.com/repos/format: reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:07:13.585Z] <<< [apiv2][status] GET https://api.github.com/repos/format: reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:07:13.585Z] <<< [apiv2][body] GET https://api.github.com/repos/format: reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:07:22.858Z] >>> [apiv2][query] GET https://api.github.com/repos/insvire/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:07:23.212Z] <<< [apiv2][status] GET https://api.github.com/repos/insvire/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:07:23.212Z] <<< [apiv2][body] GET https://api.github.com/repos/insvire/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:08:43.173Z] ----------------------------------------------------------------------
+[debug] [2022-04-27T09:08:43.175Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC-3\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting:github
+[debug] [2022-04-27T09:08:43.176Z] CLI Version:   9.18.0
+[debug] [2022-04-27T09:08:43.176Z] Platform:      win32
+[debug] [2022-04-27T09:08:43.176Z] Node Version:  v16.14.2
+[debug] [2022-04-27T09:08:43.177Z] Time:          Wed Apr 27 2022 16:08:43 GMT+0700 (Western Indonesia Time)
+[debug] [2022-04-27T09:08:43.177Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-27T09:08:43.222Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-27T09:08:43.223Z] > authorizing via signed-in user (rezisaktiva08@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\insvire-dev\curious-admin
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using insvire-curious-app. 
+[debug] [2022-04-27T09:08:45.018Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/insvire-curious-app [none]
+[debug] [2022-04-27T09:08:45.368Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/insvire-curious-app 200
+[debug] [2022-04-27T09:08:45.368Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/insvire-curious-app {"projectId":"insvire-curious-app","projectNumber":"32784977098","displayName":"curious-app","name":"projects/insvire-curious-app","resources":{"hostingSite":"insvire-curious-app","realtimeDatabaseInstance":"insvire-curious-app-default-rtdb","storageBucket":"insvire-curious-app.appspot.com","locationId":"asia-southeast2"},"state":"ACTIVE"}
+[info] 
+=== Hosting:github Setup
+[info] 
+[info] i  Detected a .git folder at D:\insvire-dev\curious-admin 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=942184258&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2022-04-27T09:08:46.214Z] >>> HTTP REQUEST POST https://github.com/login/oauth/access_token  
+ {"client_id":"89cf50f02ac6aaed3484","client_secret":"3330d14abc895d9a74d5f17cd7a00711fa2c5bf0","code":"85c9461ba1431dba874e","redirect_uri":"http://localhost:9005","state":"942184258"}
+[debug] [2022-04-27T09:08:46.789Z] <<< HTTP RESPONSE 200 {"server":"GitHub.com","date":"Wed, 27 Apr 2022 09:08:45 GMT","content-type":"application/json; charset=utf-8","transfer-encoding":"chunked","vary":"X-PJAX, X-PJAX-Container, Accept-Encoding, Accept, X-Requested-With","permissions-policy":"interest-cohort=()","etag":"W/\"2365d72b4ae5cc83356c3714586500bd\"","cache-control":"max-age=0, private, must-revalidate","strict-transport-security":"max-age=31536000; includeSubdomains; preload","x-frame-options":"deny","x-content-type-options":"nosniff","x-xss-protection":"0","referrer-policy":"origin-when-cross-origin, strict-origin-when-cross-origin","expect-ct":"max-age=2592000, report-uri=\"https://api.github.com/_private/browser/errors\"","content-security-policy":"default-src 'none'; base-uri 'self'; block-all-mixed-content; child-src github.com/assets-cdn/worker/ gist.github.com/assets-cdn/worker/; connect-src 'self' uploads.github.com objects-origin.githubusercontent.com www.githubstatus.com collector.github.com raw.githubusercontent.com api.github.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com cdn.optimizely.com logx.optimizely.com/v1/events translator.github.com *.actions.githubusercontent.com wss://*.actions.githubusercontent.com online.visualstudio.com/api/v1/locations github-production-repository-image-32fea6.s3.amazonaws.com github-production-release-asset-2e65be.s3.amazonaws.com insights.github.com wss://alive.github.com; font-src github.githubassets.com; form-action 'self' github.com gist.github.com objects-origin.githubusercontent.com; frame-ancestors 'none'; frame-src render.githubusercontent.com viewscreen.githubusercontent.com notebooks.githubusercontent.com; img-src 'self' data: github.githubassets.com identicons.github.com github-cloud.s3.amazonaws.com secured-user-images.githubusercontent.com/ *.githubusercontent.com; manifest-src 'self'; media-src github.com user-images.githubusercontent.com/; script-src github.githubassets.com; style-src 'unsafe-inline' github.githubassets.com; worker-src github.com/assets-cdn/worker/ gist.github.com/assets-cdn/worker/","x-github-request-id":"478F:1FA6:2A0A61:31CAB7:6269081D"}
+[debug] [2022-04-27T09:08:46.791Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2022-04-27T09:08:47.228Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2022-04-27T09:08:47.228Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"reziSaktiva","id":76025284,"node_id":"MDQ6VXNlcjc2MDI1Mjg0","avatar_url":"https://avatars.githubusercontent.com/u/76025284?v=4","gravatar_id":"","url":"https://api.github.com/users/reziSaktiva","html_url":"https://github.com/reziSaktiva","followers_url":"https://api.github.com/users/reziSaktiva/followers","following_url":"https://api.github.com/users/reziSaktiva/following{/other_user}","gists_url":"https://api.github.com/users/reziSaktiva/gists{/gist_id}","starred_url":"https://api.github.com/users/reziSaktiva/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/reziSaktiva/subscriptions","organizations_url":"https://api.github.com/users/reziSaktiva/orgs","repos_url":"https://api.github.com/users/reziSaktiva/repos","events_url":"https://api.github.com/users/reziSaktiva/events{/privacy}","received_events_url":"https://api.github.com/users/reziSaktiva/received_events","type":"User","site_admin":false,"name":"Rezi Saktiva","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":3,"public_gists":0,"followers":0,"following":0,"created_at":"2020-12-15T03:17:54Z","updated_at":"2022-04-27T08:18:53Z","private_gists":0,"total_private_repos":1,"owned_private_repos":0,"disk_usage":46398,"collaborators":0,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] +  Success! Logged into GitHub as reziSaktiva 
+[info] 
+[debug] [2022-04-27T09:08:56.810Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:08:57.178Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:08:57.178Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:09:12.179Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:09:12.541Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key 404
+[debug] [2022-04-27T09:09:12.541Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curious-admin/actions/secrets/public-key {"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/actions#get-a-repository-public-key"}
+[debug] [2022-04-27T09:10:11.418Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curius-backend/actions/secrets/public-key type=owner
+[debug] [2022-04-27T09:10:11.784Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curius-backend/actions/secrets/public-key 200
+[debug] [2022-04-27T09:10:11.785Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curius-backend/actions/secrets/public-key {"key_id":"568250167242549743","key":"AJCBy7CI1adYhSCv6+kbWhrfDtYzIdyPkrqT03vQGSs="}
+[debug] [2022-04-27T09:10:11.787Z] >>> [apiv2][query] GET https://api.github.com/repos/reziSaktiva/curius-backend [none]
+[debug] [2022-04-27T09:10:12.168Z] <<< [apiv2][status] GET https://api.github.com/repos/reziSaktiva/curius-backend 200
+[debug] [2022-04-27T09:10:12.169Z] <<< [apiv2][body] GET https://api.github.com/repos/reziSaktiva/curius-backend {"id":425786308,"node_id":"R_kgDOGWD7xA","name":"curius-backend","full_name":"reziSaktiva/curius-backend","private":false,"owner":{"login":"reziSaktiva","id":76025284,"node_id":"MDQ6VXNlcjc2MDI1Mjg0","avatar_url":"https://avatars.githubusercontent.com/u/76025284?v=4","gravatar_id":"","url":"https://api.github.com/users/reziSaktiva","html_url":"https://github.com/reziSaktiva","followers_url":"https://api.github.com/users/reziSaktiva/followers","following_url":"https://api.github.com/users/reziSaktiva/following{/other_user}","gists_url":"https://api.github.com/users/reziSaktiva/gists{/gist_id}","starred_url":"https://api.github.com/users/reziSaktiva/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/reziSaktiva/subscriptions","organizations_url":"https://api.github.com/users/reziSaktiva/orgs","repos_url":"https://api.github.com/users/reziSaktiva/repos","events_url":"https://api.github.com/users/reziSaktiva/events{/privacy}","received_events_url":"https://api.github.com/users/reziSaktiva/received_events","type":"User","site_admin":false},"html_url":"https://github.com/reziSaktiva/curius-backend","description":null,"fork":false,"url":"https://api.github.com/repos/reziSaktiva/curius-backend","forks_url":"https://api.github.com/repos/reziSaktiva/curius-backend/forks","keys_url":"https://api.github.com/repos/reziSaktiva/curius-backend/keys{/key_id}","collaborators_url":"https://api.github.com/repos/reziSaktiva/curius-backend/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/reziSaktiva/curius-backend/teams","hooks_url":"https://api.github.com/repos/reziSaktiva/curius-backend/hooks","issue_events_url":"https://api.github.com/repos/reziSaktiva/curius-backend/issues/events{/number}","events_url":"https://api.github.com/repos/reziSaktiva/curius-backend/events","assignees_url":"https://api.github.com/repos/reziSaktiva/curius-backend/assignees{/user}","branches_url":"https://api.github.com/repos/reziSaktiva/curius-backend/branches{/branch}","tags_url":"https://api.github.com/repos/reziSaktiva/curius-backend/tags","blobs_url":"https://api.github.com/repos/reziSaktiva/curius-backend/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/reziSaktiva/curius-backend/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/reziSaktiva/curius-backend/git/refs{/sha}","trees_url":"https://api.github.com/repos/reziSaktiva/curius-backend/git/trees{/sha}","statuses_url":"https://api.github.com/repos/reziSaktiva/curius-backend/statuses/{sha}","languages_url":"https://api.github.com/repos/reziSaktiva/curius-backend/languages","stargazers_url":"https://api.github.com/repos/reziSaktiva/curius-backend/stargazers","contributors_url":"https://api.github.com/repos/reziSaktiva/curius-backend/contributors","subscribers_url":"https://api.github.com/repos/reziSaktiva/curius-backend/subscribers","subscription_url":"https://api.github.com/repos/reziSaktiva/curius-backend/subscription","commits_url":"https://api.github.com/repos/reziSaktiva/curius-backend/commits{/sha}","git_commits_url":"https://api.github.com/repos/reziSaktiva/curius-backend/git/commits{/sha}","comments_url":"https://api.github.com/repos/reziSaktiva/curius-backend/comments{/number}","issue_comment_url":"https://api.github.com/repos/reziSaktiva/curius-backend/issues/comments{/number}","contents_url":"https://api.github.com/repos/reziSaktiva/curius-backend/contents/{+path}","compare_url":"https://api.github.com/repos/reziSaktiva/curius-backend/compare/{base}...{head}","merges_url":"https://api.github.com/repos/reziSaktiva/curius-backend/merges","archive_url":"https://api.github.com/repos/reziSaktiva/curius-backend/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/reziSaktiva/curius-backend/downloads","issues_url":"https://api.github.com/repos/reziSaktiva/curius-backend/issues{/number}","pulls_url":"https://api.github.com/repos/reziSaktiva/curius-backend/pulls{/number}","milestones_url":"https://api.github.com/repos/reziSaktiva/curius-backend/milestones{/number}","notifications_url":"https://api.github.com/repos/reziSaktiva/curius-backend/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/reziSaktiva/curius-backend/labels{/name}","releases_url":"https://api.github.com/repos/reziSaktiva/curius-backend/releases{/id}","deployments_url":"https://api.github.com/repos/reziSaktiva/curius-backend/deployments","created_at":"2021-11-08T10:07:34Z","updated_at":"2022-01-10T06:36:15Z","pushed_at":"2022-04-25T03:39:29Z","git_url":"git://github.com/reziSaktiva/curius-backend.git","ssh_url":"git@github.com:reziSaktiva/curius-backend.git","clone_url":"https://github.com/reziSaktiva/curius-backend.git","svn_url":"https://github.com/reziSaktiva/curius-backend","homepage":null,"size":1213,"stargazers_count":0,"watchers_count":0,"language":"JavaScript","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":0,"license":null,"allow_forking":true,"is_template":false,"topics":[],"visibility":"public","forks":0,"open_issues":0,"watchers":0,"default_branch":"main","permissions":{"admin":true,"maintain":true,"push":true,"triage":true,"pull":true},"temp_clone_token":"","allow_squash_merge":true,"allow_merge_commit":true,"allow_rebase_merge":true,"allow_auto_merge":false,"delete_branch_on_merge":false,"allow_update_branch":false,"network_count":0,"subscribers_count":1}
+[debug] [2022-04-27T09:10:12.172Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-04-27T09:10:12.172Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-27T09:10:12.269Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Wed, 27 Apr 2022 09:10:11 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-04-27T09:10:12.276Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/insvire-curious-app/serviceAccounts  
+ {"accountId":"github-action-425786308","serviceAccount":{"displayName":"GitHub Actions (reziSaktiva/curius-backend)","description":"A service account with permission to deploy to Firebase Hosting for the GitHub repository reziSaktiva/curius-backend"}}
