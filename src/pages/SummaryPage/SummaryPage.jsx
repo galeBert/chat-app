@@ -14,6 +14,7 @@ import {
   GET_GRAPH,
   SEARCH_ROOMS,
 } from '../../graphql/query';
+import clsx from '../../utils/clsxm';
 
 import { useLazyQuery, useQuery } from '@apollo/client';
 import JsPDF from 'jspdf';
@@ -191,25 +192,31 @@ function SummaryPage() {
             </div>
             <div className='mt-4 flex justify-end gap-3'>
               <div
-                className={`${
-                  option === 'daily' ? 'bg-primary-100' : ''
-                } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+                className={clsx(
+                  option === 'daily'
+                    ? 'bg-primary-100 card_container'
+                    : 'card_container'
+                )}
                 onClickCapture={() => handleStateOfGraph('daily')}
               >
                 Daily
               </div>
               <div
-                className={`${
-                  option === 'monthly' ? 'bg-primary-100' : ''
-                } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+                className={clsx(
+                  option === 'monthly'
+                    ? 'bg-primary-100 card_container'
+                    : 'card_container'
+                )}
                 onClickCapture={() => handleStateOfGraph('monthly')}
               >
                 Monthly
               </div>
               <div
-                className={`${
-                  option === 'yearly' ? 'bg-primary-100' : ''
-                } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+                className={clsx(
+                  option === 'yearly'
+                    ? 'bg-primary-100 card_container'
+                    : 'card_container'
+                )}
                 onClickCapture={() => handleStateOfGraph('yearly')}
               >
                 Yearly
