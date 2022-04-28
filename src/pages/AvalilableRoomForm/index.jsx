@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import { CREATE_ROOM, UPDATE_ROOM } from '../../graphql/mutation';
 import { GET_DETAIL_ROOM } from '../../graphql/query';
 import { useModal } from '../../hooks/useModal';
+import clsxm from '../../utils/clsxm';
 import { storage } from '../../utils/firebase';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { Circle, GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import classNames from 'classnames';
 import {
   getDownloadURL,
   ref as refStore,
@@ -175,7 +175,7 @@ const AvaliableRoomForm = (props) => {
     );
   };
 
-  const classInputStyle = classNames(
+  const classInputStyle = clsxm(
     'bg-dark-300 h-12 rounded-md w-11/12 max-w-sm pl-2 border border-solid z-10'
   );
 

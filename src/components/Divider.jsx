@@ -1,10 +1,10 @@
 import React from 'react';
 
-import classNames from 'classnames';
+import clsxm from '../utils/clsxm';
 
 function Divider({ text, className }) {
   return (
-    <div className={classNames('relative', className)}>
+    <div className={clsxm('relative', className)}>
       <div aria-hidden='true' className='absolute inset-0 flex items-center'>
         <div className='w-full border-t border-gray-300' />
       </div>

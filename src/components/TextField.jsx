@@ -2,12 +2,13 @@ import './TextField.css';
 
 import { useRef, useState } from 'react';
 
+import clsxm from '../utils/clsxm';
+
 import {
   ExclamationCircleIcon,
   EyeIcon,
   EyeOffIcon,
 } from '@heroicons/react/solid';
-import classNames from 'classnames';
 import { useField } from 'formik';
 import { useHistory } from 'react-router-dom';
 
@@ -52,7 +53,7 @@ const TextField = ({
 
   return (
     <div
-      className={classNames(
+      className={clsxm(
         'textfield-container',
         meta.touched ? (meta.error ? 'invalid' : '') : ''
       )}
