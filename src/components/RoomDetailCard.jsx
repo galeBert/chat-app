@@ -1,32 +1,23 @@
 import Blank from '../assets/blank_profile_picture.png';
-import StatusContainer from '../components/StatusContainer';
 
 import Dropdown from './DropDown/DropdownResponsive';
 import Media from './Tables/Media';
+import StatusContainer from './StatusContainer';
 
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 import { useHistory } from 'react-router-dom';
 
-const UserDetailCard = ({ data, title, post, ...props }) => {
+const RoomDetailCard = ({ data, title, post, ...props }) => {
   const history = useHistory();
-
-  const UserList = [
-    { name: 'Email', data: data?.email || '-' },
-    { name: 'ID', data: data?.id || '-' },
-    { name: 'Mobile Number', data: data?.mobileNumber || '-' },
-    { name: 'Created', data: data?.created || '-' },
-    { name: 'Username', data: data?.username || '-' },
-    { name: 'Last Active', data: data?.created || '-' },
-    { name: 'Date of Birth', data: data?.dob || '-' },
-    {
-      name: 'Interest',
-      data: data?.interest
-        ? data?.interest.map(
-            (doc, key) => doc + (data.interest.length - 1 === key ? '' : ', ')
-          ) || '-'
-        : '-',
-    },
+  const RoomList = [
+    { name: 'Name', data: data?.roomName || '-' },
+    { name: 'Center Location', data: 'Bandung' || '-' },
+    { name: 'Start Date', data: data?.startingDate || '-' },
+    { name: 'Coverage Radius', data: '10KM' || '-' },
+    { name: 'End Date', data: data?.tillDate || '-' },
+    { name: 'Total Post', data: data?.totalPost || '0' },
   ];
+
   const caption = post?.caption && JSON.parse(post.caption).markdownContent;
 
   // const actionVariabels = data?.__typename === "Room" ? [
@@ -79,7 +70,7 @@ const UserDetailCard = ({ data, title, post, ...props }) => {
               className='grid grid-cols-2'
               style={{ width: 400, wordBreak: 'break-word' }}
             >
-              {UserList.map((datas, key) => {
+              {RoomList.map((datas, key) => {
                 return (
                   <div key={key} className=' w-60'>
                     <span className=' font-semibold'>{datas.name}</span>
@@ -155,4 +146,4 @@ const UserDetailCard = ({ data, title, post, ...props }) => {
   );
 };
 
-export default UserDetailCard;
+export default RoomDetailCard;

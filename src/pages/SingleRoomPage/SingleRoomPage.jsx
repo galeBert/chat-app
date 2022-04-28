@@ -2,8 +2,8 @@ import './SingleRoomPage.css';
 
 import { useEffect } from 'react';
 
+import RoomDetailCard from '../../components/RoomDetailCard';
 import Table from '../../components/Tables';
-import UserDetailCard from '../../components/UserDetailCard';
 import { SEARCH_POST, UPDATE_ROOM } from '../../graphql/mutation';
 import { SEARCH_ROOMS } from '../../graphql/query';
 
@@ -80,7 +80,7 @@ const SingleRoomPage = (props) => {
   return (
     <div>
       <div className='mb-5'>
-        <UserDetailCard
+        <RoomDetailCard
           action={changeRoomStatus}
           data={singleRoom}
           loading={loading}
