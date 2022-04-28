@@ -14,7 +14,7 @@ import {
   GET_GRAPH,
   SEARCH_ROOMS,
 } from '../../graphql/query';
-import clsx from '../../utils/clsxm';
+import clsxm from '../../utils/clsxm';
 
 import { useLazyQuery, useQuery } from '@apollo/client';
 import JsPDF from 'jspdf';
@@ -192,7 +192,7 @@ function SummaryPage() {
             </div>
             <div className='mt-4 flex justify-end gap-3'>
               <div
-                className={clsx(
+                className={clsxm(
                   option === 'daily'
                     ? 'bg-primary-100 card_container'
                     : 'card_container'
@@ -202,7 +202,7 @@ function SummaryPage() {
                 Daily
               </div>
               <div
-                className={clsx(
+                className={clsxm(
                   option === 'monthly'
                     ? 'bg-primary-100 card_container'
                     : 'card_container'
@@ -212,7 +212,7 @@ function SummaryPage() {
                 Monthly
               </div>
               <div
-                className={clsx(
+                className={clsxm(
                   option === 'yearly'
                     ? 'bg-primary-100 card_container'
                     : 'card_container'

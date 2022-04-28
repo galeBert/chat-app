@@ -1,6 +1,6 @@
 import React from 'react';
 
-import clsx from '../utils/clsxm';
+import clsxm from '../utils/clsxm';
 
 function Button({
   children,

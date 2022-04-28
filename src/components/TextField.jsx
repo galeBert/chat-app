@@ -2,7 +2,7 @@ import './TextField.css';
 
 import { useRef, useState } from 'react';
 
-import clsx from '../utils/clsxm';
+import clsxm from '../utils/clsxm';
 
 import {
   ExclamationCircleIcon,
@@ -53,7 +53,7 @@ const TextField = ({
 
   return (
     <div
-      className={clsx(
+      className={clsxm(
         'textfield-container',
         meta.touched ? (meta.error ? 'invalid' : '') : ''
       )}

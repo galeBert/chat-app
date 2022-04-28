@@ -1,11 +1,11 @@
 import React from 'react';
 
-import clsx from '../utils/clsxm';
+import clsxm from '../utils/clsxm';
 
 export default function Loader({ size }) {
   return (
     <svg
-      className={clsx('animate-spin text-gray-100', `h-${size} w-${size}`)}
+      className={clsxm('animate-spin text-gray-100', `h-${size} w-${size}`)}
       fill='none'
       viewBox='0 0 24 24'
       xmlns='http://www.w3.org/2000/svg'
