@@ -18,7 +18,7 @@ import {
 import { useLazyQuery, useQuery } from '@apollo/client';
 import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 
 function SummaryPage() {
@@ -53,9 +53,9 @@ function SummaryPage() {
 
           const newExport = datas?.getAdminLogs?.hits.map(
             ({ name, message, createdAt, role }) => {
-              const datetime = moment(+createdAt)
-                .utc()
-                .format('DD MMM YYYY hh:mm');
+              const datetime = DateTime.now(+createdAt).toFormat(
+                'dd MMM yyyy hh:mm'
+              );
               return [name, message, datetime, role];
             }
           );

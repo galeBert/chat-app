@@ -1,6 +1,6 @@
 import blank_profile_picture from '../../assets/blank_profile_picture.png';
 
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 const AdminRoleTable = ({ data }) => {
   const tableHead = ['Name', 'Role', 'Timestamp', 'Activity'];
@@ -20,7 +20,9 @@ const AdminRoleTable = ({ data }) => {
         {data && data.length
           ? data.map(
               ({ name, role, profileImage, createdAt, message }, idx) => {
-                const datetime = moment(+createdAt).format('DD MMM YYYY hh:mm');
+                const datetime = DateTime.now(+createdAt).toFormat(
+                  'dd-MM-yyyy'
+                );
                 return (
                   <tr key={idx}>
                     <td className=''>

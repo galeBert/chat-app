@@ -11,7 +11,15 @@
 # production
 /build
 
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log*
+firebase-error.log*
+
 # misc
+.firebase/*
 .DS_Store
 .env
 .env.local
