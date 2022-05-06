@@ -10,7 +10,7 @@ import { useModal } from '../../hooks/useModal';
 import Media from './Media';
 
 import { useMutation } from '@apollo/client';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { parse } from 'querystring';
 import { useHistory } from 'react-router-dom';
 
@@ -123,7 +123,9 @@ const UserPostTable = ({ data, isLoading }) => {
                   <td className='max-w-xs'>
                     {post.location.detail.formattedAddress}
                   </td>
-                  <td>{moment(createAt).format('DD MMM YYYY hh:mm')}</td>
+                  <td>
+                    {DateTime.now(createAt).toFormat('dd MMM yyyy hh:mm')}
+                  </td>
                   <td>{post.id}</td>
                   <td>{text}</td>
                   <td>

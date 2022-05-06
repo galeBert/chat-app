@@ -16,7 +16,7 @@ import {
 import Media from './Media';
 
 import { useMutation } from '@apollo/client';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 
 const ReportedPostTable = ({
@@ -150,7 +150,9 @@ const ReportedPostTable = ({
                   </Link>
                 </td>
                 <td>
-                  {moment(reportedPost.createdAt).format('DD MMM YYYY hh:mm')}
+                  {DateTime.now(reportedPost.createdAt).toFormat(
+                    'dd MMM yyyy hh:mm'
+                  )}
                 </td>
                 <td className='text-left'>
                   <div className='flex' style={{ alignItem: 'center' }}>

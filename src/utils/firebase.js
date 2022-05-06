@@ -9,15 +9,14 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCl0eTUbnDS4-kFW9-Xwb3Ih8KVuWRYeI4',
-  authDomain: 'insvire-curious-app.firebaseapp.com',
-  databaseURL:
-    'https://insvire-curious-app-default-rtdb.asia-southeast1.firebasedatabase.app',
-  projectId: 'insvire-curious-app',
-  storageBucket: 'insvire-curious-app.appspot.com',
-  messagingSenderId: '32784977098',
-  appId: '1:32784977098:web:66ff9a0b1a3d4c00457833',
-  measurementId: 'G-6VPVBYFZZW',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseUrl: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 initializeApp(firebaseConfig);

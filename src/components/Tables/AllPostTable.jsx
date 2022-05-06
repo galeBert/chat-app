@@ -9,7 +9,7 @@ import { usePostStatus } from '../../hooks/usePostStatus';
 import Media from './Media';
 
 import { XCircleIcon } from '@heroicons/react/outline';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 
 const tableHead = [
@@ -81,9 +81,9 @@ const AllPostTable = ({ data, isLoading, props }) => {
       ) : (
         data &&
         data.map((post, idx) => {
-          const datetime = moment(post.createdAt)
-            .utc()
-            .format('DD MMM YYYY hh:mm');
+          const datetime = DateTime.now(post.createdAt).toFormat(
+            'dd-MM-yyyy hh:mm'
+          );
           const { markdownContent } = JSON.parse(post.text);
           return (
             <tr key={idx} className='text-center h-8'>
