@@ -8,19 +8,20 @@ import { ReactComponent as PostIcon } from '../assets/Icon/IconPosts.svg';
 import { ReactComponent as RandomIcon } from '../assets/Icon/IconRandom.svg';
 import { ReactComponent as SummaryIcon } from '../assets/Icon/iconSummary.svg';
 import { ReactComponent as UserIcon } from '../assets/Icon/IconUser.svg';
+import clsxm from '../utils/clsxm';
 
 import Logo from './Logo';
 
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline';
-import classNames from 'classnames';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
-  const history = useHistory();
+  // const history = useHistory();
 
   const [active, setActive] = useState(false);
-  const [name, setName] = useState('Summary');
-  const navigation = [
+  // const [activeName, setActiveName] = useState('Summary');
+  const [name, setName] = useState('');
+  const [navigation, setNav] = useState([
     {
       name: 'Summary',
       to: '/',
@@ -78,11 +79,51 @@ export default function Sidebar() {
       current: false,
       child: null,
     },
-  ];
+  ]);
+
+  const activeClsx = (isActive) => {
+    const restCss =
+      ' group flex items-center px-2 py-2 font-semibold rounded-md antialiased';
+    if (isActive)
+      return clsxm(
+        `bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 ${restCss}`
+      );
+    return clsxm(
+      `text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 ${restCss}`
+    );
+  };
   const handleActive = (item) => {
-    setName(item.name);
-    const path = `/${history.location.pathname.split('/')[1]}`;
-    path === item.to ? (item.current = true) : (item.current = false);
+    console.log('handleparent');
+    // const path = `/${history.location.pathname.split('/')[1]}`;
+    // path === item.to ? (item.current = true) : (item.current = false);
+    setNav(
+      navigation.map((data) => {
+        if (data.name === item.name) {
+          return {
+            ...data,
+            current: true,
+          };
+        }
+        // if (item.child) {
+        //   return {
+        //     ...data,
+        //     child: data.child.map((datas, idx) => {
+        //       if (idx === 0) {
+        //         return {
+        //           ...datas,
+        //           current: true,
+        //         };
+        //       }
+        //       return {
+        //         ...datas,
+        //         current: false,
+        //       };
+        //     }),
+        //   };
+        // }
+        return { ...data, current: false };
+      })
+    );
   };
   const handleChild = (item) => {
     setActive((value) => !value);
@@ -96,17 +137,12 @@ export default function Sidebar() {
         </Link>
         <nav className='border-b border-t border-dark-50 py-4 mx-2 space-y-2'>
           {navigation.map((item, idx) => {
-            console.log('item dari nav', item.name, name);
             return (
               <div key={idx} className='sidebar-container' id={idx}>
                 <Link
                   key={item.name}
-                  className={classNames(
-                    item.name === name
-                      ? 'bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 sidebar-main_container'
-                      : 'sidebar-main_container text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100',
-                    ' sidebar-main_containergroup flex items-center px-2 py-2 font-semibold rounded-md antialiased'
-                  )}
+                  className={activeClsx(item.current)}
+                  // ' sidebar-main_containergroup flex items-center px-2 py-2 font-semibold rounded-md antialiased'
                   onClick={
                     item.child
                       ? () => handleChild(item)
@@ -120,7 +156,7 @@ export default function Sidebar() {
                       {item.icon ? (
                         <item.icon
                           aria-hidden='true'
-                          className={classNames(
+                          className={clsxm(
                             item.current ? 'text-gray-100' : '',
                             'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
                           )}
@@ -140,6 +176,7 @@ export default function Sidebar() {
                     {/* {console.log("checking.. ", item.child && item.child.filter(data => data.to === path))} */}
                   </div>
                 </Link>
+                {/* {console.log('bla bla', item.child, name, item.name)} */}
                 {item.child && name === item.name && (
                   <div
                     className={`sidebar-child_container ${
@@ -150,20 +187,15 @@ export default function Sidebar() {
                       return (
                         <Link
                           key={datas.name}
-                          className={classNames(
-                            datas.current
-                              ? 'bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 rounded-md'
-                              : ' bg-dark-100 text-gray-100 hover:bg-dark-600 dark:text-gray-100',
-                            '  group flex items-center px-2 py-2 font-semibold  antialiased'
-                          )}
-                          onClick={handleActive(datas)}
+                          className={activeClsx(item.current)}
+                          onClick={() => handleActive(datas)}
                           to={datas.to}
                           type='button'
                         >
                           {datas.icon ? (
                             <datas.icon
                               aria-hidden='true'
-                              className={classNames(
+                              className={clsxm(
                                 datas.current ? 'text-gray-100' : '',
                                 'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
                               )}

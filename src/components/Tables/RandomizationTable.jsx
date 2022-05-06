@@ -5,11 +5,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import UploadIcon from '../../assets/imageDefault.svg';
 import ColorPicker from '../../components/ColorPicker';
 import { DELETE_ITEM_THEME, UPDATE_THEMES } from '../../graphql/mutation';
+import clsxm from '../../utils/clsxm';
 import { storage } from '../../utils/firebase';
 
 import { useMutation } from '@apollo/client';
 import { CheckIcon, XIcon } from '@heroicons/react/outline';
-import cn from 'classnames';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -205,7 +205,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
     });
   };
 
-  const classInputStyle = cn(
+  const classInputStyle = clsxm(
     'test w-7 h-7 rounded-sm absolute -top-11 left-4',
     { 'bg-transparent': !previewImg }
   );
