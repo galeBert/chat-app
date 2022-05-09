@@ -1,5 +1,7 @@
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors: {
       current: 'currentColor',
@@ -47,8 +49,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ['Avenir-Book', 'Helvetica', 'sans-serif'],
-      serif: ['Roboto', 'serif'],
+      sans: ['"Avenir-Book"', ...fontFamily.sans],
     },
     extend: {
       width: {
