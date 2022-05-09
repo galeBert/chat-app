@@ -18,8 +18,6 @@ import {
 } from '@apollo/client/core';
 import { onError } from '@apollo/client/link/error';
 
-// rezi starting update tailwind css and headless ui
-
 const httpUrl =
   'https://asia-southeast2-insvire-curious-app.cloudfunctions.net/admin';
 // const httpUrl = 'http://localhost:5000/insvire-curious-app/asia-southeast2/admin';

@@ -1,8 +1,8 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: 'class', // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     colors: {
+      current: 'currentColor',
       transparent: 'transparent',
       white: '#FFFFFF',
       primary: {
@@ -67,11 +67,8 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      opacity: ['disabled'],
-      cursor: ['hover', 'focus', 'disabled'],
-    },
+  corePlugins: {
+    preflight: false,
   },
   plugins: [],
 };

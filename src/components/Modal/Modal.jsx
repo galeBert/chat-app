@@ -38,7 +38,7 @@ export default function Modal({
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Dialog.Overlay className='fixed inset-0 bg-gray-300 bg-opacity-40 transition-opacity' />
+            <Dialog.Overlay className='fixed inset-0 bg-gray-300/40 transition-opacity' />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -60,7 +60,7 @@ export default function Modal({
             <div className='inline-block align-bottom overflow-visible shadow-md transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full'>
               <div className='bg-dark-100 p-3 rounded-xl'>
                 <Dialog.Title className='flex flex-row justify-center py-2 border-b border-gray-300 text-lg mb-3 dark:border-dark-50'>
-                  <span className='flex-grow text-gray-100'>
+                  <span className='grow text-gray-100'>
                     {modalTitle || 'Modal'}
                   </span>
                   <button

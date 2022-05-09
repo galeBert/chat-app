@@ -29,7 +29,7 @@ span {
   @apply text-white text-sm;
 }
 .card {
-  @apply bg-dark-100 w-full h-full 
+  @apply bg-dark-100 w-full h-full
   2xl:pl-10
   2xl:pr-10
   pl-6
