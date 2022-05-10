@@ -3,7 +3,6 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "GitHub.vscode-pull-request-github",
-    "stylelint.vscode-stylelint"
+    "GitHub.vscode-pull-request-github"
   ]
 }
