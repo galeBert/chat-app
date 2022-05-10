@@ -11,7 +11,7 @@ import { handleHeader } from '../../hooks/handleHeader';
 import { useLazyQuery } from '@apollo/client';
 import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { parse } from 'querystring';
 import { useHistory } from 'react-router-dom';
 
@@ -88,9 +88,8 @@ const AllPostPage = () => {
           const newExport = datas?.searchPosts?.hits.map(
             ({ owner, text, createdAt, location, id, status = '' }) => {
               const { markdownContent } = JSON.parse(text);
-              const datetime = moment(createdAt)
-                .utc()
-                .format('DD MMM YYYY hh:mm');
+              const datetime =
+                DateTime.now(createdAt).toFormat('dd MMM yyyy hh:mm');
               return [
                 owner,
                 markdownContent,

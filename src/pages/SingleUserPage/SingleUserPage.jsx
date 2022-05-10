@@ -20,7 +20,7 @@ import {
 import JsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { get } from 'lodash';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 const SingleUserPage = (props) => {
   const _processPdf = useRef(false);
@@ -84,9 +84,8 @@ const SingleUserPage = (props) => {
           const newExport = data?.searchPosts?.hits.map(
             ({ owner, text, createdAt, location, id, status = '' }) => {
               const { markdownContent } = JSON.parse(text);
-              const datetime = moment(createdAt)
-                .utc()
-                .format('DD MMM YYYY hh:mm');
+              const datetime =
+                DateTime.now(createdAt).toFormat('dd MMM yyyy hh:mm');
               return [
                 owner,
                 markdownContent,

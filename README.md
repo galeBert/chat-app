@@ -56,13 +56,13 @@ or if you're cloning using SSH.
 git clone git@github.com:insvire/curious-admin.git
 ```
 
-Then go to the directory and copy the example environment variables into an
+<!-- Then go to the directory and copy the example environment variables into an
 ignored `.env` file
 
 ```sh
 cd curious-admin
 cp .env.example .env
-```
+``` -->
 
 Run this command to perform the initial setup while making sure that the app can
 run properly in your local.

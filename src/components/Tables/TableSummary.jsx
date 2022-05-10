@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 const headers = ['Name', 'Role', 'Timestamp', 'Activity'];
 
@@ -30,7 +30,7 @@ const AllUserTable = ({ data }) => {
               </td>
               <td className='p-5 text-center'>{role}</td>
               <td className='p-5 text-center'>
-                {moment(createdAt).format('DD MMM YYYY hh:mm')}
+                {DateTime.now(createdAt).toFormat('dd MMM yyyy hh:mm')}
               </td>
               <td className='p-5 flex-wrap w-3/12'>{message}</td>
             </tr>

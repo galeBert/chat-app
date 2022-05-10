@@ -9,7 +9,7 @@ import StatusContainer from '../../components/StatusContainer';
 import { useUserStatus } from '../../hooks/useUsersStatus';
 
 import { XCircleIcon } from '@heroicons/react/outline';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 import { Link } from 'react-router-dom';
 
 const headers = [
@@ -70,9 +70,8 @@ const AllUserTable = ({ data, props, ...rest }) => {
               },
               idx
             ) => {
-              const datetime = moment(joinDate)
-                .utc()
-                .format('DD MMM YYYY hh:mm');
+              const datetime =
+                DateTime.now(joinDate).toFormat('dd MMM yyyy hh:mm');
               return (
                 <tr key={idx}>
                   <td className=''>
