@@ -50,7 +50,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['"Avenir-Book"', ...fontFamily.sans],
+        sans: ['"Avenir Book"', ...fontFamily.sans],
       },
       width: {
         '1/7': '14.2857143%',
@@ -67,9 +67,6 @@ module.exports = {
         0.5: '2px',
       },
     },
-  },
-  corePlugins: {
-    preflight: false,
   },
   plugins: [],
 };

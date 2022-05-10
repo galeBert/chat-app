@@ -5,8 +5,11 @@
 @layer base {
   /* #region  /**=========== Typography =========== */
   @font-face {
-    font-family: 'Avenir-Book';
+    font-family: 'Avenir Book';
     src: url('../assets/fonts/Avenir-Book.woff2');
-    font-weight: normal;
+  }
+
+  html {
+    font-family: Avenir Book, system-ui, sans-serif;
   }
 }
