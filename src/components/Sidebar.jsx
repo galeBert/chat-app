@@ -158,11 +158,11 @@ export default function Sidebar() {
                           aria-hidden='true'
                           className={clsxm(
                             item.current ? 'text-gray-100' : '',
-                            'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
+                            'mx-auto lg:mx-0 lg:mr-2 shrink-0 h-7 w-7'
                           )}
                         />
                       ) : (
-                        <div className='mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7' />
+                        <div className='mx-auto lg:mx-0 lg:mr-2 shrink-0 h-7 w-7' />
                       )}
 
                       <span className='hidden lg:block'>{item.name}</span>
@@ -197,11 +197,11 @@ export default function Sidebar() {
                               aria-hidden='true'
                               className={clsxm(
                                 datas.current ? 'text-gray-100' : '',
-                                'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
+                                'mx-auto lg:mx-0 lg:mr-2 shrink-0 h-7 w-7'
                               )}
                             />
                           ) : (
-                            <div className='mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7' />
+                            <div className='mx-auto lg:mx-0 lg:mr-2 shrink-0 h-7 w-7' />
                           )}
 
                           <span className='hidden lg:block'>{datas.name}</span>

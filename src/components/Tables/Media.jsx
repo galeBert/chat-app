@@ -42,7 +42,7 @@ const Media = ({ media, ...props }) => {
       break;
     case 'gif':
       mediaRender = isOpenGif ? (
-        <div className='absolute z-50 top-0 left-0 w-full h-full bg-opacity-60 bg-dark-100 flex justify-center items-center'>
+        <div className='absolute z-50 top-0 left-0 w-full h-full bg-dark-100/60 flex justify-center items-center'>
           <button
             className='w-10 h-10 absolute right-5 top-5'
             onClick={() => setIsOpenGif(false)}

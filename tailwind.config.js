@@ -1,8 +1,10 @@
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: 'class', // or 'media' or 'class'
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     colors: {
+      current: 'currentColor',
       transparent: 'transparent',
       white: '#FFFFFF',
       primary: {
@@ -46,11 +48,10 @@ module.exports = {
         600: '#2488B4',
       },
     },
-    fontFamily: {
-      sans: ['Avenir-Book', 'Helvetica', 'sans-serif'],
-      serif: ['Roboto', 'serif'],
-    },
     extend: {
+      fontFamily: {
+        sans: ['"Avenir Book"', ...fontFamily.sans],
+      },
       width: {
         '1/7': '14.2857143%',
         '2/7': '28.5714286%',
@@ -65,12 +66,6 @@ module.exports = {
       padding: {
         0.5: '2px',
       },
-    },
-  },
-  variants: {
-    extend: {
-      opacity: ['disabled'],
-      cursor: ['hover', 'focus', 'disabled'],
     },
   },
   plugins: [],
