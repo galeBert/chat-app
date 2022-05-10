@@ -48,10 +48,10 @@ module.exports = {
         600: '#2488B4',
       },
     },
-    fontFamily: {
-      sans: ['"Avenir-Book"', ...fontFamily.sans],
-    },
     extend: {
+      fontFamily: {
+        sans: ['"Avenir-Book"', ...fontFamily.sans],
+      },
       width: {
         '1/7': '14.2857143%',
         '2/7': '28.5714286%',
