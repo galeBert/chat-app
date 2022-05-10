@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import UploadIcon from '../../assets/imageDefault.svg';
 import ColorPicker from '../../components/ColorPicker';
 import { DELETE_ITEM_THEME, UPDATE_THEMES } from '../../graphql/mutation';
-import clsx from '../../utils/clsxm';
+import clsxm from '../../utils/clsxm';
 import { storage } from '../../utils/firebase';
 
 import { useMutation } from '@apollo/client';
@@ -205,7 +205,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
     });
   };
 
-  const classInputStyle = clsx(
+  const classInputStyle = clsxm(
     'test w-7 h-7 rounded-sm absolute -top-11 left-4',
     { 'bg-transparent': !previewImg }
   );

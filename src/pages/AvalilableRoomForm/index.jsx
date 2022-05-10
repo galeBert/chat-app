@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { CREATE_ROOM, UPDATE_ROOM } from '../../graphql/mutation';
 import { GET_DETAIL_ROOM } from '../../graphql/query';
 import { useModal } from '../../hooks/useModal';
-import clsx from '../../utils/clsxm';
+import clsxm from '../../utils/clsxm';
 import { storage } from '../../utils/firebase';
 
 import { useLazyQuery, useMutation } from '@apollo/client';
@@ -175,7 +175,7 @@ const AvaliableRoomForm = (props) => {
     );
   };
 
-  const classInputStyle = clsx(
+  const classInputStyle = clsxm(
     'bg-dark-300 h-12 rounded-md w-11/12 max-w-sm pl-2 border border-solid z-10'
   );
 

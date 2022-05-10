@@ -8,7 +8,7 @@ import { ReactComponent as PostIcon } from '../assets/Icon/IconPosts.svg';
 import { ReactComponent as RandomIcon } from '../assets/Icon/IconRandom.svg';
 import { ReactComponent as SummaryIcon } from '../assets/Icon/iconSummary.svg';
 import { ReactComponent as UserIcon } from '../assets/Icon/IconUser.svg';
-import clsx from '../utils/clsxm';
+import clsxm from '../utils/clsxm';
 
 import Logo from './Logo';
 
@@ -85,10 +85,10 @@ export default function Sidebar() {
     const restCss =
       ' group flex items-center px-2 py-2 font-semibold rounded-md antialiased';
     if (isActive)
-      return clsx(
+      return clsxm(
         `bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 ${restCss}`
       );
-    return clsx(
+    return clsxm(
       `text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 ${restCss}`
     );
   };
@@ -156,7 +156,7 @@ export default function Sidebar() {
                       {item.icon ? (
                         <item.icon
                           aria-hidden='true'
-                          className={clsx(
+                          className={clsxm(
                             item.current ? 'text-gray-100' : '',
                             'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
                           )}
@@ -195,7 +195,7 @@ export default function Sidebar() {
                           {datas.icon ? (
                             <datas.icon
                               aria-hidden='true'
-                              className={clsx(
+                              className={clsxm(
                                 datas.current ? 'text-gray-100' : '',
                                 'mx-auto lg:mx-0 lg:mr-2 flex-shrink-0 h-7 w-7'
                               )}
