@@ -15,7 +15,7 @@ function Button({
 
   return (
     <button
-      className={clsx(
+      className={clsxm(
         'flex flex-row w-full items-center justify-center mb-3 px-6 py-3 border border-transparent text-sm font-bold rounded-md shadow-sm text-white disabled:opacity-50 disabled:cursor-not-allowed',
         `${lightButton} bg-${color}-100 hover:bg-${color}-300 focus:bg-${color}-600`,
         className
