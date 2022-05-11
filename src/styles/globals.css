@@ -33,17 +33,13 @@
     --tw-color-light-3: 4 212 205;
     --tw-color-light-4: 0 182 123;
     --tw-color-light-5: 255 0 115;
-    --tw-color-light-6: 107 21 0;
-    --tw-color-light-7: 145 27 1;
-    --tw-color-light-8: 196 42 2;
+    --tw-color-light-6: 70 148 242;
     --color-light-1: rgb(var(--tw-color-light-1));
     --color-light-2: rgb(var(--tw-color-light-2));
     --color-light-3: rgb(var(--tw-color-light-3));
     --color-light-4: rgb(var(--tw-color-light-4));
     --color-light-5: rgb(var(--tw-color-light-5));
     --color-light-6: rgb(var(--tw-color-light-6));
-    --color-light-7: rgb(var(--tw-color-light-7));
-    --color-light-8: rgb(var(--tw-color-light-8));
     /* #endregion  /**======== Light Color =========== */
 
     /* #region  /**=========== Dark Color =========== */
@@ -51,9 +47,11 @@
     --tw-color-dark-2: 53 42 57;
     --tw-color-dark-3: 48 38 51;
     --tw-color-dark-4: 62 51 68;
-    --tw-color-dark-5: 73 63 77;
-    --tw-color-dark-6: 88 88 88;
-    --tw-color-dark-7: 143 140 144;
+    --tw-color-dark-5: 63 52 67;
+    --tw-color-dark-6: 73 63 77;
+    --tw-color-dark-7: 88 88 88;
+    --tw-color-dark-8: 143 140 144;
+    --tw-color-dark-9: 154 148 156;
     --color-dark-1: rgb(var(--tw-color-dark-1));
     --color-dark-2: rgb(var(--tw-color-dark-2));
     --color-dark-3: rgb(var(--tw-color-dark-3));
@@ -61,6 +59,8 @@
     --color-dark-5: rgb(var(--tw-color-dark-5));
     --color-dark-6: rgb(var(--tw-color-dark-6));
     --color-dark-7: rgb(var(--tw-color-dark-7));
+    --color-dark-8: rgb(var(--tw-color-dark-8));
+    --color-dark-9: rgb(var(--tw-color-dark-9));
     /* #endregion  /**======== Dark Color =========== */
 
     /* #region  /**=========== Status Color =========== */
