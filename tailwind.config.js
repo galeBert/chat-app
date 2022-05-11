@@ -43,8 +43,6 @@ module.exports = {
         4: withOpacityValue('--tw-color-light-4'),
         5: withOpacityValue('--tw-color-light-5'),
         6: withOpacityValue('--tw-color-light-6'),
-        7: withOpacityValue('--tw-color-light-7'),
-        8: withOpacityValue('--tw-color-light-8'),
       },
       dark: {
         1: withOpacityValue('--tw-color-dark-1'),
@@ -54,6 +52,8 @@ module.exports = {
         5: withOpacityValue('--tw-color-dark-5'),
         6: withOpacityValue('--tw-color-dark-6'),
         7: withOpacityValue('--tw-color-dark-7'),
+        8: withOpacityValue('--tw-color-dark-8'),
+        9: withOpacityValue('--tw-color-dark-9'),
       },
       status: {
         1: withOpacityValue('--tw-color-status-1'),
