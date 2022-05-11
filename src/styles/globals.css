@@ -10,6 +10,75 @@
     font-weight: normal;
   }
 
+  :root {
+    /* #region  /**=========== Brand Color =========== */
+    --tw-color-brand-1: 114 84 227;
+    --tw-color-brand-2: 127 94 251;
+    --color-brand-1: rgb(var(--tw-color-brand-1));
+    --color-brand-2: rgb(var(--tw-color-brand-2));
+    /* #endregion  /**======== Brand Color =========== */
+
+    /* #region  /**=========== Typography Color =========== */
+    --tw-color-typography-1: 255 255 255;
+    --tw-color-typography-2: 173 173 173;
+    --tw-color-typography-3: 137 140 170;
+    --color-typography-1: rgb(var(--tw-color-typography-1));
+    --color-typography-2: rgb(var(--tw-color-typography-2));
+    --color-typography-3: rgb(var(--tw-color-typography-3));
+    /* #endregion  /**======== Typography Color =========== */
+
+    /* #region  /**=========== Light Color =========== */
+    --tw-color-light-1: 255 255 255;
+    --tw-color-light-2: 144 109 255;
+    --tw-color-light-3: 4 212 205;
+    --tw-color-light-4: 0 182 123;
+    --tw-color-light-5: 255 0 115;
+    --tw-color-light-6: 107 21 0;
+    --tw-color-light-7: 145 27 1;
+    --tw-color-light-8: 196 42 2;
+    --color-light-1: rgb(var(--tw-color-light-1));
+    --color-light-2: rgb(var(--tw-color-light-2));
+    --color-light-3: rgb(var(--tw-color-light-3));
+    --color-light-4: rgb(var(--tw-color-light-4));
+    --color-light-5: rgb(var(--tw-color-light-5));
+    --color-light-6: rgb(var(--tw-color-light-6));
+    --color-light-7: rgb(var(--tw-color-light-7));
+    --color-light-8: rgb(var(--tw-color-light-8));
+    /* #endregion  /**======== Light Color =========== */
+
+    /* #region  /**=========== Dark Color =========== */
+    --tw-color-dark-1: 42 34 46;
+    --tw-color-dark-2: 53 42 57;
+    --tw-color-dark-3: 48 38 51;
+    --tw-color-dark-4: 62 51 68;
+    --tw-color-dark-5: 73 63 77;
+    --tw-color-dark-6: 88 88 88;
+    --tw-color-dark-7: 143 140 144;
+    --color-dark-1: rgb(var(--tw-color-dark-1));
+    --color-dark-2: rgb(var(--tw-color-dark-2));
+    --color-dark-3: rgb(var(--tw-color-dark-3));
+    --color-dark-4: rgb(var(--tw-color-dark-4));
+    --color-dark-5: rgb(var(--tw-color-dark-5));
+    --color-dark-6: rgb(var(--tw-color-dark-6));
+    --color-dark-7: rgb(var(--tw-color-dark-7));
+    /* #endregion  /**======== Dark Color =========== */
+
+    /* #region  /**=========== Status Color =========== */
+    --tw-color-status-1: 0 182 123;
+    --tw-color-status-2: 107 21 0;
+    --tw-color-status-3: 145 27 1;
+    --tw-color-status-4: 196 42 2;
+    --tw-color-status-5: 248 85 0;
+    --tw-color-status-6: 248 133 2;
+    --color-status-1: rgb(var(--tw-color-status-1));
+    --color-status-2: rgb(var(--tw-color-status-2));
+    --color-status-3: rgb(var(--tw-color-status-3));
+    --color-status-4: rgb(var(--tw-color-status-4));
+    --color-status-5: rgb(var(--tw-color-status-5));
+    --color-status-6: rgb(var(--tw-color-status-6));
+    /* #endregion  /**======== Status Color =========== */
+  }
+
   html {
     font-family: Avenir Book, system-ui, sans-serif;
   }

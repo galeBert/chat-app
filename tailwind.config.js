@@ -1,5 +1,15 @@
 const { fontFamily, fontSize } = require('tailwindcss/defaultTheme');
 
+// This function let us to get the opacity color of our customize color
+function withOpacityValue(variable) {
+  return ({ opacityValue }) => {
+    if (opacityValue === undefined) {
+      return `rgb(var(${variable}))`;
+    }
+    return `rgb(var(${variable}) / ${opacityValue})`;
+  };
+}
+
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -17,48 +27,41 @@ module.exports = {
       ...fontSize,
     },
     colors: {
-      current: 'currentColor',
-      transparent: 'transparent',
-      white: '#FFFFFF',
-      primary: {
-        100: '#7F57FF',
-        300: '#724EE6',
-        600: '#6646CC',
+      brand: {
+        1: withOpacityValue('--tw-color-brand-1'),
+        2: withOpacityValue('--tw-color-brand-2'),
       },
-      red: {
-        100: '#FF0073',
-        300: '#E60068',
-        600: '#CC005C',
+      typography: {
+        1: withOpacityValue('--tw-color-typography-1'),
+        2: withOpacityValue('--tw-color-typography-2'),
+        3: withOpacityValue('--tw-color-typography-3'),
       },
-      yellow: {
-        100: '#F6C059',
-        300: '#DDAD50',
-        600: '#C59A47',
-      },
-      green: {
-        300: '#2FDD92',
-      },
-      blue: {
-        100: '#307BF4',
-        300: '#2B6FDC',
-        600: '#2662C3',
+      light: {
+        1: withOpacityValue('--tw-color-light-1'),
+        2: withOpacityValue('--tw-color-light-2'),
+        3: withOpacityValue('--tw-color-light-3'),
+        4: withOpacityValue('--tw-color-light-4'),
+        5: withOpacityValue('--tw-color-light-5'),
+        6: withOpacityValue('--tw-color-light-6'),
+        7: withOpacityValue('--tw-color-light-7'),
+        8: withOpacityValue('--tw-color-light-8'),
       },
       dark: {
-        50: '#493F4D',
-        100: '#46374C',
-        300: '#392D3E',
-        600: '#2A222E',
+        1: withOpacityValue('--tw-color-dark-1'),
+        2: withOpacityValue('--tw-color-dark-2'),
+        3: withOpacityValue('--tw-color-dark-3'),
+        4: withOpacityValue('--tw-color-dark-4'),
+        5: withOpacityValue('--tw-color-dark-5'),
+        6: withOpacityValue('--tw-color-dark-6'),
+        7: withOpacityValue('--tw-color-dark-7'),
       },
-      gray: {
-        100: '#FAFAFA',
-        300: '#E6E6E6',
-        600: '#6E6E6E',
-        900: '#585858',
-      },
-      twitter: {
-        100: '#2DAAE1',
-        300: '#2999CB',
-        600: '#2488B4',
+      status: {
+        1: withOpacityValue('--tw-color-status-1'),
+        2: withOpacityValue('--tw-color-status-2'),
+        3: withOpacityValue('--tw-color-status-3'),
+        4: withOpacityValue('--tw-color-status-4'),
+        5: withOpacityValue('--tw-color-status-5'),
+        6: withOpacityValue('--tw-color-status-6'),
       },
     },
     extend: {
