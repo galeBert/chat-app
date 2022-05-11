@@ -4,10 +4,18 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     fontSize: {
-      heading1: ['32px', { lineHeight: '40px', letterSpacing: '0.02em' }],
+      heading1: ['24px', { lineHeight: '32px', letterSpacing: '0.02em' }],
+      heading2: ['20px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      heading3: ['18px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      heading4: ['16px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      heading5: ['14px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      heading6: ['12px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      body1: ['16px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      body2: ['14px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      body3: ['12px', { lineHeight: '24px', letterSpacing: '0.02em' }],
+      body4: ['10px', { lineHeight: '16px', letterSpacing: '0.02em' }],
       ...fontSize,
     },
-
     colors: {
       current: 'currentColor',
       transparent: 'transparent',
@@ -56,20 +64,6 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['"Avenir Book"', ...fontFamily.sans],
-      },
-      width: {
-        '1/7': '14.2857143%',
-        '2/7': '28.5714286%',
-        '3/7': '42.8571429%',
-        '4/7': '57.1428571%',
-        '5/7': '71.4285714%',
-        '6/7': '85.7142857%',
-      },
-      fontSize: {
-        vxs: '10px',
-      },
-      padding: {
-        0.5: '2px',
       },
     },
   },
