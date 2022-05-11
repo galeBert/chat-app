@@ -1,8 +1,13 @@
-const { fontFamily } = require('tailwindcss/defaultTheme');
+const { fontFamily, fontSize } = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    fontSize: {
+      heading1: ['32px', { lineHeight: '40px', letterSpacing: '0.02em' }],
+      ...fontSize,
+    },
+
     colors: {
       current: 'currentColor',
       transparent: 'transparent',
