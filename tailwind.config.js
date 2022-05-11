@@ -1,6 +1,6 @@
 const { fontFamily, fontSize } = require('tailwindcss/defaultTheme');
 
-// This function let us to get the opacity color of our customize color
+// This function let us to get the opacity color of our customize color. Refer to this link https://tailwindcss.com/docs/customizing-colors#using-css-variables
 function withOpacityValue(variable) {
   return ({ opacityValue }) => {
     if (opacityValue === undefined) {
