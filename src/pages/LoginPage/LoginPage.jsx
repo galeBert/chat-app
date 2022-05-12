@@ -66,12 +66,12 @@ export default function LoginPage() {
     <div className='login-container'>
       {modal.value.isLoadingScreen && <LoadingScreen />}
       <div className='logo-container'>
-        <Logo className='login-logo text-gray-300' />
+        <Logo className='login-logo text-typography-3' />
       </div>
       {isValidPassword ? (
         <div className='text-center'>
           <Button color='gray' icon={<GoogleIcon />} onClick={handleAuthButton}>
-            <span className='text-dark-100 ml-4'>Continue with Google</span>
+            <span className='text-dark-1 ml-4'>Continue with Google</span>
           </Button>
           {error && <span className='text-red-300'>{error}</span>}
         </div>

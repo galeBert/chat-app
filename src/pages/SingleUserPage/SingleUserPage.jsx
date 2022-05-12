@@ -165,7 +165,7 @@ const SingleUserPage = (props) => {
 
       <div className='flex w-full mt-7 mb-5 gap-6'>
         <div className='card flex items-center'>
-          <div className='bg-primary-100 rounded-full w-20 h-20 flex justify-center items-center mr-9'>
+          <div className='bg-brand-1 rounded-full w-20 h-20 flex justify-center items-center mr-9'>
             <DocumentTextIcon className='w-10 h-10' />
           </div>
           <div>

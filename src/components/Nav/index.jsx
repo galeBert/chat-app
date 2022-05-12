@@ -45,7 +45,7 @@ export default function Nav() {
     observeSnapshot('notifications', 'isVerify', false, onReceived);
   }, []);
   return (
-    <div className=' fixed  w-full left-0 -top-1 p-4 bg-dark-300 z-30'>
+    <div className=' fixed  w-full left-0 -top-1 p-4 bg-dark-3 z-30'>
       <div className='flex justify-between '>
         <div className=' lg:ml-52 xl:ml-80 w-full'>
           <Autocomplete />

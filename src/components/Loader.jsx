@@ -3,9 +3,10 @@ import React from 'react';
 import clsxm from '../utils/clsxm';
 
 export default function Loader({ size }) {
+  // gray should apply on line 9
   return (
     <svg
-      className={clsxm('animate-spin text-gray-100', `h-${size} w-${size}`)}
+      className={clsxm('animate-spin text-dark-9', `h-${size} w-${size}`)}
       fill='none'
       viewBox='0 0 24 24'
       xmlns='http://www.w3.org/2000/svg'

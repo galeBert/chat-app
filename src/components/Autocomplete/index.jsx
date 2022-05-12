@@ -101,7 +101,7 @@ export const Autocomplete = () => {
             return (
               <div
                 key={`source-${index}`}
-                className='aa-Source bg-dark-100'
+                className='aa-Source bg-dark-1'
                 style={{ borderRadius: 10, border: '1px solid black' }}
               >
                 {items.length > 0 && (

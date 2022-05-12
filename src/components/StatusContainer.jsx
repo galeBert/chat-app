@@ -6,7 +6,7 @@ const StatusContainer = ({ children, ...props }) => {
           ? children.toLowerCase() === 'active'
             ? 'bg-yellow-100'
             : children !== 'Flag' || children !== 'Banned'
-            ? 'bg-primary-100'
+            ? 'bg-brand-1'
             : 'bg-red-100'
           : ''
       }`}

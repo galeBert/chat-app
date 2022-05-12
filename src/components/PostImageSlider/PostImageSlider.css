@@ -7,12 +7,12 @@
 }
 
 .react-slideshow-container .default-nav {
-  @apply flex justify-center items-center cursor-pointer text-center text-white border-0 h-8 w-8 bg-gray-300 bg-opacity-60 rounded-md;
+  @apply flex justify-center items-center cursor-pointer text-center text-typography-1 border-0 h-8 w-8 border-dark-9 bg-opacity-60 rounded-md;
 }
 
 .react-slideshow-container .default-nav:hover,
 .react-slideshow-container .default-nav:focus {
-  @apply outline-none text-dark-300 bg-gray-100;
+  @apply outline-none text-dark-3 bg-dark-9;
 }
 
 .react-slideshow-container .default-nav.disabled:hover {
@@ -41,12 +41,12 @@
 }
 
 .react-slideshow-container + ul.indicators .each-slideshow-indicator {
-  @apply border-0 opacity-25 cursor-pointer bg-transparent text-transparent;
+  @apply border-0 opacity-25 cursor-pointer bg-none text-opacity-0;
 }
 
 .react-slideshow-container + ul.indicators .each-slideshow-indicator:before {
-  content: "";
-  @apply relative top-0 left-0 h-2 w-2 bg-dark-300 text-center rounded-md;
+  content: '';
+  @apply relative top-0 left-0 h-2 w-2 bg-dark-3 text-center rounded-md;
 }
 
 .react-slideshow-container + ul.indicators .each-slideshow-indicator:hover,

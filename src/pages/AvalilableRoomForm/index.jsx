@@ -176,13 +176,13 @@ const AvaliableRoomForm = (props) => {
   };
 
   const classInputStyle = clsxm(
-    'bg-dark-300 h-12 rounded-md w-11/12 max-w-sm pl-2 border border-solid z-10'
+    'bg-dark-3 h-12 rounded-md w-11/12 max-w-sm pl-2 border border-solid z-10'
   );
 
   return (
     <>
       <div className='grid grid-cols-2'>
-        <div className='w-full col-span-1 pl-5 pb-5 pr-5 pt-4 bg-dark-100 rounded-xl'>
+        <div className='w-full col-span-1 pl-5 pb-5 pr-5 pt-4 bg-dark-1 rounded-xl'>
           <h1>{roomId ? 'Update' : 'New'} Available Room</h1>
           <div className='grid grid-cols-2 grid-rows-3 mt-6 mb-6'>
             <div className='mt-1 mb-1'>
@@ -190,8 +190,8 @@ const AvaliableRoomForm = (props) => {
               <input
                 className={
                   required && !detailLoc.name
-                    ? `${classInputStyle} border-red-600`
-                    : `${classInputStyle} border-gray-600`
+                    ? `${classInputStyle} border-light-5`
+                    : `${classInputStyle} border-dark-9`
                 }
                 defaultValue={dataRoom?.getRoomById?.roomName || ''}
                 name='name'
@@ -203,7 +203,7 @@ const AvaliableRoomForm = (props) => {
             <div className='mt-1 mb-1'>
               <h6 className='mb-2 font-bold'>Description</h6>
               <textarea
-                className='bg-dark-300 rounded-md w-11/12 h-20 max-w-sm pl-2 pt-1.5 border border-solid border-gray-600 z-10'
+                className='bg-dark-3 rounded-md w-11/12 h-20 max-w-sm pl-2 pt-1.5 border border-solid border-dark-9 z-10'
                 defaultValue={dataRoom?.getRoomById?.description || ''}
                 name='description'
                 onChange={handleChangeText}
@@ -215,8 +215,8 @@ const AvaliableRoomForm = (props) => {
               <input
                 className={
                   required && !selectedLocation
-                    ? `${classInputStyle} border-red-600`
-                    : `${classInputStyle} border-gray-600`
+                    ? `${classInputStyle} border-light-5`
+                    : `${classInputStyle} border-dark-9`
                 }
                 defaultValue={
                   dataRoom?.getRoomById?.location?.detail?.formattedAddress ||
@@ -232,8 +232,8 @@ const AvaliableRoomForm = (props) => {
               <input
                 className={
                   required && !detailLoc.startDate
-                    ? `${classInputStyle} border-red-600`
-                    : `${classInputStyle} border-gray-600`
+                    ? `${classInputStyle} border-light-5`
+                    : `${classInputStyle} border-dark-9`
                 }
                 defaultValue={dataRoom?.getRoomById?.startingDate || ''}
                 name='startDate'
@@ -244,7 +244,7 @@ const AvaliableRoomForm = (props) => {
             <div className='mt-1 mb-1 row-span-3'>
               <h6 className='mb-2 font-bold'>Radius</h6>
               <input
-                className='bg-dark-300 h-12 rounded-md w-5/12 max-w-sm pl-2 border border-solid border-gray-600 z-10'
+                className='bg-dark-3 h-12 rounded-md w-5/12 max-w-sm pl-2 border border-solid border-dark-9 z-10'
                 defaultValue={dataRoom?.getRoomById?.location?.range || ''}
                 onChange={handleRadiusMap}
                 placeholder='10 KM'
@@ -257,8 +257,8 @@ const AvaliableRoomForm = (props) => {
               <input
                 className={
                   required && !detailLoc.endDate
-                    ? `${classInputStyle} border-red-600`
-                    : `${classInputStyle} border-gray-600`
+                    ? `${classInputStyle} border-light-5`
+                    : `${classInputStyle} border-dark-9`
                 }
                 defaultValue={dataRoom?.getRoomById?.tillDate || ''}
                 name='endDate'
@@ -270,7 +270,7 @@ const AvaliableRoomForm = (props) => {
             <div className='mt-4 mb-1'>
               <h6 className='mb-2 font-bold'>Upload</h6>
               <input
-                className='bg-dark-300 h-12 rounded-md w-11/12 max-w-sm pl-2 border border-solid border-gray-600 z-10'
+                className='bg-dark-3 h-12 rounded-md w-11/12 max-w-sm pl-2 border border-solid border-dark-9 z-10'
                 onChange={handleUpload}
                 style={{ paddingTop: 8 }}
                 type='file'
@@ -318,13 +318,13 @@ const AvaliableRoomForm = (props) => {
       </div>
       <div className='float-right mt-4 mb-4 flex' style={{ paddingBottom: 10 }}>
         <button
-          className='w-40 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
+          className='w-40 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
           onClick={() => history.push('/available-room')}
         >
           Cancel
         </button>
         <button
-          className='w-40 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
+          className='w-40 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
           onClick={handleSubmit}
           style={{ backgroundColor: '#7F57FF' }}
         >

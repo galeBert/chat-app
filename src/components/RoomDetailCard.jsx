@@ -131,7 +131,7 @@ const RoomDetailCard = ({ data, title, post, ...props }) => {
         </div>
       </div>
       {post && (
-        <div className='border-2 border-solid border-gray-600 rounded-md p-4 mt-4'>
+        <div className='border-2 border-solid border-dark-9 rounded-md p-4 mt-4'>
           <div>Post Detail</div>
           {post?.media && (
             <Media gap={4} height={112} media={post.media} width={112} />

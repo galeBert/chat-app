@@ -1,15 +1,15 @@
 .button-wrapper {
-    @apply w-full h-10 bg-white rounded-lg flex border-2 border-solid border-gray-600;
-    background-color: #46374C;
+  @apply w-full h-10 bg-light-1 rounded-lg flex border-2 border-solid border-dark-9;
+  background-color: #46374c;
 }
 button {
-    @apply w-full rounded-sm text-dark-600;
-    transform: skewX(-100px);
-    transition: all 0.4s ease-in;
-    background-color: #46374C;
-    color: white;
+  @apply w-full rounded-sm text-dark-6;
+  transform: skewX(-100px);
+  transition: all 0.4s ease-in;
+  background-color: #46374c;
+  color: white;
 }
 .active {
-    @apply w-full bg-primary-100 rounded-md;
-    transform:  skewX(0px);
+  @apply w-full bg-brand-1 rounded-md;
+  transform: skewX(0px);
 }

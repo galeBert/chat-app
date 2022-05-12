@@ -271,7 +271,7 @@ const UserPage = () => {
                     style={{ columnGap: 10 }}
                   >
                     <div
-                      className='bg-primary-100 w-5 h-5 pr-2'
+                      className='bg-brand-1 w-5 h-5 pr-2'
                       style={{
                         borderRadius: '50%',
                         backgroundColor: ListOfColors[idx],
@@ -295,24 +295,24 @@ const UserPage = () => {
           <div className='mt-4 flex justify-end gap-3'>
             <div
               className={`${
-                option === 'daily' ? 'bg-primary-100' : ''
-              } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+                option === 'daily' ? 'bg-brand-1' : ''
+              } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
               onClickCapture={() => handleStateOfGraph('daily')}
             >
               Daily
             </div>
             <div
               className={`${
-                option === 'monthly' ? 'bg-primary-100' : ''
-              } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+                option === 'monthly' ? 'bg-brand-1' : ''
+              } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
               onClickCapture={() => handleStateOfGraph('monthly')}
             >
               Monthly
             </div>
             <div
               className={`${
-                option === 'yearly' ? 'bg-primary-100' : ''
-              } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+                option === 'yearly' ? 'bg-brand-1' : ''
+              } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
               onClickCapture={() => handleStateOfGraph('yearly')}
             >
               Yearly

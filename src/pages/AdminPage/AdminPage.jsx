@@ -132,13 +132,13 @@ const AdminPage = () => {
               <div className='grid grid-cols-4 gap-4 p-2 border-t border-dark-50'>
                 <div className='col-span-2' />
                 <button
-                  className='p-1 px-4  0 w-full rounded-md font-medium text-gray-100'
+                  className='p-1 px-4  0 w-full rounded-md font-medium text-dark-9'
                   onClick={() => setOpenModal(false)}
                 >
                   Cancel
                 </button>
                 <button
-                  className='p-1 px-4 bg-primary-100 w-full rounded-md font-medium text-gray-100'
+                  className='p-1 px-4 bg-brand-1 w-full rounded-md font-medium text-dark-9'
                   type='submit'
                 >
                   Post

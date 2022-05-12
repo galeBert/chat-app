@@ -11,9 +11,8 @@
   transition: all 0.4s ease;
 }
 
-
 .d-action .dropdown .wrapper {
-  @apply w-40 text-center rounded-xl z-10 bg-dark-100 invisible border border-gray-600 border-solid;
+  @apply w-40 text-center rounded-xl z-10 bg-dark-1 invisible border border-dark-9 border-solid;
   transition: opacity 0.3s, visible 1s;
 }
 
@@ -28,7 +27,7 @@
 
 .d-action .dropdown .wrapper .dropdown-item:hover {
   cursor: pointer;
-  background-color: #7F57FF;
+  background-color: #7f57ff;
 }
 
 .d-action .dropdown .wrapper .dropdown-item:hover:first-child {
@@ -39,15 +38,14 @@
   border-radius: 0px 0px 10px 10px;
 }
 
-
 /* CHILD */
 
 .dropdown-child {
-  @apply absolute top-0 bg-dark-100 border border-solid border-gray-600 rounded-md w-44;
+  @apply absolute top-0 bg-dark-1 border border-solid border-dark-9 rounded-md w-44;
   left: -180px;
 }
 .dropdown-item-child {
-  @apply m-2
+  @apply m-2;
 }
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);

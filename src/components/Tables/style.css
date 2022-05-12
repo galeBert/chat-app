@@ -1,79 +1,76 @@
 /* MAIN */
 .table-container {
-    @apply w-full h-full pl-5 pb-5 pr-5 pt-4 bg-dark-100 rounded-xl
+  @apply w-full h-full pl-5 pb-5 pr-5 pt-4 bg-dark-1 rounded-xl;
 }
 /* HEADER */
 .header-container {
-    @apply w-full mb-4
+  @apply w-full mb-4;
 }
 /* TABLE */
 .table-container {
-    @apply w-full 
+  @apply w-full;
 }
 .table-input-skin {
-    @apply bg-transparent w-full  border border-solid border-gray-600 m-2 rounded-sm;
+  @apply bg-none w-full  border border-solid border-dark-9 m-2 rounded-sm;
 }
 
 /* .table-container-child {
     @apply w-full h-14 overflow-scroll
 } */
 .th-location {
-    width: 280px;
-    min-width: 25vh;
+  width: 280px;
+  min-width: 25vh;
 }
 .status-container {
-    @apply rounded-2xl w-24 h-8 pt-0.5 pb-0.5;
+  @apply rounded-2xl w-24 h-8 pt-0.5 pb-0.5;
 }
-  
+
 .table-photo-container {
-    @apply w-10 h-10 rounded object-cover m-1 mr-3;
+  @apply w-10 h-10 rounded object-cover m-1 mr-3;
 }
 td {
-    @apply border-b border-solid border-gray-600
+  @apply border-b border-solid border-dark-9;
 }
 th {
-    @apply border-b border-solid border-gray-600
+  @apply border-b border-solid border-dark-9;
 }
 .email-span {
-    @apply text-gray-600
+  @apply text-typography-2;
 }
 .email-span:hover {
-    @apply text-gray-300 cursor-pointer
+  @apply text-typography-3 cursor-pointer;
 }
 
 .row-username {
-    align-items: center;
-    column-gap: 10px;
-  }
-  
-  .row-username .user-avatar {
-    border-radius: 100%;
-  }
-  
+  align-items: center;
+  column-gap: 10px;
+}
+
+.row-username .user-avatar {
+  border-radius: 100%;
+}
 
 /* FOOTER */
 .table-footer_container {
-    @apply flex justify-end p-2
+  @apply flex justify-end p-2;
 }
 .table-footer-border {
-    @apply border-2 border-solid border-gray-600
+  @apply border-2 border-solid border-dark-9;
 }
 .table-footer-button_container {
-    @apply  pt-2 pb-1 pl-2 pr-2 rounded-xl 
+  @apply pt-2 pb-1 pl-2 pr-2 rounded-xl;
 }
 
 .filter .d-action .dropdown {
-    width: 10rem;
+  width: 10rem;
 }
-
-
 
 .testnyaa {
- display: none;
+  display: none;
 }
 .test:hover + .testnyaa {
-    display: block;
+  display: block;
 }
 .testnyaa:hover {
-    display: block;
+  display: block;
 }

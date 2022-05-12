@@ -194,7 +194,7 @@ function SummaryPage() {
               <div
                 className={clsxm(
                   option === 'daily'
-                    ? 'bg-primary-100 card_container'
+                    ? 'bg-brand-1 card_container'
                     : 'card_container'
                 )}
                 onClickCapture={() => handleStateOfGraph('daily')}
@@ -204,7 +204,7 @@ function SummaryPage() {
               <div
                 className={clsxm(
                   option === 'monthly'
-                    ? 'bg-primary-100 card_container'
+                    ? 'bg-brand-1 card_container'
                     : 'card_container'
                 )}
                 onClickCapture={() => handleStateOfGraph('monthly')}
@@ -214,7 +214,7 @@ function SummaryPage() {
               <div
                 className={clsxm(
                   option === 'yearly'
-                    ? 'bg-primary-100 card_container'
+                    ? 'bg-brand-1 card_container'
                     : 'card_container'
                 )}
                 onClickCapture={() => handleStateOfGraph('yearly')}
@@ -246,7 +246,7 @@ function SummaryPage() {
                   return (
                     <div
                       key={idx}
-                      className='flex justify-between p-3 border-b-2 border-solid border-gray-600'
+                      className='flex justify-between p-3 border-b-2 border-solid border-dark-9'
                     >
                       <div className='flex justify-center gap-3'>
                         <img

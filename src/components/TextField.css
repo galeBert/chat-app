@@ -2,102 +2,99 @@
 .valid input[type='text'],
 .valid input[type='password'],
 .valid input[type='number'] {
-    @apply border-primary-100 text-primary-100;
+  @apply border-brand-1 text-brand-1;
 }
 
 .valid .feedback {
-    @apply border-primary-100;
+  @apply border-brand-1;
 }
 
 .invalid input[type='email'],
 .invalid input[type='text'],
 .invalid input[type='number'],
 .invalid input[type='password'] {
-    @apply border-yellow-100 text-yellow-100
+  @apply border-status-6 text-status-6;
 }
 
 .invalid .feedback {
-    @apply border-red-600;
+  @apply border-light-5;
 }
 
 .textfield-container {
-    @apply relative w-full h-14 my-3
+  @apply relative w-full h-14 my-3;
 }
 
 .textfield-input {
-    @apply absolute  p-3.5 pt-8 top-0 left-0 w-full h-full text-base ring-1 ring-dark-100 rounded-md outline-none bg-transparent z-0
+  @apply absolute  p-3.5 pt-8 top-0 left-0 w-full h-full text-base ring-1 ring-dark-1 rounded-md outline-none bg-none z-0;
 }
 
-
 .textfield-label {
-    @apply absolute top-4 left-3 duration-200 cursor-text
+  @apply absolute top-4 left-3 duration-200 cursor-text;
 }
 
 /*Input focus move up label*/
 
-.textfield-input:focus+.textfield-label {
-    @apply top-1 left-3.5 text-primary-100 text-sm font-medium z-10 bg-transparent
+.textfield-input:focus + .textfield-label {
+  @apply top-1 left-3.5 text-brand-1 text-sm font-medium z-10 bg-none;
 }
 
 /*Input focus sticky top label*/
 
-.textfield-input:not(:placeholder-shown).textfield-input:not(:focus)+.textfield-label {
-    @apply top-1 left-3.5 text-sm font-medium z-10 bg-transparent
+.textfield-input:not(:placeholder-shown).textfield-input:not(:focus)
+  + .textfield-label {
+  @apply top-1 left-3.5 text-sm font-medium z-10 bg-none;
 }
-
 
 /*Input focus*/
 
 .textfield-input:focus {
-@apply ring-2 ring-primary-100
+  @apply ring-2 ring-brand-1;
 }
-
 
 /* TESTING2 */
 .dob-container {
-    border: 1px solid black;
-    @apply  flex relative rounded-md h-12 p-2 mb-2;
+  border: 1px solid black;
+  @apply flex relative rounded-md h-12 p-2 mb-2;
 }
 .dob-input {
-    @apply h-16 p-2 absolute bottom-0;
+  @apply h-16 p-2 absolute bottom-0;
 }
 
 .dob_label {
-    @apply top-2 left-2;
+  @apply top-2 left-2;
 }
 
-.dob-container:focus-within  {
-    @apply  border-2 bg-transparent; 
+.dob-container:focus-within {
+  @apply border-2 bg-none;
 }
 
-.dob-container:focus-within > label  {
-    @apply  opacity-0;
+.dob-container:focus-within > label {
+  @apply opacity-0;
 }
-.dob_input:not(:focus)+.dob_label {
-    @apply opacity-0;
+.dob_input:not(:focus) + .dob_label {
+  @apply opacity-0;
 }
 .dob_input:not(:focus)::placeholder {
-    @apply opacity-0;
+  @apply opacity-0;
 }
 .dob-main_label {
-    @apply absolute h-1 w-1 top-5 left-4 flex items-center;
+  @apply absolute h-1 w-1 top-5 left-4 flex items-center;
 }
 .dob-input_container {
-    @apply flex flex-col-reverse;
+  @apply flex flex-col-reverse;
 }
 
 .form_container {
-    margin-bottom: -7px;
-    margin-left: 30px;
-    @apply flex justify-center;
+  margin-bottom: -7px;
+  margin-left: 30px;
+  @apply flex justify-center;
 }
-.form_container:focus-within >div> .dob_label {
-    @apply  opacity-100 ;
+.form_container:focus-within > div > .dob_label {
+  @apply opacity-100;
 }
-.form_container:focus-within >div> .dob_input::placeholder {
-    @apply  opacity-100;
+.form_container:focus-within > div > .dob_input::placeholder {
+  @apply opacity-100;
 }
-.form_container:not(:focus-within) >div> .dob_input {
-    @apply  opacity-0;
+.form_container:not(:focus-within) > div > .dob_input {
+  @apply opacity-0;
 }
-

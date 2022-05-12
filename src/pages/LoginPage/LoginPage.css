@@ -3,7 +3,7 @@
 }
 
 .logo-container {
-  @apply flex flex-col w-full justify-center items-center py-2 pl-2  text-dark-100;
+  @apply flex flex-col w-full justify-center items-center py-2 pl-2  text-dark-1;
   /* fill-current */
 }
 
@@ -17,11 +17,11 @@
 
 .login-input,
 .login-input:placeholder-shown {
-  @apply text-center text-dark-600 h-10 rounded-md;
+  @apply text-center text-dark-6 h-10 rounded-md;
 }
 
 .login-input-error {
-  @apply border-red-300 border-solid border-2;
+  @apply border-light-5 border-solid border-2;
 }
 
 .login-logo {

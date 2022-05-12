@@ -10,7 +10,9 @@ function Divider({ text, className }) {
       </div>
       <div className='relative flex justify-center'>
         {text && (
-          <span className='px-2 bg-gray-100 text-sm text-gray-600'>{text}</span>
+          <span className='px-2 bg-dark-9 text-sm text-typography-2'>
+            {text}
+          </span>
         )}
       </div>
     </div>

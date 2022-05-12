@@ -38,7 +38,7 @@ export default function Modal({
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Dialog.Overlay className='fixed inset-0 bg-gray-300/40 transition-opacity' />
+            <Dialog.Overlay className='fixed inset-0 border-dark-9/40 transition-opacity' />
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
@@ -58,21 +58,18 @@ export default function Modal({
             leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
           >
             <div className='inline-block align-bottom overflow-visible shadow-md transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full'>
-              <div className='bg-dark-100 p-3 rounded-xl'>
+              <div className='bg-dark-1 p-3 rounded-xl'>
                 <Dialog.Title className='flex flex-row justify-center py-2 border-b border-gray-300 text-lg mb-3 dark:border-dark-50'>
-                  <span className='grow text-gray-100'>
+                  <span className='grow text-dark-9'>
                     {modalTitle || 'Modal'}
                   </span>
                   <button
-                    className='w-6 absolute right-0 mr-2 rounded-md text-gray-600 hover:text-dark-100 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-100 dark:text-gray-300 dark:hover:text-gray-100'
+                    className='w-6 absolute right-0 mr-2 rounded-md text-typography-2 hover:text-dark-1 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-1 dark:text-typography-3 dark:hover:text-dark-9'
                     onClick={() => modal.actions.setOpenModal(false)}
                     type='button'
                   >
                     <span className='sr-only'>Close</span>
-                    <XIcon
-                      aria-hidden='true'
-                      className='h-6 w-6 text-gray-100'
-                    />
+                    <XIcon aria-hidden='true' className='h-6 w-6 text-dark-9' />
                   </button>
                 </Dialog.Title>
                 <div className='m-4'>{children}</div>
@@ -82,7 +79,7 @@ export default function Modal({
                       Cancel
                     </button>
                     <button
-                      className=' bg-primary-100 rounded-md p-2'
+                      className=' bg-brand-1 rounded-md p-2'
                       onClick={handleClick}
                     >
                       Confirm

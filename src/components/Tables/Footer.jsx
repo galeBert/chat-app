@@ -93,16 +93,18 @@ const Footer = ({
       </div>
       {!props.noPagination && (
         <div>
-          <div className='flex border-2 border-solid border-gray-600 rounded-lg'>
+          <div className='flex border-2 border-solid border-dark-9 rounded-lg'>
             <button disabled={number === 0} onClick={handlePrevNext}>
-              <span className='text-white pt-1 pb-1 pl-2 pr-2'>Prev</span>
+              <span className='text-typography-1 pt-1 pb-1 pl-2 pr-2'>
+                Prev
+              </span>
             </button>
             {range.slice(paging.start, paging.limit).map((data, idx) => {
               return (
                 <button
                   key={idx}
-                  className={`text-white border-l-2 border-solid border-gray-600 pt-1 pb-1 pl-2 pr-2 ${
-                    !!(data === number + 1) && 'bg-primary-100'
+                  className={`text-typography-1 border-l-2 border-solid border-dark-9 pt-1 pb-1 pl-2 pr-2 ${
+                    !!(data === number + 1) && 'bg-brand-1'
                   }`}
                   onClick={handleClick}
                 >
@@ -112,14 +114,16 @@ const Footer = ({
             })}
             {!!(pages && pages - number >= 5) && (
               <button
-                className='text-white border-l-2 border-r-2 border-solid border-gray-600 pt-1 pb-1 pl-2 pr-2'
+                className='text-typography-1 border-l-2 border-r-2 border-solid border-dark-9 pt-1 pb-1 pl-2 pr-2'
                 disabled
               >
                 <span>...</span>
               </button>
             )}
             <button disabled={number >= pages} onClick={handlePrevNext}>
-              <span className='text-white pt-1 pb-1 pl-2 pr-2'>Next</span>
+              <span className='text-typography-1 pt-1 pb-1 pl-2 pr-2'>
+                Next
+              </span>
             </button>
           </div>
         </div>

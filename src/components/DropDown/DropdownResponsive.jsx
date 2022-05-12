@@ -97,7 +97,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                 <li
                   key={key}
                   className={`dropdown-item ${uniqueId || 0} relative ${
-                    isActive ? 'bg-primary-100' : ''
+                    isActive ? 'bg-brand-1' : ''
                   }`}
                   onClickCapture={() => {
                     if (typeof onClick === 'function') {
@@ -115,7 +115,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                   }}
                 >
                   {child && (
-                    <button className='w-3 h-3 absolute left-1 top-4 bg-transparent'>
+                    <button className='w-3 h-3 absolute left-1 top-4 bg-none'>
                       <ChevronLeftIcon />
                     </button>
                   )}
@@ -165,7 +165,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                                   <div>
                                     <span>From</span>
                                     <input
-                                      className=' w-full bg-transparent text-white border border-solid border-gray-600 rounded-md p-1'
+                                      className=' w-full bg-none text-typography-1 border border-solid border-dark-9 rounded-md p-1'
                                       onChange={(e) =>
                                         handleTimestamp(
                                           e,
@@ -180,7 +180,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                                   <div>
                                     <span>To</span>
                                     <input
-                                      className=' w-full bg-transparent text-white border border-solid border-gray-600 rounded-md p-1'
+                                      className=' w-full bg-none text-typography-1 border border-solid border-dark-9 rounded-md p-1'
                                       onChange={(e) =>
                                         handleTimestamp(
                                           e,
@@ -194,7 +194,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                                   </div>
                                   <div className='flex justify-end items-center'>
                                     <button
-                                      className=' disabled:cursor-not-allowed disabled:bg-primary-100/60  bg-primary-100 pl-2 mt-3 pr-2 pt-1 pb-1 w-20 rounded-lg'
+                                      className=' disabled:cursor-not-allowed disabled:bg-brand-1/60  bg-brand-1 pl-2 mt-3 pr-2 pt-1 pb-1 w-20 rounded-lg'
                                       disabled={
                                         !props.timestamp?.to ||
                                         !props.timestamp?.from

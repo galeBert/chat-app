@@ -6,12 +6,12 @@
 }
 
 .li-drop:hover {
-  @apply bg-primary-100 w-full h-full;
+  @apply bg-brand-1 w-full h-full;
 }
 
 .ul-drop {
   display: none;
-  @apply absolute bg-dark-100 w-28 mt-2 flex items-center justify-around flex-col list-none opacity-0 z-10 
+  @apply absolute bg-dark-1 w-28 mt-2 flex items-center justify-around flex-col list-none opacity-0 z-10 
     border border-gray-300  rounded-lg border-solid;
   transform: translateY(-10px);
   transition: all 0.4s ease;

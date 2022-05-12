@@ -1,35 +1,37 @@
 .icon-stroke-color {
-  @apply text-dark-100 dark:text-gray-100;
+  @apply text-dark-1 dark:text-dark-9;
   /* stroke-current */
+  /* dark: should grey */
 }
 
 .icon-fill-color {
-  @apply text-dark-100 dark:text-gray-100;
+  @apply text-dark-1 dark:text-dark-9;
   /* fill-current */
+  /* dark: should grey */
 }
 .flex-center {
   @apply flex justify-center items-center h-full;
 }
 h1 {
-  @apply text-white text-xl;
+  @apply text-typography-1 text-xl;
 }
 h2 {
-  @apply text-white;
+  @apply text-typography-1;
 }
 h3 {
-  @apply text-white;
+  @apply text-typography-1;
 }
 h4 {
-  @apply text-white;
+  @apply text-typography-1;
 }
 h5 {
-  @apply text-white;
+  @apply text-typography-1;
 }
 span {
-  @apply text-white text-sm;
+  @apply text-typography-1 text-sm;
 }
 .card {
-  @apply bg-dark-100 w-full h-full
+  @apply bg-dark-1 w-full h-full
   2xl:pl-10
   2xl:pr-10
   pl-6
@@ -42,7 +44,7 @@ span {
 
 /* add custom width and height to use this class */
 .loading {
-  @apply border-2 border-solid border-gray-100 rounded-full;
+  @apply border-2 border-solid border-dark-9 rounded-full;
   border-top-color: #7f57ff;
   animation: loading 1s linear infinite;
 }

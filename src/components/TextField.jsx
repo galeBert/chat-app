@@ -80,7 +80,7 @@ const TextField = ({
         <button
           type="button"
           onClick={handleCheckUsername}
-          className="absolute flex flex-row items-center right-3.5 top-3 p-1 px-3 rounded-md bg-yellow-300 text-gray-100 font-extrabold"
+          className="absolute flex flex-row items-center right-3.5 top-3 p-1 px-3 rounded-md bg-yellow-300 text-dark-9 font-extrabold"
           disabled={loading}
         >
           {loading ? <Loader size="6" /> : "Check"}
@@ -94,9 +94,9 @@ const TextField = ({
           type='button'
         >
           {visible ? (
-            <EyeIcon className='fill-current text-white w-4' />
+            <EyeIcon className='fill-current text-typography-1 w-4' />
           ) : (
-            <EyeOffIcon className='fill-current text-white w-4' />
+            <EyeOffIcon className='fill-current text-typography-1 w-4' />
           )}
         </button>
       )}

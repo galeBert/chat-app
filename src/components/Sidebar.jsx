@@ -80,16 +80,16 @@ export default function Sidebar() {
       child: null,
     },
   ]);
-
+  // gray apply on line 89 and 92 160 199
   const activeClsx = (isActive) => {
     const restCss =
       ' group flex items-center px-2 py-2 font-semibold rounded-md antialiased';
     if (isActive)
       return clsxm(
-        `bg-dark-600 border-2 border-solid border-primary-100 text-gray-100 ${restCss}`
+        `bg-dark-6 border-2 border-solid border-brand-1 text-dark-9 ${restCss}`
       );
     return clsxm(
-      `text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 ${restCss}`
+      `text-dark-9 hover:bg-dark-6 hover:bg-opacity-50 dark:text-dark-9 ${restCss}`
     );
   };
   const handleActive = (item) => {
@@ -133,7 +133,7 @@ export default function Sidebar() {
     <nav aria-label='Sidebar' className='sticky top-0 divide-y divide-gray-300'>
       <div className='flex flex-col overflow-y-hidden'>
         <Link className='logo-container mb-4' to='/'>
-          <Logo className='lg:w-40 sm:w-20 text-gray-300' />
+          <Logo className='lg:w-40 sm:w-20 text-typography-3' />
         </Link>
         <nav className='border-b border-t border-dark-50 py-4 mx-2 space-y-2'>
           {navigation.map((item, idx) => {
@@ -157,7 +157,7 @@ export default function Sidebar() {
                         <item.icon
                           aria-hidden='true'
                           className={clsxm(
-                            item.current ? 'text-gray-100' : '',
+                            item.current ? 'text-dark-9' : '',
                             'mx-auto lg:mx-0 lg:mr-2 shrink-0 h-7 w-7'
                           )}
                         />
@@ -196,7 +196,7 @@ export default function Sidebar() {
                             <datas.icon
                               aria-hidden='true'
                               className={clsxm(
-                                datas.current ? 'text-gray-100' : '',
+                                datas.current ? 'text-dark-9' : '',
                                 'mx-auto lg:mx-0 lg:mr-2 shrink-0 h-7 w-7'
                               )}
                             />

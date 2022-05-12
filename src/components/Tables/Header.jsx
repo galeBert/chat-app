@@ -216,14 +216,14 @@ const Header = ({
           {!props.noAddNew &&
             (props.addNewLink ? (
               <Link
-                className='bg-dark-600 rounded-lg text-white ml-2 p-1'
+                className='bg-dark-6 rounded-lg text-typography-1 ml-2 p-1'
                 to={props.addNewLink}
               >
                 <span>Add</span>
               </Link>
             ) : (
               <button
-                className='bg-dark-600 rounded-md text-white w-16'
+                className='bg-dark-6 rounded-md text-typography-1 w-16'
                 onClick={props.addNewFunc}
               >
                 Add

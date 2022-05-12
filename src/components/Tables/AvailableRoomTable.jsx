@@ -124,7 +124,7 @@ const AvailableTable = ({ data, isLoading }) => {
               idx
             ) => {
               return (
-                <tr key={idx} className='h-full hover:bg-dark-300'>
+                <tr key={idx} className='h-full hover:bg-dark-3'>
                   <td className=''>
                     <div className='flex justify-center items-center h-full p-2 '>
                       <img

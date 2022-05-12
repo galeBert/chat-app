@@ -207,7 +207,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
 
   const classInputStyle = clsxm(
     'test w-7 h-7 rounded-sm absolute -top-11 left-4',
-    { 'bg-transparent': !previewImg }
+    { 'bg-none': !previewImg }
   );
 
   const classNameImg = useMemo(
@@ -238,7 +238,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
           ref={TextInput}
         />
         <button
-          className='text-white absolute right-7 w-16 top-4 bg-dark-300 '
+          className='text-typography-1 absolute right-7 w-16 top-4 bg-dark-3 '
           disabled={title === 'Nouns' && !previewImg && loading}
           onClick={() => handleSubmitForm(title)}
           type='submit'
@@ -325,14 +325,14 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
                         {datas?.avatarUrl && (
                           <img
                             alt='img_broken'
-                            className='text-white absolute left-4 w-7 h-7 rounded-md top-4'
+                            className='text-typography-1 absolute left-4 w-7 h-7 rounded-md top-4'
                             src={datas?.avatarUrl}
                           />
                         )}
                         {datas?.hex && (
                           <div className='relative'>
                             <div
-                              className='test w-7 h-7 rounded-md absolute -top-11 bg-primary-100 left-4'
+                              className='test w-7 h-7 rounded-md absolute -top-11 bg-brand-1 left-4'
                               style={{
                                 backgroundColor: `${
                                   isNewHex?.hex && isNewHex.id === datas.id

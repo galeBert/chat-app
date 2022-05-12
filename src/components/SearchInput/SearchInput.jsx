@@ -12,7 +12,7 @@ const SearchInput = ({
   return (
     <div className='relative'>
       <SearchIcon
-        className='absolute w-5 h-5  left-4 text-gray-600'
+        className='absolute w-5 h-5  left-4 text-typography-2'
         style={{ top: 9 }}
       />
       <input
