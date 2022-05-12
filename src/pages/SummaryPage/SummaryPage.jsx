@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import curiousLogo from '../../assets/curious_icon_png.png';
 import insvireLogo from '../../assets/horizontal logo.png';
+import { SkeletonText } from '../../components/Skeleton/Skeleton';
 import SmallGraph from '../../components/SmallGraph/SmallGraph';
 import Table from '../../components/Tables';
 // Components
@@ -183,6 +184,7 @@ function SummaryPage() {
                 onClick={handleChangeGraph}
                 simple={data?.name !== 'New User'}
               />
+              <SkeletonText />
             </div>
           );
         })}

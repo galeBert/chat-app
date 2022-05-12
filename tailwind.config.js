@@ -68,6 +68,15 @@ module.exports = {
       fontFamily: {
         sans: ['"Avenir Book"', ...fontFamily.sans],
       },
+      animation: {
+        skeleton: 'pulses 1s linear infinite alternate',
+      },
+      keyframes: {
+        pulses: {
+          '0%': { backgroundColor: 'hsl(286, 15%, 21%)' },
+          '100%': { backgroundColor: 'hsl(287, 15%, 36%)' },
+        },
+      },
     },
   },
   plugins: [],

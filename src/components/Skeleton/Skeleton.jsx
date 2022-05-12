@@ -1,24 +1,22 @@
-import './Skeleton.css';
-
 import StatusContainer from '../../components/StatusContainer';
 
 import { DotsHorizontalIcon } from '@heroicons/react/outline';
 
 export const SkeletonText = () => (
-  <div className='skeleton w-full h-3 m-auto' />
+  <div className='animate-skeleton w-full h-3 m-auto' />
 );
 
 export const SkeletonImageRound = () => (
-  <div className='skeleton w-10 h-10 m-1 rounded-md' />
+  <div className='animate-skeleton w-10 h-10 m-1 rounded-md' />
 );
 
 export const SkeletonMedia = () => (
   <div className='flex gap-2 justify-center'>
-    <div className='skeleton w-4 h-4 rounded-sm' />
-    <div className='skeleton w-4 h-4 rounded-sm' />
-    <div className='skeleton w-4 h-4 rounded-sm' />
-    <div className='skeleton w-4 h-4 rounded-sm' />
-    <div className='skeleton w-4 h-4 rounded-sm' />
+    <div className='animate-skeleton w-4 h-4 rounded-sm' />
+    <div className='animate-skeleton w-4 h-4 rounded-sm' />
+    <div className='animate-skeleton w-4 h-4 rounded-sm' />
+    <div className='animate-skeleton w-4 h-4 rounded-sm' />
+    <div className='animate-skeleton w-4 h-4 rounded-sm' />
   </div>
 );
 
@@ -119,7 +117,7 @@ export const AvailableRoomSkeleton = () => {
     <tr>
       <td className='p-5'>
         <div className='flex justify-center items-center'>
-          <div className='skeleton w-20 h-20 rounded-full' />
+          <div className='animate-skeleton w-20 h-20 rounded-full' />
         </div>
       </td>
       <td className='text-center'>
