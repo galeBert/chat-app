@@ -100,10 +100,10 @@ const AdminTable = ({ data }) => {
               return (
                 <tr key={idx}>
                   <td className='p-5'>
-                    <div className='flex row-username'>
+                    <div className='flex items-center gap-x-2'>
                       <img
                         alt='pp'
-                        className='table-photo-container'
+                        className='w-10 h-10 rounded object-cover m-1 mr-3'
                         src={profileImage || blank_profile_picture}
                       />
                       <span>{name}</span>

@@ -93,7 +93,7 @@ const UserPostTable = ({ data, isLoading }) => {
   };
   const skeletonLoop = [1, 2, 3, 4, 5];
   return (
-    <table className='table-container'>
+    <table className='w-full h-full pl-5 pb-5 pr-5 pt-4 bg-dark-1 rounded-xl'>
       <thead>
         <tr>
           {tableHead.map((docs, idx) => {

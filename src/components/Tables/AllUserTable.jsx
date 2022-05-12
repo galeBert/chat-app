@@ -1,5 +1,3 @@
-import './style.css';
-
 import { useState } from 'react';
 
 import noPhoto from '../../assets/blank_profile_picture.png';
@@ -34,7 +32,7 @@ const AllUserTable = ({ data, props, ...rest }) => {
   };
   const skeletonLoop = [1, 2, 3, 4, 5];
   return (
-    <table className='table-container  h-4'>
+    <table className='w-full pl-5 pb-5 pr-5 pt-4 bg-dark-1 rounded-xl  h-4'>
       <thead>
         <tr>
           {headers.map((label, key) => (
@@ -73,12 +71,12 @@ const AllUserTable = ({ data, props, ...rest }) => {
               const datetime =
                 DateTime.now(joinDate).toFormat('dd MMM yyyy hh:mm');
               return (
-                <tr key={idx}>
+                <tr key={idx} className='text-typography-1'>
                   <td className=''>
-                    <div className='flex row-username'>
+                    <div className='flex items-center gap-x-2'>
                       <img
                         alt='pp'
-                        className='table-photo-container'
+                        className='w-10 h-10 rounded object-cover m-1 mr-3'
                         src={profilePicture || noPhoto}
                       />
                       <Link to={`/user/${username}`}>

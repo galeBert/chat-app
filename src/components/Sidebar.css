@@ -1,9 +1,0 @@
-.button-container {
-  @apply flex items-center;
-}
-.sidebar-child_container {
-  @apply opacity-0 pointer-events-none hidden bg-dark-1 rounded-md;
-}
-.sidebar-child_container.active {
-  @apply opacity-100 pointer-events-auto block;
-}

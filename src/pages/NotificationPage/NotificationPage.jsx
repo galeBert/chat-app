@@ -1,5 +1,3 @@
-import './NotificationPage.css';
-
 import { useEffect, useState } from 'react';
 
 import Table from '../../components/Tables';

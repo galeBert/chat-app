@@ -11,7 +11,6 @@ import NotificationTable from './NotificationTable';
 import RandomizationTable from './RandomizationTable';
 import ReportedListTable from './ReportedListTable';
 import ReportedPostTable from './ReportedPostTable';
-import SummaryTable from './TableSummary';
 import UserPostTable from './UserPostTable';
 
 const Table = ({
@@ -176,9 +175,6 @@ const Table = ({
     case 'Reported List':
       table = <ReportedListTable data={data} />;
       break;
-    case 'Summary':
-      table = <SummaryTable data={data} />;
-      break;
     case 'Notification':
       table = <NotificationTable data={data} />;
       break;
@@ -187,7 +183,9 @@ const Table = ({
   }
 
   return (
-    <div className={`table-container ${height} flex justify-between flex-col`}>
+    <div
+      className={`w-full h-full pl-5 pb-5 pr-5 pt-4 bg-dark-1 rounded-xl ${height} flex justify-between flex-col`}
+    >
       <div>
         <Header
           filter={filter}

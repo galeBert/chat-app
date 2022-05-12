@@ -1,5 +1,3 @@
-import './RandomizationPage.css';
-
 import { useState } from 'react';
 
 import Button from '../../components/Button';
@@ -121,18 +119,18 @@ const RandomizationPage = () => {
   const activeThemeCount =
     hasData && searchThemes.filter((docs) => docs.isActive === true).length;
   return (
-    <div className='randomization-container p-4'>
+    <div className='w-full bg-dark-1 p-4'>
       <div className='mb-8'>
         <h1 className='p-2'>Select Theme</h1>
         <div className='flex gap-5 items-center'>
           <div className='relative w-96'>
             <input
-              className='addnew-input'
+              className='bg-none pl-2 w-full ml-2 border-2 border-solid border-dark-9 h-10 rounded-md'
               onChange={(e) => setInput(e.target.value)}
               placeholder='Enter Name...'
             />
             <button
-              className='addnew-button'
+              className='absolute right-0 top-2 w-24 bg-dark-6 rounded-sm'
               disabled={!input.length}
               onClick={handleAddNewTheme}
             >
@@ -144,19 +142,24 @@ const RandomizationPage = () => {
       </div>
 
       <div className='grid grid-cols-4 gap-5'>
-        {loading && <div className='theme-card skeleton' />}
+        {loading && (
+          <div className='w-full max-w-sm h-44 border-2 border-solid border-dark-9 rounded-md flex justify-between flex-col p-2 hover:bg-dark-6 m-2 skeleton' />
+        )}
         {!loading &&
           hasData &&
           searchThemes.map((theme, key) => {
             return (
-              <div key={key} className='theme-card '>
+              <div
+                key={key}
+                className='w-full max-w-sm h-44 border-2 border-solid border-dark-9 rounded-md flex justify-between flex-col p-2 hover:bg-dark-6 m-2'
+              >
                 {theme.isActive && (
                   <div className='absolute w-4 h-4 text-green-300'>
                     <CheckCircleIcon />
                   </div>
                 )}
 
-                <div className='header'>
+                <div className='flex justify-end'>
                   <div className=' w-4'>
                     <NewDropDown
                       options={[
@@ -179,7 +182,7 @@ const RandomizationPage = () => {
                   </div>
                 </Link>
 
-                <div className='footer'>
+                <div className='flex gap-2 justify-center -mb-3'>
                   <Button
                     disabled={theme.isActive}
                     onClick={handleSetStatusThemes('active', theme.id)}

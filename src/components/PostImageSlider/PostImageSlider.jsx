@@ -1,4 +1,3 @@
-import './PostImageSlider.css';
 import 'react-image-lightbox/style.css';
 
 import { useState } from 'react';

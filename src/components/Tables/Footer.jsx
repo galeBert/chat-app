@@ -1,8 +1,3 @@
-// Modules
-
-// Styles
-import './style.css';
-
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 const Footer = ({

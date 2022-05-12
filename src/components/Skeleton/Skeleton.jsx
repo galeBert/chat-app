@@ -26,7 +26,7 @@ export const AllUserSkeleton = () => {
   return (
     <tr>
       <td>
-        <div className='flex row-username'>
+        <div className='flex items-center gap-x-2'>
           <SkeletonImageRound />
           <SkeletonText />
         </div>

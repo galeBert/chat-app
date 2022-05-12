@@ -1,5 +1,3 @@
-import './SmallGraph.css';
-
 import {
   ArrowNarrowDownIcon,
   ArrowNarrowUpIcon,
@@ -14,7 +12,10 @@ const SmallGraph = ({ data, simple, onClick, loading }) => {
     }
   };
   return (
-    <div className='cursor-pointer' onClickCapture={handleClick}>
+    <div
+      className='cursor-pointer text-typography-1'
+      onClickCapture={handleClick}
+    >
       {simple ? (
         <div className='card text-left flex justify-between item flex-col w-80'>
           <div>
@@ -22,11 +23,13 @@ const SmallGraph = ({ data, simple, onClick, loading }) => {
           </div>
 
           <div className='flex justify-between items-center'>
-            <div className='card-container'>
+            <div>
               {loading ? (
                 <div className='skeleton w-11 h-9' />
               ) : (
-                <h1>{total}</h1>
+                <h1 className='inline 2xl:text-3xl text-xl text-brand-1'>
+                  {total}
+                </h1>
               )}
             </div>
           </div>
@@ -41,8 +44,10 @@ const SmallGraph = ({ data, simple, onClick, loading }) => {
             <div className='skeleton w-full h-9 mt-2' />
           ) : (
             <div className='flex justify-between items-center'>
-              <div className='card-container'>
-                <h1>{total}</h1>
+              <div>
+                <h1 className='inline 2xl:text-3xl text-xl text-brand-1'>
+                  {total}
+                </h1>
               </div>
               <div className='flex'>
                 {percent > 0 ? (

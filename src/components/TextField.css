@@ -25,7 +25,7 @@
 }
 
 .textfield-input {
-  @apply absolute  p-3.5 pt-8 top-0 left-0 w-full h-full text-base ring-1 ring-dark-1 rounded-md outline-none bg-none z-0;
+  @apply absolute  p-3.5 pt-8 top-0 left-0 w-full h-full text-base ring-1 ring-dark-1 rounded-md outline-none bg-brand-1 bg-opacity-0 z-0;
 }
 
 .textfield-label {
@@ -35,14 +35,14 @@
 /*Input focus move up label*/
 
 .textfield-input:focus + .textfield-label {
-  @apply top-1 left-3.5 text-brand-1 text-sm font-medium z-10 bg-none;
+  @apply top-1 left-3.5 text-brand-1 text-sm font-medium z-10 bg-brand-1 bg-opacity-0;
 }
 
 /*Input focus sticky top label*/
 
 .textfield-input:not(:placeholder-shown).textfield-input:not(:focus)
   + .textfield-label {
-  @apply top-1 left-3.5 text-sm font-medium z-10 bg-none;
+  @apply top-1 left-3.5 text-sm font-medium z-10 bg-brand-1 bg-opacity-0;
 }
 
 /*Input focus*/
@@ -65,7 +65,7 @@
 }
 
 .dob-container:focus-within {
-  @apply border-2 bg-none;
+  @apply border-2 bg-brand-1 bg-opacity-0;
 }
 
 .dob-container:focus-within > label {

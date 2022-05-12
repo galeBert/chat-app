@@ -1,5 +1,3 @@
-import './UsersPage.css';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import DoughnutChart from '../../components/Charts/DoughnutChart';
@@ -9,6 +7,7 @@ import Areas from '../../components/Visual/Areas';
 import { SEARCH_USER } from '../../graphql/mutation';
 import { GET_GRAPH, GET_STATS_USERS_AGE } from '../../graphql/query';
 import { handleHeader } from '../../hooks/handleHeader';
+import clsxm from '../../utils/clsxm';
 
 import { useLazyQuery, useQuery } from '@apollo/client';
 import JsPDF from 'jspdf';
@@ -36,6 +35,12 @@ const UserPage = () => {
   const _prevSearch = useRef('');
   const [filters, setFilters] = useState('');
 
+  const graphButton = (key) => {
+    return clsxm(
+      'cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased',
+      { 'bg-brand-1': option === key }
+    );
+  };
   const queryString = useHistory().location.search;
   const parseQs = parse(queryString.replace('?', '')) || '';
 
@@ -239,7 +244,7 @@ const UserPage = () => {
   }));
   return (
     <div>
-      <div className='grid-container'>
+      <div className='grid grid-cols-5  gap-4 h-full'>
         {summaryData.map((datas, idx) => {
           return (
             <div key={idx} className='h-full'>
@@ -252,7 +257,7 @@ const UserPage = () => {
             </div>
           );
         })}
-        <div className='card top-right relative'>
+        <div className='card h-full row-span-2 relative'>
           <h1>Average Age User</h1>
           {loadingStats ? (
             <div>Loading ...</div>
@@ -287,32 +292,26 @@ const UserPage = () => {
           </div>
         </div>
 
-        <div className='card bottom-left relative'>
+        <div className='card col-span-4 h-full relative'>
           <h1 className='absolute z-20 top-10 left-12'>Daily New User</h1>
           <div style={{ height: 250 }}>
             <Areas data={graph} loading={loading} />
           </div>
           <div className='mt-4 flex justify-end gap-3'>
             <div
-              className={`${
-                option === 'daily' ? 'bg-brand-1' : ''
-              } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+              className={graphButton('daily')}
               onClickCapture={() => handleStateOfGraph('daily')}
             >
               Daily
             </div>
             <div
-              className={`${
-                option === 'monthly' ? 'bg-brand-1' : ''
-              } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+              className={graphButton('monthly')}
               onClickCapture={() => handleStateOfGraph('monthly')}
             >
               Monthly
             </div>
             <div
-              className={`${
-                option === 'yearly' ? 'bg-brand-1' : ''
-              } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+              className={graphButton('yearly')}
               onClickCapture={() => handleStateOfGraph('yearly')}
             >
               Yearly

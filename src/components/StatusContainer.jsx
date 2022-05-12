@@ -1,10 +1,10 @@
 const StatusContainer = ({ children, ...props }) => {
   return (
     <div
-      className={`status-container text-center ${
+      className={`rounded-2xl w-24 h-8 pt-0.5 pb-0.5 text-center ${
         children
           ? children.toLowerCase() === 'active'
-            ? 'bg-yellow-100'
+            ? 'bg-status-6'
             : children !== 'Flag' || children !== 'Banned'
             ? 'bg-brand-1'
             : 'bg-red-100'

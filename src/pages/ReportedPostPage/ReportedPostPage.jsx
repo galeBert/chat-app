@@ -1,5 +1,3 @@
-import './ReportedPostPage.css';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import SwitchButton from '../../components/SwitchButton';
@@ -10,6 +8,7 @@ import {
   GET_GRAPH,
   SEARCH_REPORTED_POST,
 } from '../../graphql/query';
+import clsxm from '../../utils/clsxm';
 
 import { useLazyQuery } from '@apollo/client';
 import JsPDF from 'jspdf';
@@ -20,6 +19,13 @@ const ReportedPostPage = () => {
   const _processPdf = useRef(false);
 
   const [option, setOption] = useState('daily');
+
+  const graphButton = (key) => {
+    return clsxm(
+      'cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased',
+      { 'bg-brand-1': option === key }
+    );
+  };
 
   const [getInitGraph, { data: dataGraph, loading: loadingGraph }] =
     useLazyQuery(GET_GRAPH);
@@ -291,25 +297,19 @@ const ReportedPostPage = () => {
         </div>
         <div className='mt-4 flex justify-end gap-3'>
           <div
-            className={`${
-              option === 'daily' ? 'bg-brand-1' : ''
-            } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+            className={graphButton('daily')}
             onClickCapture={() => handleStateOfGraph('daily')}
           >
             Daily
           </div>
           <div
-            className={`${
-              option === 'monthly' ? 'bg-brand-1' : ''
-            } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+            className={graphButton('monthly')}
             onClickCapture={() => handleStateOfGraph('monthly')}
           >
             Monthly
           </div>
           <div
-            className={`${
-              option === 'yearly' ? 'bg-brand-1' : ''
-            } cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+            className={graphButton('yearly')}
             onClickCapture={() => handleStateOfGraph('yearly')}
           >
             Yearly

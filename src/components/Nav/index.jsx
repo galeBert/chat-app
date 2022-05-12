@@ -1,5 +1,3 @@
-import './style.css';
-
 import { useEffect, useMemo, useState } from 'react';
 
 import { Autocomplete } from '../../components/Autocomplete';
@@ -52,11 +50,11 @@ export default function Nav() {
         </div>
 
         <div className=' text-right flex w-full'>
-          <div className='nav-right flex items-center justify-end w-full'>
+          <div className='flex items-center justify-end w-full'>
             <div className=''>
               <Link style={{ position: 'relative' }} to='/notification'>
                 <div style={{ marginRight: 12 }}>
-                  <BellIcon className='  w-6 h-6  inline ' />
+                  <BellIcon className='w-6 h-6 inline text-typography-1' />
                 </div>
                 {total ? (
                   <div
@@ -77,7 +75,7 @@ export default function Nav() {
                 ) : null}
               </Link>
             </div>
-            <div className='inline  text-left border-l-2 ml-7 pl-7 pr-2 border-solid border-white'>
+            <div className='inline  text-left border-l-2 ml-7 pl-7 pr-2 border-solid border-typography-1'>
               <span>{admin?.value?.name}</span>
               <br />
               <span className='text-xs'>{adminRole}</span>

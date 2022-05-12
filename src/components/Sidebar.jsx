@@ -1,5 +1,3 @@
-import './Sidebar.css';
-
 import { useState } from 'react';
 
 import { ReactComponent as AdminsIcon } from '../assets/Icon/IconAdmins.svg';
@@ -16,8 +14,6 @@ import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
-  // const history = useHistory();
-
   const [active, setActive] = useState(false);
   // const [activeName, setActiveName] = useState('Summary');
   const [name, setName] = useState('');
@@ -132,8 +128,8 @@ export default function Sidebar() {
   return (
     <nav aria-label='Sidebar' className='sticky top-0 divide-y divide-gray-300'>
       <div className='flex flex-col overflow-y-hidden'>
-        <Link className='logo-container mb-4' to='/'>
-          <Logo className='lg:w-40 sm:w-20 text-typography-3' />
+        <Link className='logo-container mb-4 text-typography-1 w-fit' to='/'>
+          <Logo className='lg:w-40 sm:w-20 text-typography-1' />
         </Link>
         <nav className='border-b border-t border-dark-50 py-4 mx-2 space-y-2'>
           {navigation.map((item, idx) => {
@@ -179,9 +175,10 @@ export default function Sidebar() {
                 {/* {console.log('bla bla', item.child, name, item.name)} */}
                 {item.child && name === item.name && (
                   <div
-                    className={`sidebar-child_container ${
-                      active ? 'active' : ''
-                    }`}
+                    className={clsxm(
+                      'opacity-0 pointer-events-none hidden bg-dark-1 rounded-md',
+                      { 'opacity-100 pointer-events-auto block': active }
+                    )}
                   >
                     {item.child.map((datas) => {
                       return (

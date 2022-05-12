@@ -1,5 +1,3 @@
-import './AllPostPage.css';
-
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import SmallGraph from '../../components/SmallGraph/SmallGraph';
@@ -233,7 +231,7 @@ const AllPostPage = () => {
 
   return (
     <div>
-      <div className='allpost-insight'>
+      <div className='flex justify-between gap-6 pb-5'>
         {summaryData &&
           summaryData.map((dataGraph, key) => {
             return (

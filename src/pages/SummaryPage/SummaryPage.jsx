@@ -1,5 +1,3 @@
-import './SummaryPage.css';
-
 import React, { useEffect, useRef, useState } from 'react';
 
 import curiousLogo from '../../assets/curious_icon_png.png';
@@ -28,6 +26,13 @@ function SummaryPage() {
   const [stateGraph, setStateGraph] = useState('user.total');
   const [option, setOption] = useState('daily');
   const [graphDisplay, setGraphDisplay] = useState('Daily New User');
+
+  const graphButton = (key) => {
+    return clsxm(
+      'cursor-pointer w-20 h-8 text-center justify-center text-dark-9 hover:bg-dark-6/50 dark:text-dark-9 group flex items-center px-2 py-2 font-semibold rounded-md antialiased',
+      { 'bg-brand-1': option === key }
+    );
+  };
   const [getInitGraph, { data, loading, refetch, called }] =
     useLazyQuery(GET_GRAPH);
   const { data: dataLogs, refetch: onSearchLog } = useQuery(GET_ADMIN_LOGS);
@@ -168,7 +173,7 @@ function SummaryPage() {
 
   return (
     <div>
-      <div className='summary-insight'>
+      <div className='grid grid-cols-5 gap-4 pt-4 pb-4 w-full'>
         {summaryData.map((datas, idx) => {
           return (
             <div key={idx} className='h-full'>
@@ -184,39 +189,27 @@ function SummaryPage() {
       </div>
 
       <div className='flex gap-4 h-full'>
-        <div className='w-2/3'>
-          <div className='card bottom-left relative'>
+        <div className='w-2/3 card'>
+          <div className='bottom-left relative'>
             <h1 className=''>{graphDisplay}</h1>
             <div style={{ height: 230 }}>
               <Areas data={graph} loading={loading} />
             </div>
             <div className='mt-4 flex justify-end gap-3'>
               <div
-                className={clsxm(
-                  option === 'daily'
-                    ? 'bg-brand-1 card_container'
-                    : 'card_container'
-                )}
+                className={graphButton('daily')}
                 onClickCapture={() => handleStateOfGraph('daily')}
               >
                 Daily
               </div>
               <div
-                className={clsxm(
-                  option === 'monthly'
-                    ? 'bg-brand-1 card_container'
-                    : 'card_container'
-                )}
+                className={graphButton('monthly')}
                 onClickCapture={() => handleStateOfGraph('monthly')}
               >
                 Monthly
               </div>
               <div
-                className={clsxm(
-                  option === 'yearly'
-                    ? 'bg-brand-1 card_container'
-                    : 'card_container'
-                )}
+                className={graphButton('yearly')}
                 onClickCapture={() => handleStateOfGraph('yearly')}
               >
                 Yearly

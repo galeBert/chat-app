@@ -1,5 +1,3 @@
-import './index.css';
-
 import { useEffect, useRef, useState } from 'react';
 
 import {
@@ -60,9 +58,9 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
     setIsOpen(false);
   };
   return (
-    <div className='d-action text-center'>
+    <div className='relative w-full h-full flex justify-center items-center'>
       <div
-        className='three-dots'
+        className='cursor-pointer'
         onClickCapture={() => setIsOpen(!isOpen)}
         ref={wrapper}
       >
@@ -74,14 +72,14 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
       </div>
       {options.length && (
         <div
-          className='dropdown'
+          className='absolute flex justify-center top-12'
           ref={refDropdown}
           style={{ zIndex: isOpen ? 1 : -10 }}
         >
           <ul
-            className={`wrapper ${left ? '-ml-24' : null} ${
-              isOpen ? 'dropdown-active' : ''
-            }`}
+            className={`w-40 text-center rounded-xl z-10 bg-dark-1 invisible border border-dark-9 border-solid ${
+              left ? '-ml-24' : null
+            } ${isOpen ? '!visible !inline ' : ''}`}
             style={{ opacity: isOpen ? 1 : 0 }}
           >
             {options.map(({ label, onClick, child, isActive, to }, key) => {
@@ -96,9 +94,9 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
               ) : (
                 <li
                   key={key}
-                  className={`dropdown-item ${uniqueId || 0} relative ${
-                    isActive ? 'bg-brand-1' : ''
-                  }`}
+                  className={`hover:cursor-pointer hover:bg-brand-1 hover:first: rounded-t-lg ${
+                    uniqueId || 0
+                  } relative ${isActive ? 'bg-brand-1' : ''}`}
                   onClickCapture={() => {
                     if (typeof onClick === 'function') {
                       onClick();
@@ -127,7 +125,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                   {/* child container */}
                   {child && (
                     <ul
-                      className={`dropdown-child ${
+                      className={`absolute top-0 bg-dark-1 border border-solid border-dark-9 rounded-md w-44 -left-44 ${
                         openChild && label === dropDownkey ? 'block' : 'hidden'
                       }`}
                     >
@@ -146,8 +144,8 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                               key={keys}
                               className={`${
                                 childHasTimeStampInput
-                                  ? 'dropdown-item-child'
-                                  : 'dropdown-item'
+                                  ? 'm-2'
+                                  : 'absolute top-0 bg-dark-1 border border-solid border-dark-9 rounded-md w-44'
                               } relative `}
                               onClickCapture={() => {
                                 if (

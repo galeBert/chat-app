@@ -129,7 +129,7 @@ const ReportedPostTable = ({
   };
 
   return (
-    <table className='table-container'>
+    <table className='w-full h-full pl-5 pb-5 pr-5 pt-4 bg-dark-1 rounded-xl'>
       <thead>
         <tr>
           {tableHead.map((labelHeader, idx) => {
@@ -158,7 +158,7 @@ const ReportedPostTable = ({
                   <div className='flex' style={{ alignItem: 'center' }}>
                     <img
                       alt=''
-                      className='table-photo-container'
+                      className='w-10 h-10 rounded object-cover m-1 mr-3'
                       src={reportedPost?.photoProfile || blank_profile_picture}
                     />
                     <span>

@@ -82,4 +82,16 @@
   html {
     font-family: Avenir Book, system-ui, sans-serif;
   }
+  td {
+    @apply border-b border-solid border-dark-9;
+  }
+  th {
+    @apply border-b border-solid border-dark-9;
+  }
+  ::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }

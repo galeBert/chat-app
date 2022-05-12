@@ -1,5 +1,3 @@
-import './style.css';
-
 import noPhoto from '../../assets/blank_profile_picture.png';
 import StatusContainer from '../../components/StatusContainer';
 import { APPROVED_REQUEST_ADMIN, SEARCH_USER } from '../../graphql/mutation';
@@ -83,10 +81,10 @@ const NotificationTable = ({ data }) => {
                   {action}
                 </td>
                 <td className=''>
-                  <div className='flex row-username'>
+                  <div className='flex items-center gap-x-2'>
                     <img
                       alt='pp'
-                      className='table-photo-container'
+                      className='w-10 h-10 rounded object-cover m-1 mr-3'
                       src={noPhoto}
                     />
                     <Link to='/user/user1'>

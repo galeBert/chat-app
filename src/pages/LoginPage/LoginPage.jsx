@@ -1,6 +1,3 @@
-//
-import './LoginPage.css';
-
 import React, { useState } from 'react';
 
 import { ReactComponent as GoogleIcon } from '../../assets/google-icon.svg';
@@ -63,10 +60,10 @@ export default function LoginPage() {
     });
   };
   return (
-    <div className='login-container'>
+    <div className='w-96 h-screen p-4 flex flex-col mx-auto justify-center'>
       {modal.value.isLoadingScreen && <LoadingScreen />}
-      <div className='logo-container'>
-        <Logo className='login-logo text-typography-3' />
+      <div className='flex flex-col w-full justify-center items-center py-2 pl-2  text-dark-1'>
+        <Logo className='mb-8 w-52 text-typography-3' />
       </div>
       {isValidPassword ? (
         <div className='text-center'>

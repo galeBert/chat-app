@@ -61,7 +61,7 @@ const AllPostTable = ({ data, isLoading, props }) => {
   const skeletonLoop = [1, 2, 3, 4, 5];
 
   return (
-    <table className='table-container'>
+    <table className='w-full h-full pl-5 pb-5 pr-5 pt-4 bg-dark-1 rounded-xl'>
       <tr>
         {tableHead.map((dataHeader, idx) => {
           return <th key={idx}>{dataHeader}</th>;
@@ -103,13 +103,15 @@ const AllPostTable = ({ data, isLoading, props }) => {
                 <div className='flex' style={{ alignItems: 'center' }}>
                   <img
                     alt='pp'
-                    className='table-photo-container'
+                    className='w-10 h-10 rounded object-cover m-1 mr-3'
                     src={post.photoProfile || blank_profile_picture}
                   />
                   <span>
                     {post.owner}
                     <br />
-                    <span className='email-span'>{post.email}</span>
+                    <span className='text-typography-2 hover:text-typography-3 hover:cursor-pointer'>
+                      {post.email}
+                    </span>
                   </span>
                 </div>
               </td>

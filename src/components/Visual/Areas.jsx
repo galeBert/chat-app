@@ -221,7 +221,7 @@ const AreasTooltip = withTooltip(
               {`${titleTooltip} ${getRegistrationValue(tooltipData)}`}
             </TooltipWithBounds>
             <Tooltip
-              className='visx__tooltip'
+              className='min-w-min text-center translate-x-1/2'
               left={tooltipLeft}
               style={{
                 ...defaultStyles,

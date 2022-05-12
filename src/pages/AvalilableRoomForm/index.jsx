@@ -1,5 +1,3 @@
-import './index.styles.css';
-
 import { useEffect, useState } from 'react';
 
 import { CREATE_ROOM, UPDATE_ROOM } from '../../graphql/mutation';

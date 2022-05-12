@@ -1,5 +1,3 @@
-import './style.css';
-
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import UploadIcon from '../../assets/imageDefault.svg';
@@ -229,7 +227,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
     <div>
       <div className='relative'>
         <input
-          className={`table-input-skin p-2 max-w-md  ${
+          className={`bg-none w-full  border border-solid border-dark-9 m-2 rounded-sm p-2 max-w-md  ${
             title !== 'Adjective' && 'pl-10'
           }`}
           id='name'
@@ -314,7 +312,7 @@ const RandomizationTable = ({ data, title, onRefetch, ...props }) => {
                       <div className='relative'>
                         <input
                           key={datas.id}
-                          className={`table-input-skin p-2 max-w-sm ${
+                          className={`bg-none w-full  border border-solid border-dark-9 m-2 rounded-sm p-2 max-w-sm ${
                             (datas?.avatarUrl || datas?.hex) && 'pl-11'
                           }`}
                           defaultValue={datas?.name}

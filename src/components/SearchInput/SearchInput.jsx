@@ -1,5 +1,3 @@
-import './SearchInput.css';
-
 import { ExclamationCircleIcon } from '@heroicons/react/outline';
 import { SearchIcon } from '@heroicons/react/solid';
 
@@ -16,7 +14,7 @@ const SearchInput = ({
         style={{ top: 9 }}
       />
       <input
-        className='input-skin'
+        className='bg-dark-1 h-10 rounded-xl w-full max-w-sm pl-10  border border-solid border-dark-9 z-10'
         onChange={handleChange}
         placeholder='Search here...'
         {...rest}

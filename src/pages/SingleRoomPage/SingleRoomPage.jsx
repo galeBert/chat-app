@@ -1,5 +1,3 @@
-import './SingleRoomPage.css';
-
 import { useEffect } from 'react';
 
 import RoomDetailCard from '../../components/RoomDetailCard';

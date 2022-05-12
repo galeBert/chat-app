@@ -1,5 +1,3 @@
-import './style.css';
-
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import NewDropDown from '../../components/DropDown/DropdownResponsive';
@@ -209,7 +207,7 @@ const Header = ({
     return message;
   };
   return (
-    <div className='header-container'>
+    <div className='w-full mb-4'>
       <div className='flex justify-between'>
         <div className='flex justify-center items-center'>
           <h1 className=''>{title}</h1>

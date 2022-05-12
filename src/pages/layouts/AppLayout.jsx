@@ -1,4 +1,3 @@
-import './AppLayout.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Nav from '../../components/Nav';
@@ -12,11 +11,11 @@ export default function AppLayout({ children }) {
   // const modal = useModal()
   // const isLoadingScreen = modal.value.isLoadingScreen
   return (
-    <div className='app-grid-layout'>
-      <div className='app-layout-left'>
+    <div className='grid grid-cols-6 h-screen gap-3'>
+      <div className='bg-dark-1 p-2 mr-4 z-40'>
         <Sidebar />
       </div>
-      <main className='app-layout-main'>
+      <main className='col-span-5 h-full overflow-x-scroll pr-2'>
         <div className=' h-16 mb-6'>
           <Nav />
         </div>
