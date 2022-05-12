@@ -293,7 +293,7 @@ const ReportedPostPage = () => {
           <div
             className={`${
               option === 'daily' ? 'bg-primary-100' : ''
-            } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+            } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
             onClickCapture={() => handleStateOfGraph('daily')}
           >
             Daily
@@ -301,7 +301,7 @@ const ReportedPostPage = () => {
           <div
             className={`${
               option === 'monthly' ? 'bg-primary-100' : ''
-            } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+            } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
             onClickCapture={() => handleStateOfGraph('monthly')}
           >
             Monthly
@@ -309,7 +309,7 @@ const ReportedPostPage = () => {
           <div
             className={`${
               option === 'yearly' ? 'bg-primary-100' : ''
-            } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
+            } cursor-pointer w-20 h-8 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased`}
             onClickCapture={() => handleStateOfGraph('yearly')}
           >
             Yearly

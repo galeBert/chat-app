@@ -36,7 +36,7 @@ export default function SelectField({ callback, callbackValue }) {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Listbox.Options className='absolute z-20 mt-1 w-full bg-dark-100 shadow-xl max-h-80 rounded-md py-2 text-sm ring-1 ring-primary-100 ring-opacity-95 overflow-auto focus:outline-none'>
+          <Listbox.Options className='absolute z-20 mt-1 w-full bg-dark-100 shadow-xl max-h-80 rounded-md py-2 text-sm ring-1 ring-primary-100/95 overflow-auto focus:outline-none'>
             {days.map((person) => (
               <Listbox.Option
                 key={person.id}

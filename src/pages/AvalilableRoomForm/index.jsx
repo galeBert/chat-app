@@ -318,13 +318,13 @@ const AvaliableRoomForm = (props) => {
       </div>
       <div className='float-right mt-4 mb-4 flex' style={{ paddingBottom: 10 }}>
         <button
-          className='w-40 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
+          className='w-40 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
           onClick={() => history.push('/available-room')}
         >
           Cancel
         </button>
         <button
-          className='w-40 text-center justify-center text-gray-100 hover:bg-dark-600 hover:bg-opacity-50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
+          className='w-40 text-center justify-center text-gray-100 hover:bg-dark-600/50 dark:text-gray-100 group flex items-center px-2 py-2 font-semibold rounded-md antialiased'
           onClick={handleSubmit}
           style={{ backgroundColor: '#7F57FF' }}
         >

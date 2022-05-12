@@ -194,7 +194,7 @@ const Dropdown = ({ options = [], uniqueId, Icon, left }) => {
                                   </div>
                                   <div className='flex justify-end items-center'>
                                     <button
-                                      className=' disabled:cursor-not-allowed disabled:opacity-60  bg-primary-100 pl-2 mt-3 pr-2 pt-1 pb-1 w-20 rounded-lg'
+                                      className=' disabled:cursor-not-allowed disabled:bg-primary-100/60  bg-primary-100 pl-2 mt-3 pr-2 pt-1 pb-1 w-20 rounded-lg'
                                       disabled={
                                         !props.timestamp?.to ||
                                         !props.timestamp?.from
