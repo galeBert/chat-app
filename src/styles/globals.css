@@ -79,6 +79,59 @@
     /* #endregion  /**======== Status Color =========== */
   }
 
+  .valid input[type='email'],
+  .valid input[type='text'],
+  .valid input[type='password'],
+  .valid input[type='number'] {
+    @apply border-brand-1 text-brand-1;
+  }
+
+  .valid .feedback {
+    @apply border-brand-1;
+  }
+
+  .invalid input[type='email'],
+  .invalid input[type='text'],
+  .invalid input[type='number'],
+  .invalid input[type='password'] {
+    @apply border-status-6 text-light-5;
+  }
+
+  .invalid .feedback {
+    @apply border-light-5;
+  }
+
+  .textfield-container {
+    @apply relative w-full h-14 my-3;
+  }
+
+  .textfield-input {
+    @apply absolute  p-3.5 pt-8 top-0 left-0 w-full h-full text-base text-light-1 ring-1 ring-dark-1 rounded-md outline-none bg-brand-1 bg-opacity-0 z-0;
+  }
+
+  .textfield-label {
+    @apply absolute top-4 left-3 duration-200 cursor-text;
+  }
+
+  /*Input focus move up label*/
+
+  .textfield-input:focus + .textfield-label {
+    @apply top-1 left-3.5 text-brand-1 text-sm font-medium z-10 bg-brand-1 bg-opacity-0;
+  }
+
+  /*Input focus sticky top label*/
+
+  .textfield-input:not(:placeholder-shown).textfield-input:not(:focus)
+    + .textfield-label {
+    @apply top-1 left-3.5 text-sm font-medium z-10 bg-brand-1 bg-opacity-0;
+  }
+
+  /*Input focus*/
+
+  .textfield-input:focus {
+    @apply ring-2 ring-brand-1;
+  }
+
   html {
     font-family: Avenir Book, system-ui, sans-serif;
   }

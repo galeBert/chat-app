@@ -79,12 +79,13 @@ export default function LoginPage() {
               password: '',
             }}
             onSubmit={async (data, { setSubmitting, setErrors }) => {
+              console.log('jalann');
               setSubmitting(true);
               const accessCodeSnapshot = await getCollection(
                 'adminAccessCode',
                 'code',
                 data.password
-              );
+              ).catch((err) => console.log('apahayo', err));
 
               setIsValidPassword(!accessCodeSnapshot.empty);
               if (accessCodeSnapshot.empty) {

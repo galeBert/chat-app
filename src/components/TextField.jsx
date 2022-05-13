@@ -1,4 +1,4 @@
-import './TextField.css';
+import '../styles/globals.css';
 
 import { useRef, useState } from 'react';
 
@@ -103,7 +103,7 @@ const TextField = ({
 
       {meta.touched && meta.error ? (
         <label
-          className='absolute flex flex-row items-center right-4 top-1 text-sm text-yellow-300 cursor-pointer'
+          className='absolute flex flex-row items-center right-4 top-1 text-sm text-light-5 cursor-pointer'
           htmlFor={field.name}
         >
           {meta.error}
